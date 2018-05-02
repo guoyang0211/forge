@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="forge"
+  id="myeclipse.1524040302033"
+  context-root="/forge"
+  j2ee-spec="6.0"
+  archive="forge.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

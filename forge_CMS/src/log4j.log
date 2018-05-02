@@ -1,0 +1,11 @@
+2018-04-09 01:27:17com.xdy.service.impl.UserServiceImpl.add(UserServiceImpl.java:35) 新增成功 
+2018-04-09 13:52:33 com.xdy.service.impl.UserServiceImpl.add(UserServiceImpl.java:35) 新增成功 
+2018-04-09 16:08:38 com.xdy.service.impl.UserServiceImpl.delete(UserServiceImpl.java:48) 删除失败 
+2018-04-09 16:10:35 com.xdy.service.impl.UserServiceImpl.delete(UserServiceImpl.java:46) 删除成功 
+2018-04-09 16:18:42 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:59) 修改失败 
+2018-04-09 16:26:57 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:59) 修改失败 
+2018-04-09 16:32:24 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:59) 修改失败 
+2018-04-09 16:34:34 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:59) 修改失败 
+2018-04-09 16:40:25 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:59) 修改失败 
+2018-04-09 16:41:21 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:59) 修改失败 
+2018-04-09 16:42:04 com.xdy.service.impl.UserServiceImpl.update(UserServiceImpl.java:57) 修改成功 

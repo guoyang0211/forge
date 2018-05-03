@@ -31,6 +31,8 @@ import com.sun.mail.iap.Response;
 @WebServlet("/forgeServlet")
 public class Servlet extends HttpServlet {
 	Forge_Users_Dao userDao = new Forge_Users_Dao_Impl();
+	Forge_Users_Service service = new Forge_Users_Service_Impl();
+
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -47,6 +49,9 @@ public class Servlet extends HttpServlet {
 		switch (method) {
 		case "login":
 			login(req, resp);
+			break;
+		case "validate":
+			validateLoginName(req, resp);
 			break;
 		case "add":
 			try {
@@ -73,7 +78,7 @@ public class Servlet extends HttpServlet {
 		
 		System.out.println("进入了add方法");
 		String id = req.getParameter("id");
-
+		req.setCharacterEncoding("UTF-8");
 		String password = req.getParameter("password");
 		String repassword = req.getParameter("repassword");
 
@@ -82,23 +87,32 @@ public class Servlet extends HttpServlet {
 		user.setUserId(id);
 		user.setAddress(req.getParameter("address"));
 		user.setEmail(req.getParameter("email"));
-		user.setLoginName(req.getParameter("loginName"));
 		user.setPhone(req.getParameter("phone"));
-
-		System.out.println("password" + password);
-		System.out.println("repassword" + repassword);
-
+		user.setLoginName(req.getParameter("loginName"));
 		user.setPassword(password);
-
-		Forge_Users_Service service = new Forge_Users_Service_Impl();
-
 		service.add(user);
-
-		System.err.println(user);
-
 		System.out.println("执行完毕");
-
 		resp.sendRedirect("login.jsp");
+
+	}
+	
+	public void validateLoginName(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		//创建user实例对象
+		Forge_Users user=null;
+		//判断数据库里是否存在用户输入的用户
+		String loginName = req.getParameter("loginName");
+		System.out.println("=====================++++"+loginName);
+		user = service.findByName(loginName);
+
+				boolean flag=false;
+				System.out.println(loginName);
+				if(user!=null){
+					flag=true;//证明数据库存在
+					System.out.println("______________________________________");
+				}
+				PrintWriter writer = resp.getWriter();
+				writer.print(flag);
+				writer.close();
 
 	}
 

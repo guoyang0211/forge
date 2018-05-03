@@ -99,4 +99,12 @@ public class Forge_Users_Service_Impl implements Forge_Users_Service {
 	}
 
 
+	@Override
+	public Forge_Users findByName(String loginName) {
+		Forge_Users user = null;
+		user = dao.findByName(loginName);
+		return user;
+	}
+
+
 }

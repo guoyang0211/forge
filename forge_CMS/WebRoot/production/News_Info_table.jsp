@@ -315,7 +315,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
- <a href="/forge_CMS/NewsServlet?method=update&id=${news.id}" class="btn btn-success" >修改新闻</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!--  <a href="/forge_CMS/NewsServlet?method=update&id=${news.id}" class="btn btn-success" >修改新闻</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --> -->
                     <form class="form-horizontal form-label-left" action="/forge_CMS/NewsServlet?method=update" method="post" novalidate>
 
                       </p>
@@ -325,7 +325,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">新闻编号 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input  name="id" placeholder="请输入要修改的新闻id" id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"   required="required" type="text">
+                      
+                          <input  name="id" value="${news.id}"  id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"   required="required" type="text">
                         </div>
                       </div>
                       
@@ -333,7 +334,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻标题 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="title" name="请填写新标题"   required="required" class="form-control col-md-7 col-xs-12">
+                          <input name="title" value="${news.title}"   required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
@@ -341,7 +342,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >新闻创建时间 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name=time" placeholder="请输入时间"  id="email2"   required="required" class="form-control col-md-7 col-xs-12">
+                          <input name=time"  value="${news.createTime}"  id="email2"   required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
@@ -349,7 +350,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">新闻内容 <span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name="content" placeholder="请输入新闻内容" id="email"  required="required" class="form-control col-md-7 col-xs-12">
+                          <input name="content" value="${news.content}"  id="email"  required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       

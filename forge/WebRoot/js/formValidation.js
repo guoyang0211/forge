@@ -4,11 +4,11 @@
 $(function(){
     $("#register").validate({
         rules:{
-            firstName:{
+           /* firstName:{
                 required:true,
                 minlength:1,
                 maxlength:2
-            },
+            },*/
             lastName:{
                 required:true
             },
@@ -45,11 +45,11 @@ $(function(){
             }
         },
         messages:{
-            firstName:{
+            /*firstName:{
                 required: "Please enter your first name",
                 minlength: "The length of the first name cannot be less than 1",
                 maxlength: "The length of the first name cannot be greater than 2"
-            },
+            },*/
             lastName:{
                 required: "Please enter your last name"
             },

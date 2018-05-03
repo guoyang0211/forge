@@ -48,8 +48,9 @@ public class Forge_News_Dao_Impl extends JdbcUtil implements Forge_News_Dao {
 
 	@Override
 	public int update(Serializable id,Forge_News t) {
-		String sql="update from forge_news set title=?,content=?, where id=? ";
-		Object[]params={t.getTitle(),t.getContent()};
+		
+		String sql="update forge_news set title=?,content=? where id=?";
+		Object[]params={t.getTitle(),t.getContent(),id};
 		
 		int rowNum=0;
 		try {

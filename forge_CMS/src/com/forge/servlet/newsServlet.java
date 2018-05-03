@@ -3,6 +3,7 @@ package com.forge.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
@@ -78,13 +79,19 @@ public class newsServlet extends HttpServlet {
 		Forge_News news=null;
 		news = service.findById(id);
 		// 保存在request作用域
-		System.out.println(news);
-		System.out.println("byid");
-		req.setAttribute("news", news);
-		req.setAttribute("id", id);
-		System.out.println(news);
-
-				resp.encodeURL("production/News_Info_table.jsp?id="+id+"");
+	
+		req.getSession().setAttribute("news", news);
+		//req.setAttribute("id", id);
+	
+			try {
+				resp.sendRedirect("production/News_Info_table.jsp?id="+id+"");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//req.getRequestDispatcher("production/News_Info_table.jsp?id="+id+"").forward(req, resp);
+		
+				
 				//req.getRequestDispatcher("production/News_Info_table.jsp?id="+id+"").forward(req, resp);
 			
 		
@@ -148,7 +155,13 @@ public class newsServlet extends HttpServlet {
 		Forge_News news=new Forge_News();
 		news.setId(Integer.valueOf(id));
 		news.setTitle(title);
-		//news.setCreateTime(time);
+		;
+		try {
+			news.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").parse(title));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		news.setContent(content);
 		
 		
@@ -175,6 +188,26 @@ public class newsServlet extends HttpServlet {
 	//删除
 	private void delete(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("进入了dele");
+		String id=req.getParameter("id");
+		int num = service.delete(Integer.valueOf(id));
+		if(num!=0){
+			System.out.println("删除成功");
+			try {
+				resp.sendRedirect("/forge_CMS/NewsServlet?method=findAll");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			System.out.println("删除失败");
+			try {
+				resp.sendRedirect("/forge_CMS/NewsServlet?method=findAll");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
 	//添加方法 

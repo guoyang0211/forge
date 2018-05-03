@@ -163,5 +163,27 @@ public class Forge_Users_Dao_Impl extends JdbcUtil implements Forge_Users_Dao {
 
 	}
 
+	@Override
+	public Forge_Users findByName(String loginName) {
+		
+		String sql = "select * from forge_users where loginName=?";
+		Object [] params={loginName};
+		Forge_Users user=null;
+		 try {
+			
+			rs=getmyExecuteQuery(sql, params);
+
+			user=ResultSerUtil.findById(rs, Forge_Users.class);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			closeConnection();
+		}
+		return user ;	}
+
 
 	 }

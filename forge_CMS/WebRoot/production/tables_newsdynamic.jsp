@@ -129,9 +129,9 @@
 	                          <td >${news.createTime }</td>
 	                          <td >${news.img }</td>
 	                          <td style="text-align: left; line-height: 0px">
-	                           <a href="/forge_CMS/production/News_Info_table.jsp" class="btn btn-success" >修改新闻</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<!-- 	                          <a href="/forge_CMS/NewsServlet?method=update&id=${news.id}" class="btn btn-success" >修改新闻</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-	                          <a  type="button" class="btn btn-primary" href="javascript:del('/forge_CMS/UserServlet?method=delete&id=${users.userId}')">删除新闻</a></td>
+<!-- 	                           <a href="/forge_CMS/production/News_Info_table.jsp" class="btn btn-success" >修改新闻</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	                          <a href="/forge_CMS/NewsServlet?method=findById&id=${news.id}" class="btn btn-success" >修改新闻</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                          <a  type="button" class="btn btn-primary" href="javascript:del('/forge_CMS/NewsServlet?method=delete&id=${news.id}')">删除新闻</a></td>
 <!-- 	                          <a href="/forge_CMS/UserServlet?method=findById&id=${users.userId}"></a> -->
 	                        </tr>
                       </c:forEach>

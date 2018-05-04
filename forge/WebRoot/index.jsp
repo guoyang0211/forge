@@ -1,2201 +1,1434 @@
-﻿<!doctype html>
-<html class="no-js" lang="zxx">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<%@page contentType="text/html" pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+	<meta name="renderer" content="webkit">
+	<title>云购物商城-换一种方式购物</title>
+	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
 
-    <!-- All css files are included here -->
-    <!-- Bootstrap fremwork main css -->
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-    <!-- This core.css file contents all plugings css file. -->
-    <link rel="stylesheet" href="css/core.css">
-    <!-- Theme shortcodes/elements style -->
-    <link rel="stylesheet" href="css/shortcode/shortcodes.css">
-    <!-- Theme main style -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- User style -->
-    <link rel="stylesheet" href="css/custom.css">
+        var intDiff = parseInt(90000);//倒计时总秒数量
 
+        function timer(intDiff){
+            window.setInterval(function(){
+                var day=0,
+                    hour=0,
+                    minute=0,
+                    second=0;//时间默认值
+                if(intDiff > 0){
+                    day = Math.floor(intDiff / (60 * 60 * 24));
+                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                }
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                $('#day_show').html(day+"天");
+                $('#hour_show').html('<s id="h"></s>'+hour+'时');
+                $('#minute_show').html('<s></s>'+minute+'分');
+                $('#second_show').html('<s></s>'+second+'秒');
+                intDiff--;
+            }, 1000);
+        }
 
+        $(function(){
+            timer(intDiff);
+        });//倒计时结束
 
-    <!-- Modernizr JS -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        $(function(){
+	        /*======右按钮======*/
+            $(".you").click(function(){
+                nextscroll();
+            });
+            function nextscroll(){
+                var vcon = $(".v_cont");
+                var offset = ($(".v_cont li").width())*-1;
+                vcon.stop().animate({marginLeft:offset},"slow",function(){
+                    var firstItem = $(".v_cont ul li").first();
+                    vcon.find(".flder").append(firstItem);
+                    $(this).css("margin-left","0px");
+                });
+            };
+	        /*========左按钮=========*/
+            $(".zuo").click(function(){
+                var vcon = $(".v_cont");
+                var offset = ($(".v_cont li").width()*-1);
+                var lastItem = $(".v_cont ul li").last();
+                vcon.find(".flder").prepend(lastItem);
+                vcon.css("margin-left",offset);
+                vcon.animate({marginLeft:"0px"},"slow")
+            });
+        });
+
+	</script>
 </head>
-
 <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->  
 
-    <!-- Body main wrapper start -->
-    <div class="wrapper">
-        <!-- Start of header area -->
-        <header>
-            <div class="header-top gray-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-5 hidden-xs">
-                            <div class="header-top-left">
-                                <ul class="header-top-style text-capitalize mr-25">
-                                    <li><a href="#"><span class="mr-10">My Account</span><i class="fa fa-angle-down"></i></a>
-                                        <ul class="ul-style my-account box-shadow white-bg">
-                                            <li><a href="login.jsp">Login</a></li>
-                                            <li><a href="my-account.jsp">My Account</a></li>
-<!--                                             	后台连接 -->
-                                        	<li><a href="/forge_CMS/index.jsp">forge_CMS</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                
-								<!--
-                                <ul class="header-top-style text-capitalize mr-25">
-                                    <li><a href="#"><span class="mr-10">USD</span><i class="fa fa-angle-down"></i></a>
-                                        <ul class="ul-style currency box-shadow white-bg">
-                                            <li><a href="#"><i class="fa fa-usd"></i><span>USD</span></a></li>
-                                            <li><a href="#"><i class="fa fa-euro"></i><span>Euro</span></a></li>
-                                            <li><a href="#"><i class="fa fa-gbp"></i><span>GBP</span></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul class="header-top-style pl-10">
-                                    <li>
-                                        <span class="mr-10"><img alt="" src="images/header/language/1-min.jpg"></span>
-                                        <a href="#"><span class="mr-10">English</span><i class="fa fa-angle-down"></i></a>
-                                        <ul class="ul-style language box-shadow white-bg">
-                                            <li><a href="#"><img alt="" src="images/header/language/1-min.jpg"><span>English</span></a></li>
-                                            <li><a href="#"><img alt="" src="images/header/language/2-min.jpg"><span>Germani</span></a></li>
-                                            <li><a href="#"><img alt="" src="images/header/language/3-min.jpg"><span>French</span></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-								-->
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-xs-6">
-                            <div class="header-top-middle">
-                                <ul class="header-top-style">
-                                    <li>
-                                        <a href="login.html">
-<!--                                             <span>Login or Register</span> -->
-                                        </a>
-                                        <div class="ul-style login-register box-shadow white-bg p-30">
-                                            <h6 class="mb-20"><strong>Login</strong></h6>
-                                            <input type="text" name="s" class="pl-30" placeholder="user name" id="user-name">
-                                            <input type="password" name="d" class="pl-30" placeholder="Password" id="password">
-                                            <label class="remmember">
-                                                <input type="checkbox">
-                                                remember me
-                                            </label>
-                                            <button value="submit" class="btn-default">Login</button>
-                                            <h6 class="mb-20"><strong>or Register</strong></h6>
-                                            <input type="email" name="s" placeholder="Your mail" id="user-email">
-                                            <input type="password" name="d" placeholder="Password" id="c-password">
-                                            <button value="submit" class="btn-default">Login</button>
-                                            <h6 class="mb-20"><strong>or register to</strong></h6>
-                                            <ul class="login-social">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="header-top-right">
-                                <span class="mr-20"><a href="#"><img alt="" src="images/header/search-icon.png"></a></span>
-                                <span><input type="text" class="pl-10" placeholder="Search..."></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-bottom">
-                <div class="container">
-                    <div class="row header-middle-content">
-                        <div class="col-md-5 col-sm-4 hidden-xs">
-                            <div class="service-inner mt-10">
-                                <span class="service-img b-img">
-                                    <img alt="" src="images/service.png">
-                                </span>
-                                <span class="service-content ml-15"><strong>+88 (012) 564 979 56</strong><br>We are open 9 am - 10 pm</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="header-logo text-center">
-                                <a href="index.html"><img alt="" src="images/logo.png"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-offset-0 col-md-5 col-sm-offset-0 col-sm-4 col-xs-offset-3 col-xs-6">
-                            <div class="shopping-cart">
-                                <a href="#">
-                                    <span class="shopping-cart-control">
-                                        <img alt="" src="images/shop.png">
-                                    </span>
-                                    <span class="cart-size-value"><strong>购物车(3)</strong><br>$250</span>
-                                </a>
-                                <ul class="shopping-cart-down box-shadow white-bg">
-                                    <li class="media">
-                                        <a href="#"><img alt="" src="images/cart/1.jpg"></a>
-                                        <div class="cart-item-wrapper">
-                                            <a href="#">Zelletria ostma</a>
-                                            <span class="quantity">
-                                                <span class="amount">$195</span>
-                                                 x 2
-                                            </span>
-                                            <a title="Remove this item" class="remove" href="#">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a href="#"><img alt="" src="images/cart/2.jpg"></a>
-                                        <div class="cart-item-wrapper">
-                                            <a href="#">Letria postma</a>
-                                            <span class="quantity">
-                                                <span class="amount">$145</span>
-                                                 x 1
-                                            </span>
-                                            <a title="Remove this item" class="remove" href="#">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a href="#"><img alt="" src="images/cart/3.jpg"></a>
-                                        <div class="cart-item-wrapper">
-                                            <a href="#">Montria jastma</a>
-                                            <span class="quantity">
-                                                <span class="amount">$155</span>
-                                                 x 2
-                                            </span>
-                                            <a title="Remove this item" class="remove" href="#">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <span class="total-title pull-left">Sub Total</span>
-                                        <span class="total pull-right">$845</span>
-                                    </li>
-                                    <li class="media">
-                                        <a class="cart-btn" href="#">VIEW CART</a>
-                                        <a class="cart-btn" href="#">CHECKOUT</a>
-                                    </li>
-                                </ul>                           
-                            </div>
-                        </div>
-                        <nav class="primary-menu">
-                            <ul class="header-top-style text-uppercase">
-                                <li><a href="index.html">home</a></li>
-                                <li><a href="about.html">about</a></li>
-                                <li><a href="shop.html">shop</a></li>
-                                <li><a href="contact.html">contact</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <!-- Mobile Menu Start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul>
-                                        <li><a href="index.html">home</a></li>
-										<li><a href="about.html">about</a></li>
-										<li><a href="shop.html">shop</a></li>
-										<li><a href="contact.html">contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>      
-            <!-- Mobile Menu End -->        
-        </header>
-        <!-- End of header area -->
-        <!-- Start of slider area -->
-        <section class="slider-container">
-            <!-- Slider Image -->
-            <div id="mainSlider" class="nivoSlider slider-image">
-                <img src="images/slider/1.jpg" alt="main slider" title="#htmlcaption1">
-                <img src="images/slider/2.jpg" alt="main slider" title="#htmlcaption2">
-            </div>
-            <!-- Slider Caption 1 -->
-            <div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
-                <div class="slider-progress"></div> 
-                <div class="container slider-height">
-                    <div class="row slider-height">
-                        <div class="col-xs-offset-6 col-xs-6 slider-height">
-                            <div class="slide-text">
-                                <div class="middle-text">
-                                    <div class="cap-dec text-black text-uppercase wow fadeInDown" data-wow-duration="0.9s" data-wow-delay="0s">
-                                        <h3>TRENDY DRESS COLLETIONS</h3>
-                                    </div>  
-                                    <div class="cap-title text-black text-uppercase wow fadeInDown" data-wow-duration="1.5s" data-wow-delay="0.5s">
-                                        <h2>FOR WOMEN - 2017</h2>
-                                    </div>  
-                                    <div class="cap-para wow fadeInDown" data-wow-duration="2s" data-wow-delay="1s">
-                                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat  vel illum dolore eu feugiat nulla facilisis at vero eros.</p>
-                                    </div>
-                                    <div class="cap-shop wow text-uppercase fadeInDown" data-wow-duration="2.5s" data-wow-delay="1.5s">
-                                        <a href="#">Shop now</a>
-                                    </div>  
-                                </div>  
-                            </div>
-                        </div>
-                    </div>
-                </div>                      
-            </div>
-            <!-- Slider Caption 2 -->
-            <div id="htmlcaption2" class="nivo-html-caption slider-caption-2">
-                <div class="slider-progress"></div> 
-                <div class="container slider-height">
-                    <div class="row slider-height">
-                        <div class="col-xs-offset-5 col-xs-7 slider-height">
-                            <div class="slide-text">
-                                <div class="middle-text">
-                                    <div class="cap-dec text-black text-uppercase wow fadeInDown" data-wow-duration="0.9s" data-wow-delay="0s">
-                                        <h3>EXCLUSIVE COLLETIONS</h3>
-                                    </div>  
-                                    <div class="cap-title text-black text-uppercase wow fadeInDown" data-wow-duration="1.5s" data-wow-delay="0.5s">
-                                        <h2>OVER COATS FOR MAN</h2>
-                                    </div>  
-                                    <div class="cap-para wow fadeInDown" data-wow-duration="2s" data-wow-delay="1s">
-                                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat  vel illum dolore eu feugiat nulla facilisis at vero eros.</p>
-                                    </div>
-                                    <div class="cap-shop wow fadeInDown" data-wow-duration="2.5s" data-wow-delay="1.5s">
-                                        <a href="#">Shop now</a>
-                                    </div>  
-                                </div>  
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End of slider area -->
-        <!-- Start page content -->
-        <section id="page-content" class="page-wrapper">  
-            <!-- Start About us Area -->
-            <div class="why-us section-padding text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-4">
-                            <div class="why-us-inner">
-                                <div class="why-us-icon mb-20">
-                                    <img src="images/why-us/1.png" alt="">
-                                </div>
-                                <h5 class="text-uppercase m-0 text-defualt"><strong>FREE SHIPPING</strong></h5>
-                                <p class="why-us-title m-0">Free for all product</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-4">
-                            <div class="why-us-inner">
-                                <div class="why-us-icon mb-20">
-                                    <img src="images/why-us/2.png" alt="">
-                                </div>
-                                <h5 class="text-uppercase m-0 text-defualt"><strong>ORDER ONLINE</strong></h5>
-                                <p class="why-us-title m-0">www.forge.com</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-4">
-                            <div class="why-us-inner">
-                                <div class="why-us-icon mb-20">
-                                    <img src="images/why-us/3.png" alt="">
-                                </div>
-                                <h5 class="text-uppercase m-0 text-defualt"><strong>MONEY BACK</strong></h5>
-                                <p class="why-us-title m-0">Money back guarantee</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3 hidden-sm">
-                            <div class="why-us-inner m-0">
-                                <div class="why-us-icon mb-20">
-                                    <img src="images/why-us/4.png" alt="">
-                                </div>
-                                <h5 class="text-uppercase m-0 text-defualt"><strong>GIFT COUPON</strong></h5>
-                                <p class="why-us-title m-0">Surprise gift coupon</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End About us Area -->
-            <!-- Start Banner Area -->
-            <div class="banner-area">
-                <div class="container">
-                    <div class="row rp-style">
-                        <div class="col-sm-4 cp-style">
-                            <div class="banner-inner">
-                                <a class="test-popup-link banner-img" href="images/banner/1.jpg">
-                                    <img src="images/banner/1.jpg" alt="">
-                                </a>
-                                <div class="banner-text banner-text-1">
-                                    <a href="#" class="banner-heading text-uppercase text-right">new trend for women's</a>
-                                    <h3 class="banner-title text-uppercase text-right">special offer 25% off</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 cp-style">
-                            <div class="row rp-style">
-                                <div class="col-sm-8 cp-style">
-                                    <div class="banner-inner">
-                                        <a class="test-popup-link banner-img" href="images/banner/2.jpg">
-                                            <img src="images/banner/2.jpg" alt="">
-                                        </a>
-                                        <div class="banner-text banner-text-2 text-center">
-                                            <a href="#" class="banner-heading text-uppercase text-right">man's</a>
-                                            <h3 class="banner-title-x text-uppercase">summer</h3>
-                                            <h3 class="banner-title text-uppercase text-right">collection</h3>
-                                        </div>
-                                    </div>                                      
-                                </div>
-                                <div class="col-sm-4 cp-style">
-                                    <div class="banner-inner">
-                                        <a class="test-popup-link banner-img" href="images/banner/3.jpg">
-                                            <img src="images/banner/3.jpg" alt="">
-                                        </a>
-                                        <div class="banner-text banner-text-3">
-                                            <a href="#" class="banner-heading text-uppercase text-right">shoes</a>
-                                            <h3 class="banner-title text-uppercase text-right">35% off</h3>
-                                        </div>
-                                    </div>                                      
-                                </div>
-                            </div>
-                            <div class="row rp-style mt-8">
-                                <div class="col-sm-4 cp-style">
-                                    <div class="banner-inner">
-                                        <a class="test-popup-link banner-img" href="images/banner/4.jpg">
-                                            <img src="images/banner/4.jpg" alt="">
-                                        </a>
-                                        <div class="banner-text banner-text-4 text-right">
-                                            <a href="#" class="banner-heading text-uppercase text-right">bag's</a>
-                                            <h3 class="banner-title text-uppercase text-right">promotion</h3>
-                                        </div>
-                                    </div>                                      
-                                </div>
-                                <div class="col-sm-8 cp-style">
-                                    <div class="banner-inner m-0">
-                                        <a class="test-popup-link banner-img" href="images/banner/5.jpg">
-                                            <img src="images/banner/5.jpg" alt="">
-                                        </a>
-                                        <div class="banner-text banner-text-5 text-center">
-                                            <a href="#" class="banner-heading text-uppercase text-right">kid's</a>
-                                            <h3 class="banner-title text-uppercase text-right">collection</h3>
-                                        </div>
-                                    </div>                                      
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Banner Area -->
-            <!-- Start Featured product Area -->
-            <div class="featured-product-area section-padding">
-                <div class="container">
-                    <div class="row rp-style">
-                        <div class="col-md-12">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>FEATURED PRODUCTS</strong></h2>
-                                <p class="text-defualt">Best Collection for you</p>
-                                <img alt="" src="images/section-border.png">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row rp-style">
-                        <div class="featured-carousel indicator-style">
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/1.jpg">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase black-bg">new</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$150</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Eletria ostma" href="#">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/2.jpg">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase theme-bg">sale</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$130</li>
-                                            <li class="text-right p-price">$150</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Tletria postma" href="#">Tletria postma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/3.jpg">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$120</li>
-                                            <li class="text-right p-price">$130</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Celletria ostma" href="#">Celletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/4.jpg">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$150</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Eletria ostma" href="#">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/5.jpg">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-25%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$150</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Eletria ostma" href="#">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/1.jpg">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase black-bg">new</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$150</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Eletria ostma" href="#">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/2.jpg">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase theme-bg">sale</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$130</li>
-                                            <li class="text-right p-price">$150</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Tletria postma" href="#">Tletria postma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img alt="" src="images/product/arrival/3.jpg">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                    <div class="product-text pt-15">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$120</li>
-                                            <li class="text-right p-price">$130</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name m-0">
-                                            <a title="Celletria ostma" href="#">Celletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-            <!-- Start Featured product Area -->
-            <!-- Start Offer  Area -->
-            <div class="offer-area">
-                <div class="offer-banner banner-style-1 pull-left">
-                    <a href="#">
-                        <img src="images/offer/1.jpg" alt="">
-                    </a>
-                    <div class="offer-banner-text text-uppercase text-white">
-                        <h2>coats</h2>
-                        <h3>FOR <span class="text-defualt"> MEN</span></h3>
-                    </div>
-                </div>
-                <div class="offer-inner top-right-sale ">
-                    <h3>BIG SALE </h3>
-                    <h1>OFFER</h1>
-                    <h2>35% <span>off</span></h2>
-                    <span class="bottom-border-style"></span>
-                </div>
-                <div class="offer-banner banner-style-2 pull-right">
-                    <a href="#">
-                        <img alt="" src="images/offer/2.jpg">
-                    </a>
-                    <div class="offer-banner-text-2 text-uppercase">
-                        <h2 class="text-defualt">WINTER</h2>
-                        <h3 class="medium text-white">COLLECTION</h3>
-                        <h3 class="blod text-white">FOR <span class="text-defualt">WOMEN</span></h3>
-                    </div>
-                </div>
-            </div>
-            <!-- End Offer Area -->
-            <!-- Start Upcomming Area -->
-            <div class="up-comming-area section-padding">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="single-up-comming ash-bg">
-                                <div class="product-cuntdown pull-left">
-                                    <div class="timer p-20">
-                                        <div data-countdown="2017/06/01"></div>
-                                    </div>                                    
-                                </div> 
-                                <div class="product-inner pull-right">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/cuntdown/1.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                </div>
-                                <div class="clear"></div>
-                                <div class="product-text white-bg pt-15">
-                                    <ul class="pricing list-inline pull-right">
-                                        <li class="text-defualt c-price">$130</li>
-                                        <li class="text-right p-price">$150</li>
-                                    </ul>
-                                    <h6 class="product-name">
-                                        <a href="#" title="Eletria ostma">Tletria postma</a>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="single-up-comming ash-bg">
-                                <div class="product-cuntdown pull-left">
-                                    <div class="timer p-20">
-                                        <div data-countdown="2018/06/01"></div>
-                                    </div>                                    
-                                </div> 
-                                <div class="product-inner pull-right">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/cuntdown/2.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                </div>
-                                <div class="clear"></div>
-                                <div class="product-text white-bg pt-15">
-                                    <ul class="pricing list-inline pull-right">
-                                        <li class="text-defualt c-price">$150</li>
-                                        <li class="text-right p-price">$180</li>
-                                    </ul>
-                                    <h6 class="product-name">
-                                        <a href="#" title="Restalomen Santiloma">Restalomen Santiloma</a>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 hidden-sm">
-                            <div class="single-up-comming ash-bg m-0">
-                                <div class="product-cuntdown pull-left">
-                                    <div class="timer p-20">
-                                        <div data-countdown="2018/06/01"></div>
-                                    </div>                                    
-                                </div> 
-                                <div class="product-inner pull-right">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/cuntdown/3.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>   
-                                </div>
-                                <div class="clear"></div>
-                                <div class="product-text white-bg pt-15">
-                                    <ul class="pricing list-inline pull-right">
-                                        <li class="text-defualt c-price">$180</li>
-                                        <li class="text-right p-price">$200</li>
-                                    </ul>
-                                    <h6 class="product-name">
-                                        <a href="#" title="Eletriaostma Santiloma">Eletriaostma Santiloma</a>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Upcomming Area -->
-            <!-- Start New Arrival Area  -->
-            <div class="new-arrival-area">
-                <div class="container">
-                    <div class="row rp-style-2">
-                        <div class="col-md-12">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>FRESH NEW ARRIVAL</strong></h2>
-                                <p class="text-defualt">ALL NEW ITEAMS</p>
-                                <img alt="" src="images/section-border.png">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row rp-style-2">
-                        <div class="featured-carousel indicator-style">
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/1.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Teletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/2.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/3.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase black-bg">new</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Wetria postma">Wetria postma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/4.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/5.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Kelletria ostma">Kelletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/6.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase black-bg">new</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/7.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Celletria ostma">Celletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/8.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/9.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Celletria ostma">Celletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/10.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/1.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Teletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/2.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/3.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase black-bg">new</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Wetria postma">Wetria postma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/4.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase orang-bg">-20%</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-container cp-style-2">
-                                <div class="product-inner">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/5.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$170</li>
-                                            <li class="text-right p-price">$190</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Kelletria ostma">Kelletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="product-inner mt-35">
-                                    <a href="#">
-                                        <div class="product-img b-img">
-                                            <img src="images/product/arrival/6.jpg" alt="">
-                                        </div>
-                                    </a>
-                                    <span class="product-tag text-uppercase black-bg">new</span>
-                                    <ul class="quick-veiw text-center">
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-refresh"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    </ul>
-                                    <div class="product-text">
-                                        <ul class="pull-left list-inline ratings">
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                            <li><i class="rated fa fa-star"></i></li>
-                                        </ul>
-                                        <ul class="pricing list-inline pull-right">
-                                            <li class="text-right c-price">$160</li>
-                                            <li class="text-right p-price">$180</li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h6 class="product-name">
-                                            <a href="#" title="Eletria ostma">Eletria ostma</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Of New Arrival Area  -->
-            <!-- Start Offer Banner Area -->
-            <div class="offer-banner-area section-padding clearfix">
-                <figure class="single-offer-banner b-img">
-                    <img src="images/offer-banner/1.jpg" alt="">
-                    <figcaption>
-                        <div class="figcation-text left-top text-uppercase text-left text-white">
-                            <h1>new</h1>
-                            <h1>Arrival</h1>
-                            <h1>20% off</h1>
-                        </div>
-                        <div class="figcation-text text-uppercase right-bottom text-white">
-                            <h1>BAGS</h1>
-                        </div>
-                    </figcaption>
-                </figure>
-                <figure class="single-offer-banner b-img">
-                    <img src="images/offer-banner/2.jpg" alt="">
-                    <figcaption>
-                        <div class="figcation-text left-top text-uppercase text-left text-white">
-                            <h1>WATCHES</h1>
-                        </div>
-                        <div class="figcation-text text-uppercase right-bottom text-white text-right">
-                            <h1>EXCLUSIVE</h1>
-                            <h1>COLLECTIONS</h1>
-                        </div>
-                    </figcaption>
-                </figure>
-                <figure class="single-offer-banner b-img m-0">
-                    <img src="images/offer-banner/3.jpg" alt="">
-                    <figcaption>
-                        <div class="figcation-text right-top text-uppercase text-left text-white text-right">
-                            <h1>BIG OFFER</h1>
-                            <h1>35% OFF</h1>
-                        </div>
-                        <div class="figcation-text left-bottom text-uppercase text-white">
-                            <h1>SHOES</h1>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <!-- End Offer Banner Area -->
-            <!-- Start Best Seller Iteams Area -->
-            <div class="best-saller-iteam-area pb-90">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 cp-style-2">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>BEST SELLER</strong></h2>
-                                <p class="text-defualt">TOP COLLECTION</p>
-                                <img src="images/section-border.png" alt="">
-                            </div>
-                            <div class="best-seller-carousel indicator-style-two">
-                                <div class="product-container">
-                                    <div class="best-product-inner mb-35 row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/2.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="best-product-inner row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/3.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-container">
-                                    <div class="best-product-inner mb-35 row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/4.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="best-product-inner row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/1.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-container">
-                                    <div class="best-product-inner mb-35 row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/2.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="best-product-inner row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/1.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 cp-style-2">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>TRENDY ITEAMS</strong></h2>
-                                <p class="text-defualt">NEW TREND</p>
-                                <img src="images/section-border.png" alt="">
-                            </div>
-                            <div class="best-seller-carousel indicator-style">
-                                <div class="product-container">
-                                    <div class="best-product-inner mb-35 row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/4.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="best-product-inner row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/1.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-container">
-                                    <div class="best-product-inner mb-35 row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/2.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="best-product-inner row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/3.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-container">
-                                    <div class="best-product-inner mb-35 row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/4.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="best-product-inner row rp-style-3 clearfix">
-                                        <div class="col-xs-5 cp-style-3">
-                                            <div class="best-product-img b-img">
-                                                <a href="#">
-                                                    <img src="images/best-seller/1.jpg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7 cp-style-3">
-                                            <div class="best-product-text">
-                                                <h6 class="product-name m-0 p-0">
-                                                    <a href="#">Palletria ostma</a>
-                                                </h6>
-                                                <ul class="list-inline ratings">
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                    <li><i class="rated fa fa-star"></i></li>
-                                                </ul>
-                                                <ul class="pricing">
-                                                    <li class="c-price">$180</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Of Best Seller Iteams Area -->
-            <!-- Start Blog Area -->
-            <div class="blog-testimonial-area section-padding">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>NEWS FROM THE BLOG</strong></h2>
-                                <p class="text-defualt">FROM THE BLOG</p>
-                                <img src="images/section-border.png" alt="">
-                            </div>
-                            <div class="blog-carousel indicator-style-two">
-                                <div class="single-blog blog-bg">
-                                    <div class="blog-img b-img">
-                                        <a href="">
-                                            <img alt="" src="images/blog/1.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="blog-text p-20">
-                                        <h4 class="text-uppercase text-defualt">
-                                            <a href="">FASHION &amp; FUSHION</a>
-                                        </h4>
-                                        <ul class="blog-list">
-                                            <li><a href="#">january 05</a></li>
-                                            <li><a href="#">Fashion</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor ncunt ut labore et dolore na...</p>
-                                        <a class="btn-read-more text-uppercase text-defualt" href="">read mroe</a>
-                                        <ul class="blog-list bottom">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-comments"></i>
-                                                    12 Comments
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-defualt">
-                                                    <i class="fa fa-heart"></i>
-                                                    50 Likes
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-blog blog-bg">
-                                    <div class="blog-img b-img">
-                                        <a href="">
-                                            <img alt="" src="images/blog/2.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="blog-text p-20">
-                                        <h4 class="text-uppercase text-defualt">
-                                            <a href="">FASHION &amp; FUSHION</a>
-                                        </h4>
-                                        <ul class="blog-list">
-                                            <li><a href="#">january 05</a></li>
-                                            <li><a href="#">Fashion</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor ncunt ut labore et dolore na...</p>
-                                        <a class="btn-read-more text-uppercase text-defualt" href="">read mroe</a>
-                                        <ul class="blog-list bottom">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-comments"></i>
-                                                    12 Comments
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-defualt">
-                                                    <i class="fa fa-heart"></i>
-                                                    50 Likes
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-blog blog-bg">
-                                    <div class="blog-img b-img">
-                                        <a href="">
-                                            <img alt="" src="images/blog/1.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="blog-text p-20">
-                                        <h4 class="text-uppercase text-defualt">
-                                            <a href="">FASHION &amp; FUSHION</a>
-                                        </h4>
-                                        <ul class="blog-list">
-                                            <li><a href="#">january 05</a></li>
-                                            <li><a href="#">Fashion</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor ncunt ut labore et dolore na...</p>
-                                        <a class="btn-read-more text-uppercase text-defualt" href="">read mroe</a>
-                                        <ul class="blog-list bottom">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-comments"></i>
-                                                    12 Comments
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-defualt">
-                                                    <i class="fa fa-heart"></i>
-                                                    50 Likes
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-blog blog-bg">
-                                    <div class="blog-img b-img">
-                                        <a href="">
-                                            <img alt="" src="images/blog/2.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="blog-text p-20">
-                                        <h4 class="text-uppercase text-defualt">
-                                            <a href="">FASHION &amp; FUSHION</a>
-                                        </h4>
-                                        <ul class="blog-list">
-                                            <li><a href="#">january 05</a></li>
-                                            <li><a href="#">Fashion</a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor ncunt ut labore et dolore na...</p>
-                                        <a class="btn-read-more text-uppercase text-defualt" href="">read mroe</a>
-                                        <ul class="blog-list bottom">
-                                            <li>
-                                                <a href="#">
-                                                    <i class="fa fa-comments"></i>
-                                                    12 Comments
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="text-defualt">
-                                                    <i class="fa fa-heart"></i>
-                                                    50 Likes
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>WHAT CLIENTS SAY</strong></h2>
-                                <p class="text-defualt">TESTIMONIALS</p>
-                                <img src="images/section-border.png" alt="">
-                            </div>
-                            <div class="testimonial-list indicator-style">
-                                <div class="testimonial-inner">
-                                    <div class="single-testimonial blog-bg mb-20">
-                                        <div class="testimonial-img">
-                                            <a href="#">
-                                                <img src="images/client/1.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <h5 class="text-uppercase text-defualt">THOMAS ALBERT,<span>Head of Ideas</span></h5>
-                                            <p class="m-0">Lorem ipsum dolor s it amet, otetur adipiscing elitamxercon </p>
-                                        </div>
-                                    </div>
-                                    <div class="single-testimonial blog-bg">
-                                        <div class="testimonial-img">
-                                            <a href="#">
-                                                <img src="images/client/2.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <h5 class="text-uppercase text-defualt">THOMAS ALBERT,<span>Head of Ideas</span></h5>
-                                            <p class="m-0">Lorem ipsum dolor s it amet, otetur adipiscing elitamxercon </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial-inner">
-                                    <div class="single-testimonial blog-bg mb-20">
-                                        <div class="testimonial-img">
-                                            <a href="#">
-                                                <img src="images/client/2.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <h5 class="text-uppercase text-defualt">THOMAS ALBERT,<span>Head of Ideas</span></h5>
-                                            <p class="m-0">Lorem ipsum dolor s it amet, otetur adipiscing elitamxercon </p>
-                                        </div>
-                                    </div>
-                                    <div class="single-testimonial blog-bg">
-                                        <div class="testimonial-img">
-                                            <a href="#">
-                                                <img src="images/client/1.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <h5 class="text-uppercase text-defualt">THOMAS ALBERT,<span>Head of Ideas</span></h5>
-                                            <p class="m-0">Lorem ipsum dolor s it amet, otetur adipiscing elitamxercon </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Blog Area -->
-            <!-- Start Brand Area -->
-            <div class="brand-area pb-90">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section-title text-center mb-35">
-                                <h2 class="text-uppercase"><strong>OUR BRAND</strong></h2>
-                                <p class="text-defualt">BRAND</p>
-                                <img alt="" src="images/section-border.png">
-                            </div>
-                            <div class="brand-carousel">
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/1.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/2.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/3.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/4.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/5.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/1.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/2.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single-brand text-center">
-                                        <a href="#">
-                                            <img src="images/brand/3.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Brand Area -->
-        </section>
-        <!-- End page content -->
-        <!-- Start footer area -->
-        <footer id="footer" class="footer-area">
-            <div class="footer-top-area text-center ptb-40">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="footer-top-content">
-                                <a href="index.html">
-                                    <img src="images/footer/logo.png" alt="">
-                                </a>
-                                <p class="pb-30">Forge is the best ecommerce site lorem ipsum dolor sit amet, consectetur aiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-                                <ul class="social-icon">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-middle-area footer-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="single-footer-inner">
-                                <h5 class="footer-title text-white">CONTACT</h5>
-                                <ul class="footer-contact">
-                                    <li class="contact-icon">
-                                        <img alt="" src="images/footer/icon/1.png">
-                                    </li>
-                                    <li class="footer-text text-ash">
-                                        <p>8901 Marmora Raod,</p>
-                                        <p>Glasgow, D04  89GR</p>
-                                    </li>
-                                </ul>
-                                <ul class="footer-contact">
-                                    <li class="contact-icon">
-                                        <img alt="" src="images/footer/icon/2.png">
-                                    </li>
-                                    <li class="footer-text text-ash">
-                                        <p>Telephone : (801) 4256  9856</p>
-                                        <p>Telephone : (801) 4256  9658</p>
-                                    </li>
-                                </ul>
-                                <ul class="footer-contact">
-                                    <li class="contact-icon">
-                                        <img alt="" src="images/footer/icon/3.png">
-                                    </li>
-                                    <li class="footer-text text-ash">
-                                        <p>Email : info@forge.com</p>
-                                        <p>Web : www.forge.com</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-6">
-                            <div class="single-footer-inner">
-                                <h5 class="footer-title text-white">CONTACT</h5>
-                                <ul class="footer-menu">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about.html">About us</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="#">Our blog</a></li>
-                                    <li><a href="#">Support centre</a></li>
-                                    <li><a href="#">Privacy policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-3">
-                            <div class="single-footer-inner">
-                                <h5 class="footer-title text-white">SUPPORT</h5>
-                                <ul class="footer-menu">
-                                    <li><a href="#">Delivery information</a></li>
-                                    <li><a href="">Order tracking</a></li>
-                                    <li><a href="#">Return product</a></li>
-                                    <li><a href="#">Gift card</a></li>
-                                    <li><a href="#">Home delivery</a></li>
-                                    <li><a href="#">Online support</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-5 col-sm-9">
-                            <h2 class="footer-title">LATEST TWEETS</h2>
-                            <div class="tweet-list">
-                                <ul class="left-tweet">
-                                    <li class="tweet-inner clearfix">
-                                        <div class="tweet-img">
-                                            <a href="#">
-                                                <img alt="" src="images/footer/tweet/1.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="tweet-text">
-                                            <a href="#">Forge is the best ecommerce elt</a>
-                                            <p>Jan 25, 2017</p>
-                                        </div>
-                                    </li>
-                                    <li class="tweet-inner clearfix">
-                                        <div class="tweet-img">
-                                            <a href="#">
-                                                <img alt="" src="images/footer/tweet/2.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="tweet-text">
-                                            <a href="#">Forge is the best ecommerce elt</a>
-                                            <p>Jan 25, 2017</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <ul class="left-tweet">
-                                    <li class="tweet-inner clearfix">
-                                        <div class="tweet-img">
-                                            <a href="#">
-                                                <img alt="" src="images/footer/tweet/1.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="tweet-text">
-                                            <a href="#">Forge is the best ecommerce elt</a>
-                                            <p>Jan 25, 2017</p>
-                                        </div>
-                                    </li>
-                                    <li class="tweet-inner clearfix">
-                                        <div class="tweet-img">
-                                            <a href="#">
-                                                <img alt="" src="images/footer/tweet/2.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="tweet-text">
-                                            <a href="#">Forge is the best ecommerce elt</a>
-                                            <p>Jan 25, 2017</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="copyright">
-                                <p>Copyright &copy; 2017.Company name All rights reserved.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-5 hidden-sm hidden-xs">
-                            <nav>
-                                <ul class="footer-bottom-menu">
-                                    <li><a href="#">Site Map</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                    <li><a href="">Wish List</a></li>
-                                    <li><a href="#">Newsletter</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="payment-method b-img">
-                                <img alt="" src="images/footer/footer-bottom.png">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End footer area -->               
-    </div>
-    <!-- Body main wrapper end -->    
+<header id="pc-header">
+	<div class="pc-header-nav">
+		<div class="pc-header-con">
+			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="login.jsp" target="_blank"> 免费注册</a></div>
+			<div class="fr pc-header-list top-nav">
+				<ul>
+					<li>
+						<div class="nav"><i class="pc-top-icon"></i><a href="#">我的订单</a></div>
+						<div class="con">
+							<dl>
+								<dt><a href="">批发进货</a></dt>
+								<dd><a href="">已买到货品</a></dd>
+								<dd><a href="">优惠券</a></dd>
+								<dd><a href="">店铺动态</a></dd>
+							</dl>
+						</div>
+					</li>
+					<li>
+						<div class="nav"><i class="pc-top-icon"></i><a href="#">我的商城</a></div>
+						<div class="con">
+							<dl>
+								<dt><a href="">批发进货</a></dt>
+								<dd><a href="">已买到货品</a></dd>
+								<dd><a href="">优惠券</a></dd>
+								<dd><a href="">店铺动态</a></dd>
+							</dl>
+						</div>
+					</li>
+					<li><a href="#">我的云购</a></li>
+					<li><a href="#">我的收藏</a></li>
+					<li><a href="#">会员中心</a></li>
+					<li><a href="#">客户服务</a></li>
+					<li><a href="#">帮助中心</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="pc-header-logo clearfix">
+		<div class="pc-fl-logo fl">
+			<h1>
+				<a href="index.html"></a>
+			</h1>
+		</div>
+		<div class="head-form fl">
+			<form class="clearfix">
+				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
+				<button class="button" onclick="search('key');return false;">搜索</button>
+			</form>
+			<div class="words-text clearfix">
+				<a href="#" class="red">1元秒爆</a>
+				<a href="#">低至五折</a>
+				<a href="#">农用物资</a>
+				<a href="#">佳能相机</a>
+				<a href="#">服装城</a>
+				<a href="#">买4免1</a>
+				<a href="#">家电秒杀</a>
+				<a href="#">农耕机械</a>
+				<a href="#">手机新品季</a>
+			</div>
+		</div>
+		<div class="fr pc-head-car">
+			<i class="icon-car"></i>
+			<a href="buyServlet?method=findCart" >我的购物车</a>
+			<em>10</em>
+		</div>
+	</div>
+	<!--  顶部    start-->
+	<div class="yHeader">
+		<!-- 导航   start  -->
+		<div class="yNavIndex">
+			<div class="pullDown">
+				<h2 class="pullDownTitle"><i class="icon-class"></i>所有商品分类</h2>
+				<ul class="pullDownList">
+				
+				<c:forEach items="${sessionScope.list }" var="cartgory">
+				
+				<li>
+				
+						<i class="list-icon-2"></i> 
+						<a href="" target="_blank"></a> 
+						<span></span>
+				<tr>
+					<td>${cartgory.name }</td>
+				</tr>
+				</li>
+				
+				
 
-    <!-- Placed js at the end of the document so the pages load faster -->
+				</c:forEach>
+				
+	
+<!-- 					<li class=""> -->
+<!-- 						<i class="list-icon-1"></i> -->
+<!-- 						<a href="" target="_blank">手机</a> -->
+<!-- 						/<a href="" target="_blank">数码</a> -->
+<!-- 						/<a href="" target="_blank">电脑办公</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">女装</a> -->
+<!-- 						/<a href="" target="_blank">内衣</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">男装</a> -->
+<!-- 						/<a href="" target="_blank">运动户外</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">女鞋</a> -->
+<!-- 						/<a href="" target="_blank">男鞋</a> -->
+<!-- 						/<a href="" target="_blank">箱包</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">化妆品</a> -->
+<!-- 						/<a href="" target="_blank">个人护理</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">母婴玩具</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">零食</a> -->
+<!-- 						/<a href="" target="_blank">进口食品</a> -->
+<!-- 						/<a href="" target="_blank">酒</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">大家电</a> -->
+<!-- 						/<a href="" target="_blank">生活电器</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">家具建材</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">珠宝饰品</a> -->
+<!-- 						/<a href="" target="_blank">腕表眼镜</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">汽车</a> -->
+<!-- 						/<a href="" target="_blank">配件</a> -->
+<!-- 						/<a href="" target="_blank">用品</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">家纺</a> -->
+<!-- 						/<a href="" target="_blank">家饰</a> -->
+<!-- 						/<a href="" target="_blank">鲜花</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">医药保健</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">厨具</a> -->
+<!-- 						/<a href="" target="_blank">收纳</a> -->
+<!-- 						/<a href="" target="_blank">宠物</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<i class="list-icon-2"></i> -->
+<!-- 						<a href="" target="_blank">图书音像</a> -->
+<!-- 						<span></span> -->
+<!-- 					</li> -->
+				</ul>
+				<!-- 下拉详细列表具体分类 -->
+				<div class="yMenuListCon">
+					<div class="yMenuListConin">
+<!-- 						<div class="yMenuLCinList"> -->
+<!-- 							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3> -->
+<!-- 							<p> -->
+<!-- 								<a href="" class="ecolor610">大牌上新</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 							</p> -->
+<!-- 						</div> -->
+<!-- 						<div class="yMenuLCinList"> -->
+<!-- 							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3> -->
+<!-- 							<p> -->
+<!-- 								<a href="" class="ecolor610">大牌上新</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 							</p> -->
+<!-- 						</div> -->
+<!-- 						<div class="yMenuLCinList"> -->
+<!-- 							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3> -->
+<!-- 							<p> -->
+<!-- 								<a href="" class="ecolor610">大牌上新</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 								<a href="">商场同款</a> -->
+<!-- 								<a href="">男装集结</a> -->
+<!-- 								<a href="">羽绒服</a> -->
+<!-- 								<a href="">加厚羽绒 </a> -->
+<!-- 								<a href="">高帮鞋</a> -->
+<!-- 							</p> -->
+<!-- 						</div> -->
+					</div>
 
-    <!-- jquery latest version -->
-    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-    <!-- Bootstrap framework js -->
-    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-    <!-- All js plugins included in this file. -->
-    <script src="js/plugins.js"></script>
-    <!-- Main js file that contents all jQuery plugins activation. -->
-    <script src="js/main.js"></script>
-	<!-- jquery.scrollUp.min.js -->
-    <script src="js/main.js"></script>
-    
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="yMenuListConin">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<ul class="yMenuIndex">
+				<li><a href="" target="_blank">首页</a></li>
+				<li><a href="" target="_blank">云购物 </a></li>
+				<li><a href="" target="_blank">限时购</a></li>
+				<li><a href="" target="_blank">电器城</a></li>
+				<li><a href="" target="_blank">家具城</a></li>
+				<li><a href="" target="_blank">母婴专场</a></li>
+				<li><a href="" target="_blank">数码专场</a></li>
+			</ul>
+		</div>
+		<!-- 导航   end  -->
+	</div>
+	<!--  顶部    end-->
+
+	<!-- banner  -->
+	<div class="yBanner">
+		<div class="yBannerList">
+			<div class="yBannerListIn">
+				<a href=""><img class="ymainBanner" src="images/banner1.jpg"  width="100%"></a>
+				<div class="yBannerListInRight">
+					<a href=""><img src="images/BR2.png" width="100%"/></a>
+					<a href=""><img src="images/BR3.png" width="100%" /></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="yBannerList ybannerHide">
+			<div class="yBannerListIn">
+				<a href=""><img class="ymainBanner" src="images/banner1.jpg" width="100%"></a>
+				<div class="yBannerListInRight">
+					<a href=""><img src="images/BR6.png" width="100%"/></a>
+					<a href=""><img src="images/BR4.png" width="100%" /></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="yBannerList ybannerHide">
+			<div class="yBannerListIn">
+				<a href=""><img class="ymainBanner" src="images/banner1.jpg" width="100%"></a>
+				<div class="yBannerListInRight">
+					<a href=""><img src="images/BR7.png" width="100%"/></a>
+					<a href=""><img src="images/BR5.png" width="100%" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- banner end -->
+</header>
+<section id="">
+	<div class="center pc-ad-img clearfix">
+		<div class="pc-center-img"><img src="img/ad/ad1.jpg"></div>
+		<div class="pc-center-img"><img src="img/ad/ad2.jpg"></div>
+		<div class="pc-center-img"><img src="img/ad/ad3.jpg"></div>
+		<div class="pc-center-img"><img src="img/ad/ad4.jpg"></div>
+		<div class="pc-center-img"><img src="img/ad/ad5.jpg"></div>
+	</div>
+</section>
+<section id="s">
+	<div class="center">
+		<div class="pc-center-he">
+			<div class="pc-box-he clearfix">
+				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="time-item fr">
+					<span id="day_show">0天</span>
+					<strong id="hour_show">0时</strong>
+					<strong id="minute_show">00分</strong>
+					<strong id="second_show">00秒</strong>
+					<em style="color:#fff">后结束抢购</em>
+				</div>
+			</div>
+			<div class="pc-list-goods">
+				<div class="flashSale_wrap">
+					<div class="flashSale area">
+						<div class="tab-content">
+							<div class="tab-pane active">
+								<div class="flashSaleDeals">
+									<div class="v_cont" style="width:9648px;overflow: hidden">
+										<ul class="flder">
+											<li index="0">
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="page.html" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg1.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<!--<span class="soldOut xsqIcon"></span>-->
+														</div>
+														<div class="title_new">
+															<p class="word" title="YDA-826E 除湿机家用抽湿机除湿器（除湿、干衣力荐）">YDA-826E 除湿机家用抽湿机除湿器（除湿、干衣力荐）</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>299</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg2.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="升级版原汁机低速榨汁机HUZK24WNM "><span class="baoyouText">[包邮]</span>升级版原汁机低速榨汁机HUZK24WNM </p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>1980</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg3.jpg" alt="">
+															<div class="finish overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<span class="finishIcon xsqIcon"></span>
+														</div>
+														<div class="title_new">
+															<p class="word" title="飞利浦PHILIPS刷头HX6013标准3支装 "><span class="baoyouText">[包邮]</span>飞利浦PHILIPS刷头HX6013标准3支装 </p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>149</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg4.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="贝拉米 Bellamy’s 婴幼儿有机奶粉3段"><span class="baoyouText">[包邮]</span>贝拉米 Bellamy’s 婴幼儿有机奶粉3段</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>199</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg5.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>1</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg6.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>1</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+											</li>
+											<li index="1">
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg7.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>2</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg8.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>2</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg9.jpg" alt="">
+															<div class="finish overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<span class="finishIcon xsqIcon"></span>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>2</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg10.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>2</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg11.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>2</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+												<div class="xsq_deal_wrapper">
+													<a class="saleDeal" href="" target="_blank">
+														<div class="dealCon">
+															<img class="dealImg" src="images/xlqg12.jpg" alt="">
+															<div class="zt2Qrcode overlay">
+																<div class="xsqMask"></div>
+																<p class="word1">15:00开抢</p>
+																<p class="word2">限100件，抢完恢复25.8元</p>
+																<p class="word3">查看商品&gt;&gt;</p>
+															</div>
+															<div class="stock">
+																<div class="xsqMask"></div>
+																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
+															</div>
+														</div>
+														<div class="title_new">
+															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
+														</div>
+														<div class="dealInfo">
+															<span class="price">¥<em>2</em></span>
+
+															<span class="shop_preferential">满2件8.8折</span>
+														</div>
+													</a>
+												</div>
+											</li>
+										</ul>
+										<a href="javascript:;" class="zuo trigger"></a>
+										<a href="javascript:;" class="you trigger"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="center pc-top-20">
+		<div class="pc-center-he">
+			<div class="pc-box-he pc-box-blue clearfix">
+				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fr pc-box-blue-link">
+					<a href="#">上衣</a>
+					<a href="#">短裙</a>
+					<a href="#">牛仔裤</a>
+					<a href="#">短袖</a>
+					<a href="#">帽子</a>
+				</div>
+			</div>
+			<div class="pc-list-goods">
+				<div class="xsq_deal_wrapper pc-deal-list clearfix">
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg13.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg14.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg15.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg16.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
+						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg17.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
+						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg18.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
+						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="center pc-top-20">
+		<div class="pc-center-he">
+			<div class="pc-box-he pc-box-ge clearfix">
+				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fr pc-box-blue-link">
+					<a href="#">上衣</a>
+					<a href="#">短裙</a>
+					<a href="#">牛仔裤</a>
+					<a href="#">短袖</a>
+					<a href="#">帽子</a>
+				</div>
+			</div>
+			<div class="pc-list-goods">
+				<div class="xsq_deal_wrapper pc-deal-list clearfix">
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg13.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg14.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg15.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg16.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
+						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg17.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
+						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg18.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
+						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="center pc-top-20">
+		<div class="pc-center-he">
+			<div class="pc-box-he pc-box-re clearfix">
+				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fr pc-box-blue-link">
+					<a href="#">上衣</a>
+					<a href="#">短裙</a>
+					<a href="#">牛仔裤</a>
+					<a href="#">短袖</a>
+					<a href="#">帽子</a>
+				</div>
+			</div>
+			<div class="pc-list-goods">
+				<div class="xsq_deal_wrapper pc-deal-list clearfix">
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg13.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg14.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg15.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg16.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
+						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg17.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
+						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg18.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
+						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="center pc-top-20">
+		<div class="pc-center-he">
+			<div class="pc-box-he pc-box-qr clearfix">
+				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fr pc-box-blue-link">
+					<a href="#">上衣</a>
+					<a href="#">短裙</a>
+					<a href="#">牛仔裤</a>
+					<a href="#">短袖</a>
+					<a href="#">帽子</a>
+				</div>
+			</div>
+			<div class="pc-list-goods">
+				<div class="xsq_deal_wrapper pc-deal-list clearfix">
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg13.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg14.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg15.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg16.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
+						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg17.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
+						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg18.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
+						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="center pc-top-20">
+		<div class="pc-center-he">
+			<div class="pc-box-he pc-box-ue clearfix">
+				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fr pc-box-blue-link">
+					<a href="#">上衣</a>
+					<a href="#">短裙</a>
+					<a href="#">牛仔裤</a>
+					<a href="#">短袖</a>
+					<a href="#">帽子</a>
+				</div>
+			</div>
+			<div class="pc-list-goods" style="height:auto">
+				<div class="xsq_deal_wrapper pc-deal-list clearfix">
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg19.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg14.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg15.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg16.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
+						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg17.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
+						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg18.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
+						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
+					</a>
+				</div>
+				<div class="xsq_deal_wrapper pc-deal-list clearfix" >
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg13.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg14.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg15.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
+						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg16.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
+						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg17.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
+						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
+					</a>
+					<a class="saleDeal" href="" target="_blank">
+						<div class="dealCon"><img class="dealImg" src="images/xlqg18.jpg" alt=""></div>
+						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
+						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div style="height:100px"></div>
+
+<footer>
+	<div class="pc-footer-top">
+		<div class="center">
+			<ul class="clearfix">
+				<li>
+					<span>关于我们</span>
+					<a href="#">关于我们</a>
+					<a href="#">诚聘英才</a>
+					<a href="#">用户服务协议</a>
+					<a href="#">网站服务条款</a>
+					<a href="#">联系我们</a>
+				</li>
+				<li class="lw">
+					<span>购物指南</span>
+					<a href="#">新手上路</a>
+					<a href="#">订单查询</a>
+					<a href="#">会员介绍</a>
+					<a href="#">网站服务条款</a>
+					<a href="#">帮助中心</a>
+				</li>
+				<li class="lw">
+					<span>消费者保障</span>
+					<a href="#">人工验货</a>
+					<a href="#">退货退款政策</a>
+					<a href="#">运费补贴卡</a>
+					<a href="#">无忧售后</a>
+					<a href="#">先行赔付</a>
+				</li>
+				<li class="lw">
+					<span>商务合作</span>
+					<a href="#">人工验货</a>
+					<a href="#">退货退款政策</a>
+					<a href="#">运费补贴卡</a>
+					<a href="#">无忧售后</a>
+					<a href="#">先行赔付</a>
+				</li>
+				<li class="lss">
+					<span>下载手机版</span>
+					<div class="clearfix lss-pa">
+						<div class="fl lss-img"><img src="img/icon/code.png" alt=""></div>
+						<div class="fl" style="padding-left:20px">
+							<h4>扫描下载云购APP</h4>
+							<p>把优惠握在手心</p>
+							<P>把潮流带在身边</P>
+							<P></P>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="pc-footer-lin">
+			<div class="center">
+				<p>友情链接：
+					卡宝宝信用卡
+					梦芭莎网上购物
+					手游交易平台
+					法律咨询
+					深圳地图
+					P2P网贷导航
+					名鞋库
+					万表网
+					叮当音乐网
+					114票务网
+					儿歌视频大全
+				</p>
+				<p>
+					京ICP证1900075号  京ICP备20051110号-5  京公网安备110104734773474323  统一社会信用代码 91113443434371298269B  食品流通许可证SP1101435445645645640352397
+				</p>
+				<p style="padding-bottom:30px">版物经营许可证 新出发京零字第朝160018号  Copyright©2011-2015 版权所有 ZHE800.COM </p>
+			</div>
+		</div>
+	</div>
+</footer>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		 $.ajax({
+              url:"categoryServlet",
+              type:"POST",
+              data:{"method":"findAll"},
+              success:function(data){
+//                if (data.match("true")) {
+// 				  alert("加入购物车成功");
+// 			   }else{
+// 			      alert("加入购物车失败");
+// 			   }
+              
+              }
+       
+       });
+	}
+</script>
+<script type="text/javascript">
+    //hover 触发两个事件，鼠标移上去和移走
+    //mousehover 只触发移上去事件
+    $(".top-nav ul li").hover(function(){
+        $(this).addClass("hover").siblings().removeClass("hover");
+        $(this).find("li .nav a").addClass("hover");
+        $(this).find(".con").show();
+    },function(){
+        //$(this).css("background-color","#f5f5f5");
+        $(this).find(".con").hide();
+        //$(this).find(".nav a").removeClass("hover");
+        $(this).removeClass("hover");
+        $(this).find(".nav a").removeClass("hover");
+    })
+</script>
 </body>
-
 </html>

@@ -153,6 +153,9 @@
 									class="cart-size-value"><strong>购物车(3)</strong><br>$250</span>
 								</a>
 								<ul class="shopping-cart-down box-shadow white-bg">
+									
+									
+									
 									<li class="media"><a href="#"><img alt=""
 											src="images/cart/1.jpg"> </a>
 										<div class="cart-item-wrapper">
@@ -162,6 +165,10 @@
 												class="fa fa-trash-o"></i> </a>
 										</div>
 									</li>
+									
+									
+									
+									
 									<li class="media"><a href="#"><img alt=""
 											src="images/cart/2.jpg"> </a>
 										<div class="cart-item-wrapper">
@@ -171,6 +178,10 @@
 												class="fa fa-trash-o"></i> </a>
 										</div>
 									</li>
+									
+									
+									
+									
 									<li class="media"><a href="#"><img alt=""
 											src="images/cart/3.jpg"> </a>
 										<div class="cart-item-wrapper">
@@ -180,12 +191,19 @@
 												class="fa fa-trash-o"></i> </a>
 										</div>
 									</li>
+									
+									
+									
+									
 									<li class="media"><span class="total-title pull-left">Sub
 											Total</span> <span class="total pull-right">$845</span>
 									</li>
 									<li class="media"><a class="cart-btn" href="#">VIEW
 											CART</a> <a class="cart-btn" href="#">CHECKOUT</a>
 									</li>
+									
+									
+									
 								</ul>
 							</div>
 						</div>
@@ -319,7 +337,7 @@
 											
 											<div class="col-sm-6">
 												<input type="text" placeholder="请输入姓名" name="loginName"
-													id="loginName" onblur="validate();" required/>
+													id="loginName"  required/>
 												<div id="result"></div>
 											</div>
 
@@ -609,55 +627,96 @@
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/formValidation.js"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-											<script type="text/javascript">
-												/**
-													昵称失去焦点时的事件
-												 */
-												function validate() {
-													//获取用户输入的昵称
-													var loginName = $("#loginName").val();
-															
-													//alert("zhege " + loginName);
-													//创建ajax核心对象
-													var xhr = null;
 
-													if (window.XMLHttpRequest) {//高版本的浏览器
-														xhr = new XMLHttpRequest();
-													} else { //低版本的浏览器
-														xhr = new ActiveXObject(
-																"Microsoft.XMLHTTP");
-													}
-
-												 //在 readyState发生变化的时候都会触发这个个属性（回调函数）
-       xhr.onreadystatechange=function(){
-     //  alert(xhr.status);
-          if (xhr.readyState==4&&xhr.status==200) { //响应成功
-			 //获取后台数据之后处理
-			var data= xhr.responseText;
-			if (data.match("true")) {  //证明用户名存在
+	<script type="text/javascript">
+		$("[name='loginName']").blur(function(){
+		var	loginName=$("#loginName").val();
+		
+		$.ajax({
+			url:"forgeServlet?method=validate",
+			type:"POST",
+			data:{"loginName":loginName},
+			dataType:"text",
+		
+			success:function(data){
+			if (data.match("true")) {  //证明用户名存在 -->
 				$("#result").html("<span style='color:red'>用户名已经存在</span>")
 			}else{
-				$("#result").html("<span style='color:green'>可以使用</span>")
+				//$("#result").html("<span style='color:green'>可以使用</span>")
+				$("#result").html("");
 			}
-		  }
-       }
+			}
+		
+		})
+	
+	
+	})
+	</script>
 
-													//初始化组件 xhr.open("GET", "validateServlet?userName="+userName);
-													xhr
-															.open("POST",
-																	"forgeServlet?method=validate");
-													//如果是post请求 务必设置请求头
-													xhr
-															.setRequestHeader(
-																	"Content-Type",
-																	"application/x-www-form-urlencoded");
 
-													//发送数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 											<script type="text/javascript"> -->
+<!-- 												/** -->
+<!-- 													昵称失去焦点时的事件 -->
+<!-- 												 */ -->
+<!-- 												function validate() { -->
+<!-- 													//获取用户输入的昵称 -->
+<!-- 													var loginName = $("#loginName").val(); -->
+															
+<!-- 													//alert("zhege " + loginName); -->
+<!-- 													//创建ajax核心对象 -->
+<!-- 													var xhr = null; -->
+
+<!-- 													if (window.XMLHttpRequest) {//高版本的浏览器 -->
+<!-- 														xhr = new XMLHttpRequest(); -->
+<!-- 													} else { //低版本的浏览器 -->
+<!-- 														xhr = new ActiveXObject( -->
+<!-- 																"Microsoft.XMLHTTP"); -->
+<!-- 													} -->
+
+<!-- 												 //在 readyState发生变化的时候都会触发这个个属性（回调函数） -->
+<!--        xhr.onreadystatechange=function(){ -->
+<!--      //  alert(xhr.status); -->
+<!--           if (xhr.readyState==4&&xhr.status==200) { //响应成功 -->
+<!-- 			 //获取后台数据之后处理 -->
+<!-- 			var data= xhr.responseText; -->
+<!-- 			if (data.match("true")) {  //证明用户名存在 -->
+<!-- 				$("#result").html("<span style='color:red'>用户名已经存在</span>") -->
+<!-- 			}else{ -->
+<!-- 				$("#result").html("<span style='color:green'>可以使用</span>") -->
+<!-- 			} -->
+<!-- 		  } -->
+<!--        } -->
+
+<!-- 													//初始化组件 xhr.open("GET", "validateServlet?userName="+userName); -->
+<!-- 													xhr -->
+<!-- 															.open("POST", -->
+<!-- 																	"forgeServlet?method=validate"); -->
+<!-- 													//如果是post请求 务必设置请求头 -->
+<!-- 													xhr -->
+<!-- 															.setRequestHeader( -->
+<!-- 																	"Content-Type", -->
+<!-- 																	"application/x-www-form-urlencoded"); -->
+
+<!-- 													//发送数据 -->
 													
-													xhr.send("loginName="
-															+ loginName);
-												}
-											</script>
+<!-- 													xhr.send("loginName=" -->
+<!-- 															+ loginName); -->
+<!-- 												} -->
+<!-- 											</script> -->
 </body>
 
 </html>

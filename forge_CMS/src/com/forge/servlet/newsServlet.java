@@ -86,15 +86,10 @@ public class newsServlet extends HttpServlet {
 			try {
 				resp.sendRedirect("production/News_Info_table.jsp?id="+id+"");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			//req.getRequestDispatcher("production/News_Info_table.jsp?id="+id+"").forward(req, resp);
-		
 				
-				//req.getRequestDispatcher("production/News_Info_table.jsp?id="+id+"").forward(req, resp);
-			
-		
 		
 	}
 
@@ -115,6 +110,7 @@ public class newsServlet extends HttpServlet {
 		
 		//req.getRequestDispatcher("/production/tables_newsdynamic.jsp").forward(req, resp);
 		try {
+			System.out.println("ет");
 			resp.sendRedirect("production/tables_newsdynamic.jsp");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -153,9 +149,9 @@ public class newsServlet extends HttpServlet {
 		
 		System.out.println("============================"+id);
 		Forge_News news=new Forge_News();
-		news.setId(Integer.valueOf(id));
+		//news.setId(Integer.valueOf(id));
 		news.setTitle(title);
-		;
+		
 		try {
 			news.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").parse(title));
 		} catch (ParseException e1) {

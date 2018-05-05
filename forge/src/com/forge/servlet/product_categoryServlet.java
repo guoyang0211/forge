@@ -2,6 +2,7 @@ package com.forge.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,19 +35,46 @@ public class product_categoryServlet extends HttpServlet {
 		case "findAll":
 			findAll(req,resp);
 			break;
+		case "findAll2":
+			findAll2(req,resp);
+			break;
 
 		default:
 			break;
 		}
 	}
 
+	private void findAll2(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("进入了findAll2");
+		List<Forge_Product_Category> list1 =  (List<Forge_Product_Category>) req.getSession().getAttribute("list");
+		for (int i = 0; i < list1.size(); i++) {
+			System.out.println(list1.get(i).getId());
+			int id=list1.get(i).getId();
+			List<Forge_Product_Category> list2 = service.findAll2(id);
+			
+			
+			
+			
+			req.getSession().setAttribute("list2", list2);
+		}
+		
+		
+		try {
+			resp.sendRedirect("index.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	private void findAll(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("进入了findAll");
 		List<Forge_Product_Category> list = service.findAll();
-		//把集合存进session作用域
 		req.getSession().setAttribute("list", list);
 		try {
 			resp.sendRedirect("index.jsp");
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,5 +87,14 @@ public class product_categoryServlet extends HttpServlet {
 //			e.printStackTrace();
 //		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

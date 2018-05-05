@@ -18,4 +18,6 @@ public interface Forge_Product_Category_Service extends BaseServise<Forge_Produc
 		
 		//É¾³ý¹ºÎï³µ
 		void delCart(String id,Cart cart);
+		List<Forge_Product_Category> findAll2(Serializable id);
+		
 }

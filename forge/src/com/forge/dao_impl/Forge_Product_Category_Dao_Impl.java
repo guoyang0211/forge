@@ -2,6 +2,7 @@ package com.forge.dao_impl;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.forge.bean.Forge_Product;
@@ -46,6 +47,22 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		}
 		return list;
 	}
+	
+	public List<Forge_Product_Category> findAll2(Serializable id) {
+		String sql ="select * from forge_product_category where `type`=2 and parentId="+id;
+		List<Forge_Product_Category>list=null;
+		try {
+			rs=getmyExecuteQuery(sql);
+			list=ResultSerUtil.findAll(rs, Forge_Product_Category.class);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	@Override
 	public Forge_Product_Category findById(Serializable id) {
@@ -64,6 +81,10 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		}
 		return category;
 	}
+
+
+	
+	
 
 
 }

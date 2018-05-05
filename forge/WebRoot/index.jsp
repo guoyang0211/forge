@@ -150,181 +150,72 @@
 				<ul class="pullDownList">
 				
 				<c:forEach items="${sessionScope.list }" var="cartgory">
-				
 				<li>
-				
-						<i class="list-icon-2"></i> 
-						<a href="" target="_blank"></a> 
-						<span></span>
-				<tr>
-					<td>${cartgory.name }</td>
-				</tr>
+					<i class="list-icon-2"></i> 
+					<a href="" target="_blank"></a> 
+					<span></span>
+					<tr>
+						<td>${cartgory.name }</td>
+						
+<!-- 					<input style=display:none name="id" value="${cartgory.id }" ></input>	 -->
+						
+					</tr>
 				</li>
-				
-				
-
 				</c:forEach>
-				
-	
-<!-- 					<li class=""> -->
-<!-- 						<i class="list-icon-1"></i> -->
-<!-- 						<a href="" target="_blank">手机</a> -->
-<!-- 						/<a href="" target="_blank">数码</a> -->
-<!-- 						/<a href="" target="_blank">电脑办公</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">女装</a> -->
-<!-- 						/<a href="" target="_blank">内衣</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">男装</a> -->
-<!-- 						/<a href="" target="_blank">运动户外</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">女鞋</a> -->
-<!-- 						/<a href="" target="_blank">男鞋</a> -->
-<!-- 						/<a href="" target="_blank">箱包</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">化妆品</a> -->
-<!-- 						/<a href="" target="_blank">个人护理</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">母婴玩具</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">零食</a> -->
-<!-- 						/<a href="" target="_blank">进口食品</a> -->
-<!-- 						/<a href="" target="_blank">酒</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">大家电</a> -->
-<!-- 						/<a href="" target="_blank">生活电器</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">家具建材</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">珠宝饰品</a> -->
-<!-- 						/<a href="" target="_blank">腕表眼镜</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">汽车</a> -->
-<!-- 						/<a href="" target="_blank">配件</a> -->
-<!-- 						/<a href="" target="_blank">用品</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">家纺</a> -->
-<!-- 						/<a href="" target="_blank">家饰</a> -->
-<!-- 						/<a href="" target="_blank">鲜花</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">医药保健</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">厨具</a> -->
-<!-- 						/<a href="" target="_blank">收纳</a> -->
-<!-- 						/<a href="" target="_blank">宠物</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<i class="list-icon-2"></i> -->
-<!-- 						<a href="" target="_blank">图书音像</a> -->
-<!-- 						<span></span> -->
-<!-- 					</li> -->
+		
+					
 				</ul>
 				<!-- 下拉详细列表具体分类 -->
 				<div class="yMenuListCon">
 					<div class="yMenuListConin">
-<!-- 						<div class="yMenuLCinList"> -->
-<!-- 							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3> -->
-<!-- 							<p> -->
-<!-- 								<a href="" class="ecolor610">大牌上新</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 							</p> -->
-<!-- 						</div> -->
-<!-- 						<div class="yMenuLCinList"> -->
-<!-- 							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3> -->
-<!-- 							<p> -->
-<!-- 								<a href="" class="ecolor610">大牌上新</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 							</p> -->
-<!-- 						</div> -->
-<!-- 						<div class="yMenuLCinList"> -->
-<!-- 							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3> -->
-<!-- 							<p> -->
-<!-- 								<a href="" class="ecolor610">大牌上新</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 								<a href="">商场同款</a> -->
-<!-- 								<a href="">男装集结</a> -->
-<!-- 								<a href="">羽绒服</a> -->
-<!-- 								<a href="">加厚羽绒 </a> -->
-<!-- 								<a href="">高帮鞋</a> -->
-<!-- 							</p> -->
-<!-- 						</div> -->
+					<c:forEach items="${sessionScope.list }" var="cartgory">
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
+							
+						</div>
+					</c:forEach>
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
+						<div class="yMenuLCinList">
+							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<a href="" class="ecolor610">大牌上新</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+								<a href="">商场同款</a>
+								<a href="">男装集结</a>
+								<a href="">羽绒服</a>
+								<a href="">加厚羽绒 </a>
+								<a href="">高帮鞋</a>
+							</p>
+						</div>
 					</div>
 
 					<div class="yMenuListConin">
@@ -736,6 +627,9 @@
 					<em style="color:#fff">后结束抢购</em>
 				</div>
 			</div>
+			
+			
+			
 			<div class="pc-list-goods">
 				<div class="flashSale_wrap">
 					<div class="flashSale area">
@@ -744,6 +638,9 @@
 								<div class="flashSaleDeals">
 									<div class="v_cont" style="width:9648px;overflow: hidden">
 										<ul class="flder">
+										
+										
+<!-- 									触碰图片显示的抢购还剩多少	 -->
 											<li index="0">
 												<div class="xsq_deal_wrapper">
 													<a class="saleDeal" href="page.html" target="_blank">
@@ -890,6 +787,9 @@
 													</a>
 												</div>
 											</li>
+											
+											
+											
 											<li index="1">
 												<div class="xsq_deal_wrapper">
 													<a class="saleDeal" href="" target="_blank">
@@ -1035,6 +935,8 @@
 													</a>
 												</div>
 											</li>
+											
+											
 										</ul>
 										<a href="javascript:;" class="zuo trigger"></a>
 										<a href="javascript:;" class="you trigger"></a>
@@ -1047,6 +949,10 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+<!-- 	现实抢购 -->
 	<div class="center pc-top-20">
 		<div class="pc-center-he">
 			<div class="pc-box-he pc-box-blue clearfix">
@@ -1059,6 +965,7 @@
 					<a href="#">帽子</a>
 				</div>
 			</div>
+			
 			<div class="pc-list-goods">
 				<div class="xsq_deal_wrapper pc-deal-list clearfix">
 					<a class="saleDeal" href="" target="_blank">
@@ -1321,7 +1228,16 @@
 	</div>
 </section>
 
+
+
+
 <div style="height:100px"></div>
+
+
+
+<!-- //关于我们 -->
+
+
 
 <footer>
 	<div class="pc-footer-top">
@@ -1396,6 +1312,10 @@
 		</div>
 	</div>
 </footer>
+
+
+
+<!-- fiandAll（一级菜单） -->
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	window.onload=function(){
@@ -1415,6 +1335,28 @@
        });
 	}
 </script>
+<script type="text/javascript">
+	window.onload=function(){
+		 $.ajax({
+              url:"categoryServlet",
+              type:"POST",
+              data:{"method":"findAll2"},
+              success:function(data){
+//                if (data.match("true")) {
+// 				  alert("加入购物车成功");
+// 			   }else{
+// 			      alert("加入购物车失败");
+// 			   }
+              
+              }
+       
+       });
+	}
+</script>
+
+
+
+
 <script type="text/javascript">
     //hover 触发两个事件，鼠标移上去和移走
     //mousehover 只触发移上去事件

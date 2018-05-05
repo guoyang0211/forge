@@ -3,6 +3,8 @@ package com.forge.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.forge.bean.Forge_Product_Category;
+
 
 
 /**
@@ -41,4 +43,5 @@ public interface BaseDao<T> {
 	 * @return
 	 */
 	T findById(Serializable id);
+
 }

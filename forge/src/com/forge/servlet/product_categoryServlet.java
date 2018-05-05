@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
 import com.forge.dao.Forge_Product_Category_Dao;
 import com.forge.service.Forge_Product_Category_Service;
@@ -41,12 +42,54 @@ public class product_categoryServlet extends HttpServlet {
 		case "findAll3":
 			findAll3(req,resp);
 			break;
+		case "findByT3":
+			findByT3(req,resp);
+			break;
+		case "pageInfo":
+			pageInfo(req,resp);
+			break;
 
 		default:
 			break;
 		}
 	}
+private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
+	String id = req.getParameter("id");
 
+	req.getSession().setAttribute("pageid", id);
+				try {
+					resp.sendRedirect("page.jsp");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+		
+	}
+
+/**
+ * 根据三级菜单的id获取下级商品
+ * @param req
+ * @param resp
+ */
+	private void findByT3(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("根据三级菜单的id获取下级商品");
+		String id = req.getParameter("id");
+		List<Forge_Product> products =service.findByT3(id);
+		req.getSession().setAttribute("products", products);
+		req.getSession().setAttribute("id", id);
+		try {
+			resp.sendRedirect("my-all.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/**
+ * 查询三级菜单方法
+ * @param req
+ * @param resp
+ */
 	private void findAll3(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("进入了findAll3");
 		List<Forge_Product_Category> findAll3 = service.findAll3();

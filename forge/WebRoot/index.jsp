@@ -160,6 +160,8 @@
 				</li>
 				</c:forEach>
 				</ul>
+				
+				
 				<!-- 下拉详细列表具体分类 -->
 				<div class="yMenuListCon">
 					<div class="yMenuListConin">
@@ -169,7 +171,7 @@
 							<p>
 								<c:forEach items="${sessionScope.findAll3}" var="type3">
 								<c:if test="${cartgory.id==type3.parentId}">
-									<a hred="">${type3.name}</a>
+									<a href="categoryServlet?method=findByT3&id=${type3.id}">${type3.name}</a>
 								</c:if>
 								</c:forEach>
 							</p>
@@ -184,7 +186,7 @@
 							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
 							<c:forEach items="${sessionScope.findAll3}" var="type3">
 								<c:if test="${cartgory.id==type3.parentId}">
-									<a hred="">${type3.name}</a>
+									<a href="categoryServlet?method=findByT3&id=${type3.id}">${type3.name}</a>
 								</c:if>
 							</c:forEach>
 						</div>
@@ -198,7 +200,7 @@
 							<p>
 								<c:forEach items="${sessionScope.findAll3}" var="type3">
 								<c:if test="${cartgory.id==type3.parentId}">
-									<a hred="">${type3.name}</a>
+									<a href="categoryServlet?method=findByT3&id=${type3.id}">${type3.name}</a>
 								</c:if>
 								</c:forEach>
 							</p>
@@ -213,7 +215,7 @@
 							<p>
 								<c:forEach items="${sessionScope.findAll3}" var="type3">
 								<c:if test="${cartgory.id==type3.parentId}">
-									<a hred="">${type3.name}</a>
+									<a href="categoryServlet?method=findByT3&id=${type3.id}">${type3.name}</a>
 								</c:if>
 								</c:forEach>
 							</p>
@@ -229,7 +231,7 @@
 							<p>
 								<c:forEach items="${sessionScope.findAll3}" var="type3">
 								<c:if test="${cartgory.id==type3.parentId}">
-									<a hred="">${type3.name}</a>
+									<a href="categoryServlet?method=findByT3&id=${type3.id}">${type3.name}</a>
 								</c:if>
 								</c:forEach>
 							</p>
@@ -244,7 +246,7 @@
 							<p>
 								<c:forEach items="${sessionScope.findAll3}" var="type3">
 								<c:if test="${cartgory.id==type3.parentId}">
-									<a hred="">${type3.name}</a>
+									<a href="categoryServlet?method=findByT3&id=${type3.id}">${type3.name}</a>
 								</c:if>
 								</c:forEach>
 							</p>

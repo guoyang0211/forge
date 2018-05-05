@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -225,116 +225,88 @@
 					<li><a href="#">充值票务</a></li>
 				</ul>
 			</div>
+			
+<!-- 		开始点 -->
+
+
 			<div>
-				<div class="pc-nav-title"><h3>手机数码</h3></div>
+			<c:forEach items="${sessionScope.findAll3}" var="findAll3">
+			<c:if test="${findAll3.id==id}">
+				<div class="pc-nav-title"><h3>${findAll3.name }</h3></div>
+			
 				<div class="pc-nav-digit clearfix">
 					<ul>
+					<c:forEach items="${sessionScope.products}" var="product">
+					<c:if test="${product.categoryLevel3==findAll3.id}">
 						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
+							<div class="digit1"><a href="categoryServlet?method=pageInfo&id=${product.id}"><img src="images/${product.fileName}" width="100%"></a></div>
+							<div class="digit2"><a href="#">${product.name }</a></div>
 						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
+					</c:if>
+					</c:forEach>
 					</ul>
 				</div>
+				</c:if>	
+			</c:forEach>	
 			</div>
-			<div>
-				<div class="pc-nav-title"><h3>摄影</h3></div>
-				<div class="pc-nav-digit clearfix">
-					<ul>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-						<li>
-							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
-							<div class="digit2"><a href="#">家用电器</a></div>
-						</li>
-					</ul>
-				</div>
-			</div>
+	
+			
+			
+<!-- 			<div> -->
+<!-- 				<div class="pc-nav-title"><h3>摄影</h3></div> -->
+<!-- 				<div class="pc-nav-digit clearfix"> -->
+<!-- 					<ul> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div> -->
+<!-- 							<div class="digit2"><a href="#">家用电器</a></div> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<div style="padding-top:30px;">
 				<div class="member-pages clearfix">
 					<div class="fr pc-search-g">

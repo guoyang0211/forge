@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.forge.bean.Cart;
+import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
 import com.forge.dao.Forge_Product_Category_Dao;
 import com.forge.dao_impl.Forge_Product_Category_Dao_Impl;
@@ -63,6 +64,12 @@ public class Forge_Product_Category_Service_Impl implements Forge_Product_Catego
 	public List<Forge_Product_Category> findAll3() {
 		
 		return dao.findAll3();
+	}
+
+	@Override
+	public List<Forge_Product> findByT3(Serializable id) {
+		
+		return dao.findByT3(id);
 	}
 
 	

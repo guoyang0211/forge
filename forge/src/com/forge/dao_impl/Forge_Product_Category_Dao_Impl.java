@@ -100,6 +100,24 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		return list;
 	}
 
+	@Override
+	public List<Forge_Product> findByT3(Serializable id) {
+		String sql="SELECT * FROM `forge_product` WHERE categoryLevel3=?";
+		Object [] params={id};
+		List<Forge_Product> products=new ArrayList<>();
+		try {
+			rs=getmyExecuteQuery(sql, params);
+			products=ResultSerUtil.findAll(rs, Forge_Product.class);
+		} catch (ClassNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return products;
+	}
+
 
 	
 	

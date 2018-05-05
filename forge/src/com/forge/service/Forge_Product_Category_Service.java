@@ -22,5 +22,6 @@ public interface Forge_Product_Category_Service extends BaseServise<Forge_Produc
 		List<Forge_Product_Category> findAll2(Serializable id);
 		//查询所有三级菜单
 		List<Forge_Product_Category> findAll3();
+		List<Forge_Product> findByT3(Serializable id);
 		
 }

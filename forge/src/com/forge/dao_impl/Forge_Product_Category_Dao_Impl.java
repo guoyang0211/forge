@@ -82,6 +82,24 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		return category;
 	}
 
+	@Override
+	public List<Forge_Product_Category> findAll3() {
+		
+		String sql ="select * from forge_product_category where type=3";
+		List<Forge_Product_Category>list=null;
+		try {
+			rs=getmyExecuteQuery(sql);
+			list=ResultSerUtil.findAll(rs, Forge_Product_Category.class);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 
 	
 	

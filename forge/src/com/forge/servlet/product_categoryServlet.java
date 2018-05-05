@@ -38,54 +38,80 @@ public class product_categoryServlet extends HttpServlet {
 		case "findAll2":
 			findAll2(req,resp);
 			break;
+		case "findAll3":
+			findAll3(req,resp);
+			break;
 
 		default:
 			break;
 		}
 	}
 
+	private void findAll3(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("进入了findAll3");
+		List<Forge_Product_Category> findAll3 = service.findAll3();
+		//把type3的存进session  用el表达式获取
+		req.getSession().setAttribute("findAll3", findAll3);
+		
+	}
+
+	/**
+	 * 二级菜单
+	 * @param req
+	 * @param resp
+	 */
 	private void findAll2(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("进入了findAll2");
 		List<Forge_Product_Category> list1 =  (List<Forge_Product_Category>) req.getSession().getAttribute("list");
 		for (int i = 0; i < list1.size(); i++) {
-			System.out.println(list1.get(i).getId());
-			int id=list1.get(i).getId();
-			List<Forge_Product_Category> list2 = service.findAll2(id);
-			
-			
-			
-			
-			req.getSession().setAttribute("list2", list2);
+			int id = list1.get(i).getId();
+			List<Forge_Product_Category> list= service.findAll2(id);
+			switch(id){
+				case 548 :
+					req.getSession().setAttribute("type21", list);
+					System.out.println("================================="+list);
+				break;
+				case 628 :
+					req.getSession().setAttribute("type22", list);
+				break;
+				case 660 :
+					req.getSession().setAttribute("type23", list);
+				break;
+				case 670 :
+					req.getSession().setAttribute("type24", list);
+				break;
+				case 676 :
+					req.getSession().setAttribute("type25", list);
+				break;
+				case 681 :
+					req.getSession().setAttribute("type26", list);
+				break;
 		}
-		
-		
-		try {
-			resp.sendRedirect("index.jsp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+	
 		
 	}
 
+	/**
+	 * 一级菜单
+	 */
 	private void findAll(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("进入了findAll");
 		List<Forge_Product_Category> list = service.findAll();
+		
 		req.getSession().setAttribute("list", list);
+		
+		PrintWriter writer;
 		try {
-			resp.sendRedirect("index.jsp");
-			
+			writer = resp.getWriter();
+			writer.print("true");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		PrintWriter writer;
-//		try {
-//			writer = resp.getWriter();
-//			writer.print("true");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		//直接加载二级菜单
+		findAll2(req,resp);
+		//直接加载三级菜单
+		findAll3(req,resp);
 	}
 	
 	

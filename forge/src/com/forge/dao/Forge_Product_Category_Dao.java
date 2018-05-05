@@ -11,5 +11,7 @@ public interface Forge_Product_Category_Dao extends BaseDao<Forge_Product_Catego
 	List<Forge_Product_Category>findAll();
 	//查询所有的二级菜单
 	List<Forge_Product_Category>findAll2(Serializable id);
+	//三级菜单
+	List<Forge_Product_Category>findAll3();
 	
 }

@@ -148,7 +148,6 @@
 			<div class="pullDown">
 				<h2 class="pullDownTitle"><i class="icon-class"></i>所有商品分类</h2>
 				<ul class="pullDownList">
-				
 				<c:forEach items="${sessionScope.list }" var="cartgory">
 				<li>
 					<i class="list-icon-2"></i> 
@@ -156,186 +155,101 @@
 					<span></span>
 					<tr>
 						<td>${cartgory.name }</td>
-						
 <!-- 					<input style=display:none name="id" value="${cartgory.id }" ></input>	 -->
-						
 					</tr>
 				</li>
 				</c:forEach>
-		
-					
 				</ul>
 				<!-- 下拉详细列表具体分类 -->
 				<div class="yMenuListCon">
 					<div class="yMenuListConin">
-					<c:forEach items="${sessionScope.list }" var="cartgory">
+					<c:forEach items="${sessionScope.type21}" var="cartgory">
 						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
+							<h3><a href="" class="yListName">${cartgory.name}</a><a href="" class="yListMore">更多 ></a></h3>
+							<p>
+								<c:forEach items="${sessionScope.findAll3}" var="type3">
+								<c:if test="${cartgory.id==type3.parentId}">
+									<a hred="">${type3.name}</a>
+								</c:if>
+								</c:forEach>
+							</p>
 							
 						</div>
 					</c:forEach>
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
 					</div>
 
 					<div class="yMenuListConin">
+					<c:forEach items="${sessionScope.type22}" var="cartgory">
 						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
+							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
+							<c:forEach items="${sessionScope.findAll3}" var="type3">
+								<c:if test="${cartgory.id==type3.parentId}">
+									<a hred="">${type3.name}</a>
+								</c:if>
+							</c:forEach>
 						</div>
+						</c:forEach>
 					</div>
 
 					<div class="yMenuListConin">
+					 <c:forEach items="${sessionScope.type23}" var="cartgory">
 						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.findAll3}" var="type3">
+								<c:if test="${cartgory.id==type3.parentId}">
+									<a hred="">${type3.name}</a>
+								</c:if>
+								</c:forEach>
 							</p>
 						</div>
+						</c:forEach>
 					</div>
 
 					<div class="yMenuListConin">
+					 <c:forEach items="${sessionScope.type24}" var="cartgory">
 						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.findAll3}" var="type3">
+								<c:if test="${cartgory.id==type3.parentId}">
+									<a hred="">${type3.name}</a>
+								</c:if>
+								</c:forEach>
 							</p>
 						</div>
+						</c:forEach>
 					</div>
 
 					<div class="yMenuListConin">
+				 <c:forEach items="${sessionScope.type25}" var="cartgory">
+					
 						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<h3><a href="" class="yListName">${cartgory.name }</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.findAll3}" var="type3">
+								<c:if test="${cartgory.id==type3.parentId}">
+									<a hred="">${type3.name}</a>
+								</c:if>
+								</c:forEach>
 							</p>
 						</div>
+					</c:forEach>
 					</div>
 
 					<div class="yMenuListConin">
+					 <c:forEach items="${sessionScope.type26}" var="cartgory">
 						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
+							<h3><a href="" class="yListName">${cartgory.name}</a><a href="" class="yListMore">更多 ></a></h3>
 							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
+								<c:forEach items="${sessionScope.findAll3}" var="type3">
+								<c:if test="${cartgory.id==type3.parentId}">
+									<a hred="">${type3.name}</a>
+								</c:if>
+								</c:forEach>
 							</p>
 						</div>
+					</c:forEach>
 					</div>
 
 					<div class="yMenuListConin">
@@ -1319,38 +1233,24 @@
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	window.onload=function(){
-		 $.ajax({
+	
+	 $.ajax({
               url:"categoryServlet",
               type:"POST",
-              data:{"method":"findAll"},
-              success:function(data){
-//                if (data.match("true")) {
-// 				  alert("加入购物车成功");
-// 			   }else{
-// 			      alert("加入购物车失败");
-// 			   }
-              
-              }
-       
+              data:{"method":"findAll"}
        });
-	}
-</script>
-<script type="text/javascript">
-	window.onload=function(){
-		 $.ajax({
+	
+	/*  $.ajax({
               url:"categoryServlet",
               type:"POST",
-              data:{"method":"findAll2"},
-              success:function(data){
-//                if (data.match("true")) {
-// 				  alert("加入购物车成功");
-// 			   }else{
-// 			      alert("加入购物车失败");
-// 			   }
-              
-              }
-       
+              data:{"method":"findAll2"}
        });
+       
+        $.ajax({
+              url:"categoryServlet",
+              type:"POST",
+              data:{"method":"findAll3"}
+       }); */
 	}
 </script>
 

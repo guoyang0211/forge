@@ -59,6 +59,12 @@ public class Forge_Product_Category_Service_Impl implements Forge_Product_Catego
 		return dao.findAll2( id);
 	}
 
+	@Override
+	public List<Forge_Product_Category> findAll3() {
+		
+		return dao.findAll3();
+	}
+
 	
 
 }

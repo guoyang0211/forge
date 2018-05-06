@@ -77,7 +77,11 @@ public class ProductServlet extends HttpServlet{
  * @param resp
  */
 	private void addCart(HttpServletRequest req, HttpServletResponse resp) {
-		
+		System.out.println("method进来的addCart");
+		//获取商品的数量
+		String productId = req.getParameter("id");
+		int id = Integer.valueOf(productId);
+		System.out.println("productId====>"+id);
 		
 	}
 

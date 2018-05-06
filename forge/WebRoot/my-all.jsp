@@ -240,7 +240,7 @@
 					<c:if test="${product.categoryLevel3==findAll3.id}">
 						<li>
 							<div class="digit1"><a href="categoryServlet?method=pageInfo&id=${product.id}"><img src="images/${product.fileName}" width="100%"></a></div>
-							<div class="digit2"><a href="#">${product.name }</a></div>
+							<div class="digit2"><a href="categoryServlet?method=pageInfo&id=${product.id}">${product.name }</a></div>
 						</li>
 					</c:if>
 					</c:forEach>

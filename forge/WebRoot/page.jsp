@@ -223,9 +223,9 @@
 	<ul class="Xcontent01">
 	<c:if test="${product.id==pageid }">
 		<div class="Xcontent06"><img src="images/${product.fileName}"></div>
-<!-- 		<ol class="Xcontent08"> -->
-<!-- 			<div class="Xcontent07"><img src="images/shangpinxiangqing/X1.png"></div> -->
-<!-- 		</ol> -->
+		<ol class="Xcontent08">
+			<div class="Xcontent07"><img src="images/shangpinxiangqing/X1.png"></div>
+		</ol>
 		<ol class="Xcontent13 clearfix">
 			<div class="Xcontent14 clearfix"><a href="#"><p>赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </p></a></div>
 			<div class="Xcontent15 clearfix red fl" style="margin-top:2px">新品上架</div>
@@ -251,22 +251,30 @@
 			</div>
 			<div class="Xcontent30">
 				<p class="Xcontent31">数量</p>
+<!-- 				减 -->
 				<div class="Xcontent32"><img src="images/shangpinxiangqing/X15.png"></div>
-				<form>
-					<input class="input" name="number" value="1">
+				<form id="count" method="post">
+					<input class="input" name="number" value="2">
 				</form>
+<!-- 				加 -->
 				<div class="Xcontent33"><img src="images/shangpinxiangqing/16.png"></div>
 
 			</div>
 			<div class="Xcontent34"><a href="#">立即购买</a></div>
-			<div class="Xcontent35"><a href="buyServlet?method=add">加入购物车</a></div>
-
+			<div class="Xcontent35"><a href="javascript:void(0);" onclick="jump(${product.id});">加入购物车</a></div>
+			
 		</ol>
 
 	</ul>
 </div>
 </c:if>
 </c:forEach>
+<script>
+function jump(id)  {
+document.getElementById("count").action="buyServlet?method=add&id="+id;
+document.getElementById("count").submit();
+}
+</script>
 
 <div class="center" style="background:#fff">
 	<div class="tabox">
@@ -1062,6 +1070,11 @@
         $(this).removeClass("hover");
         $(this).find(".nav a").removeClass("hover");
     })
+    }
 </script>
+
+	
+	
+
 </body>
 </html>

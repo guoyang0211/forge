@@ -13,7 +13,7 @@ public interface Forge_Product_Service extends BaseServise<Forge_Product> {
 	Forge_Product findById(Serializable id );
 	
 	//添加购物车
-	void addCart(String id,Cart cart);
+	void addCart(String id,Cart cart,int num);
 	
 	//删除购物车
 	void delCart(String id,Cart cart);

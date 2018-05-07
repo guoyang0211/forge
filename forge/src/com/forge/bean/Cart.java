@@ -13,29 +13,45 @@ import java.util.Map.Entry;
  */
 public class Cart {
 	//必须有一个集合保存所有的商品//String 就是 商品的id
-	private Map<String,CartItem>map=new LinkedHashMap();
+	private  static Map<String,CartItem>map=new LinkedHashMap();
 	//所有商品的总价
 	private double price;
+	private int count; 
 	
 	/**
 	 * 新增商品的方法
 	 */
-	public void addProduct(Forge_Product product){
+	public void addProduct(Forge_Product product,int num){
 		//第一次购物     购物项肯定为null
-		CartItem cartItem=map.get(product.getId());
+		System.out.println("<<<<<<<<<<<<<<<<<<<<"+product.getId());
+		CartItem cartItem=Cart.map.get(product.getId());
+		System.out.println("map.get(product.getId()"+Cart.map.get(product.getId()));
 		if(cartItem==null){//证明购物车中没有任何商品
+			System.out.println("购物项肯定为null");
 			cartItem=new CartItem();//实例化购物项
 			//将用户传进来的商品放进购物项
 			cartItem.setProduct(product);
 			//因为放进来用户传入的商品数量从0变为1
-			cartItem.setNum(1);
-			//把购物项放进购物车
-			map.put(product.getId(), cartItem);
+			cartItem.setNum(num);
+			//把购物项放进购物车 
+			Cart.map.put(product.getId(), cartItem);
+			System.out.println("cart====>map的Id"+Cart.map.get(product.getId()));
+			System.out.println("cart====>map的长度"+Cart.map.size());
 		}else{
+			System.out.println("购物项肯定为不null");
 			//如果存在该商品   该商品数量加1
-			cartItem.setNum(cartItem.getNum()+1);
+			cartItem.setNum(cartItem.getNum()+num);
+			
 		}
 		
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = map.size();
 	}
 
 	public Cart(Map<String, CartItem> map, double price) {

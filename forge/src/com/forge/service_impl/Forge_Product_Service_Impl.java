@@ -2,8 +2,10 @@ package com.forge.service_impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.forge.bean.Cart;
+import com.forge.bean.CartItem;
 import com.forge.bean.Forge_Product;
 import com.forge.dao.Forge_Product_Dao;
 import com.forge.dao_impl.Forge_Product_Dao_Impl;
@@ -43,11 +45,12 @@ public class Forge_Product_Service_Impl implements Forge_Product_Service {
 	}
 
 	@Override
-	public void addCart(String id, Cart cart) {
+	public void addCart(String id, Cart cart,int num) {
 		//从数据库中获取商品
 		Forge_Product product=dao.findById(id);
+		System.out.println("========================>>>>>>>>"+product.getId());
 		//把商品放进购物车
-		cart.addProduct(product);
+		cart.addProduct(product,num);
 		
 	}
 

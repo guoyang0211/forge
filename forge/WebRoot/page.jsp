@@ -183,7 +183,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
+			<a href="buyServlet?method=findCart">我的购物车</a>
 			<em>10</em>
 		</div>
 	</div>
@@ -254,7 +254,7 @@
 <!-- 				减 -->
 				<div class="Xcontent32"><img src="images/shangpinxiangqing/X15.png"></div>
 				<form id="count" method="post">
-					<input class="input" name="number" value="2">
+					<input class="input" name="number" value="1">
 				</form>
 <!-- 				加 -->
 				<div class="Xcontent33"><img src="images/shangpinxiangqing/16.png"></div>

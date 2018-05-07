@@ -67,6 +67,7 @@ public class newsServlet extends HttpServlet {
 			break;
 		case "findAll":
 			findAllNews(req,resp);//查询所有
+			break;
 		case "findById":
 			findById(req,resp);//根据id查询
 			break;
@@ -108,7 +109,9 @@ public class newsServlet extends HttpServlet {
 		req.getSession().setAttribute("newsList", newsList);
 		//req.setAttribute("newsList", newsList);
 		
-		//req.getRequestDispatcher("/production/tables_newsdynamic.jsp").forward(req, resp);
+		
+			//req.getRequestDispatcher("production/tables_newsdynamic.jsp").forward(req, resp);
+		
 		try {
 			System.out.println("这");
 			resp.sendRedirect("production/tables_newsdynamic.jsp");

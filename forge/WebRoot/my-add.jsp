@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 		<%@page contentType="text/html" pageEncoding="UTF-8"%>
-	
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -146,16 +146,19 @@
 							<div class="box-bd">
 								<div class="clearfix xm-address-list" id="checkoutAddrList">
 									<dl class="item" >
+									
 										<dt>
-											<strong class="itemConsignee">留刘海</strong>
+											<strong class="itemConsignee">收货人： &nbsp;&nbsp;&nbsp;${sessionScope.forgeUser.getLoginName()}</strong>
 											<span class="itemTag tag">家</span>
 										</dt>
+										
 										<dd>
-											<p class="tel itemTel">188010666666</p>
-											<p class="itemRegion">北京市 海淀区</p>
-											<p class="itemStreet">北京市海淀区双榆树</p>
+											<p class="tel itemTel">手机号： &nbsp;&nbsp;&nbsp;${sessionScope.forgeUser.phone}</p>
+											<p class="itemRegion">地 址： &nbsp;&nbsp;&nbsp;${sessionScope.forgeUser.address}</p>
+<!-- 											<p class="itemStreet">北京市海淀区双榆树</p> -->
 											<span class="edit-btn J_editAddr">编辑</span>
 										</dd>
+									
 										<dd style="display:none">
 											<input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
 										</dd>
@@ -337,6 +340,7 @@
 							</div>                </div>
 						<!-- 发票信息 END-->
 					</div>
+			
 					<div class="checkout-box-ft">
 						<!-- 商品清单 -->
 						<div id="checkoutGoodsList" class="checkout-goods-box">
@@ -352,59 +356,25 @@
 											<span class="col col-3">购买数量</span>
 											<span class="col col-4">小计（元）</span>
 										</dt>
+										<c:forEach items="${sessionScope.cart.map}" var="item">
 										<dd class="item clearfix">
 											<div class="item-row">
 												<div class="col col-1">
 													<div class="g-pic">
-														<img src="images/shangpinxiangqing/X1.png" width="40" height="40" />
+														<img src="images/${item.value.product.fileName }" width="40" height="40" />
 													</div>
 													<div class="g-info">
 														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
+															${item.value.product.name }
 														</a>
 													</div>
 												</div>
-
-												<div class="col col-2">39元</div>
-												<div class="col col-3">1</div>
-												<div class="col col-4">39元</div>
+												<div class="col col-2">${item.value.product.price }</div>
+												<div class="col col-3">${item.value.num }</div>
+												<div class="col col-4">${item.value.price }</div>
 											</div>
 										</dd>
-										<dd class="item clearfix">
-											<div class="item-row">
-												<div class="col col-1">
-													<div class="g-pic">
-														<img src="images/shangpinxiangqing/X-1.png" width="40" height="40" />
-													</div>
-													<div class="g-info">
-														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
-														</a>
-													</div>
-												</div>
-												<div class="col col-2">49元</div>
-												<div class="col col-3">1</div>
-												<div class="col col-4">49元</div>
-											</div>
-										</dd>
-										<dd class="item clearfix">
-											<div class="item-row">
-												<div class="col col-1">
-													<div class="g-pic">
-														<img src="images/shangpinxiangqing/X2.png" width="40" height="40" />
-													</div>
-													<div class="g-info">
-														<a href="#" target="_blank">
-															赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT
-														</a>
-													</div>
-												</div>
-
-												<div class="col col-2">39元</div>
-												<div class="col col-3">4</div>
-												<div class="col col-4">156元</div>
-											</div>
-										</dd>
+										</c:forEach>
 									</dl>
 									<div class="checkout-count clearfix">
 										<div class="checkout-count-extend xm-add-buy">
@@ -417,7 +387,7 @@
 											<ul>
 
 												<li>
-													订单总额：<span>244元</span>
+													订单总额：<span>${sessionScope.cart.price}</span>
 												</li>
 												<li>
 													活动优惠：<span>-0元</span>
@@ -433,13 +403,18 @@
 													运费：<span id="postageDesc">0元</span>
 												</li>
 											</ul>
-											<p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
+											<p class="checkout-total">应付总额：
+											
+											<span><strong id="totalPrice">${sessionScope.cart.price}</strong>元</span>
+											
+											</p>
+										
 										</div>
 										<!--  -->
 									</div>
 								</div>
 							</div>
-
+				
 							<!--S 加价购 产品选择弹框 -->
 							<div class="modal hide modal-choose-pro" id="J_choosePro-664">
 								<div class="modal-header">
@@ -472,8 +447,8 @@
 						<input type="hidden" id="couponValue" name="Checkout[couponsValue]">
 						<div class="checkout-confirm">
 
-							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<a href="my-apy.html" class="btn btn-primary">立即下单</a>
+							<a href="my-car.jsp" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
+							<a href="my-apy.jsp" class="btn btn-primary">立即下单</a>
 
 						</div>
 					</div>

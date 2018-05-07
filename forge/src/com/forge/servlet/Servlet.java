@@ -173,7 +173,6 @@ public class Servlet extends HttpServlet {
 		// 获取 用户输入
 		String loginName = req.getParameter("loginName");
 		String password = req.getParameter("password");
-
 		// 获取滑块的值 接收过来是0；
 		String reslut = req.getParameter("slider_block");
 		// 接收记住密码
@@ -187,15 +186,19 @@ public class Servlet extends HttpServlet {
 			JOptionPane.showMessageDialog(null, "用户或密码不正确");
 			resp.sendRedirect("login.jsp");
 		} else {
+			
 			if (reslut.equals("0")) {
 				JOptionPane.showMessageDialog(null, "请滑动滑块后登录");
 				resp.sendRedirect("login.jsp");
 			} else {
 				if (remember == null) {
+					req.getSession().setAttribute("loginName", loginName);
+					req.getSession().setAttribute("forgeUser", user);
 					resp.sendRedirect("index.jsp");
 				} else {
-					// 登录名保存到cookie会话
-					resp.addCookie(new Cookie("loginName", "loginName"));
+					// 登录名保存到session
+					req.getSession().setAttribute("loginName", loginName);
+					req.getSession().setAttribute("forgeUser", user);
 					resp.sendRedirect("index.jsp");
 				}
 

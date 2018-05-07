@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -139,50 +139,60 @@
 							</ul>
 						</td>
 					</tr>
+					<%
+						Cookie[]cookies=request.getCookies();
+						
+					
+					 %>
+					<c:forEach items="${sessionScope.cart.map}" var="item">
 					<tr>
 						<th><input type="checkbox"  style="margin-left:10px; float:left"></th>
 						<th class="tab-th-1">
-							<a href="#"><img src="images/shangpinxiangqing/X1.png" width="100%" alt=""></a>
-							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a>
+							<a href="#"><img src="images/${item.value.product.fileName }" width="100%" alt=""></a>
+							<a href="#" class="tab-title">${item.value.product.name }</a>
 						</th>
 						<th>
 							<p>颜色：黑色</p>
 							<p>规格：落地款</p>
 						</th>
 						<th>
-							<p>399.99</p>
-							<p class="red">299.99</p>
+<!-- 								单价 -->
+							<p>${item.value.product.price }</p>
+<!-- 							<p class="red">299.99</p> -->
 						</th>
 						<th class="tab-th-2">
 							<span>-</span>
-							<input type="text" value="1" maxlength="3" placeholder="" class="shul">
+<!-- 								商品的数量 -->
+							<input type="text" value="${item.value.num }" maxlength="3" placeholder="" class="shul">
 							<span>+</span>
 						</th>
-						<th class="red">299.99</th>
-						<th><a href="#">删除</a></th>
+<!-- 								总价钱 -->
+						<th class="red">${item.value.price }</th>
+						<th><a href="buyServlet?method=del&id=${item.value.product.id }">删除</a></th>
 					</tr>
-					<tr>
-						<th><input type="checkbox"  style="margin-left:10px; float:left"></th>
-						<th class="tab-th-1">
-							<a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%" alt=""></a>
-							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a>
-						</th>
-						<th>
-							<p>颜色：黑色</p>
-							<p>规格：落地款</p>
-						</th>
-						<th>
-							<p>399.99</p>
-							<p class="red">299.99</p>
-						</th>
-						<th class="tab-th-2">
-							<span>-</span>
-							<input type="text" value="1" maxlength="3" placeholder="" class="shul">
-							<span>+</span>
-						</th>
-						<th class="red">299.99</th>
-						<th><a href="#">删除</a></th>
-					</tr>
+					</c:forEach>
+<!-- 					<tr> -->
+<!-- 						<th><input type="checkbox"  style="margin-left:10px; float:left"></th> -->
+<!-- 						<th class="tab-th-1"> -->
+<!-- 							<a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%" alt=""></a> -->
+<!-- 							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a> -->
+<!-- 						</th> -->
+<!-- 						<th> -->
+<!-- 							<p>颜色：黑色</p> -->
+<!-- 							<p>规格：落地款</p> -->
+<!-- 						</th> -->
+<!-- 						<th> -->
+<!-- 							<p>399.99</p> -->
+<!-- 							<p class="red">299.99</p> -->
+<!-- 						</th> -->
+<!-- 						<th class="tab-th-2"> -->
+<!-- 							<span>-</span> -->
+<!-- 							<input type="text" value="1" maxlength="3" placeholder="" class="shul"> -->
+<!-- 							<span>+</span> -->
+<!-- 						</th> -->
+<!-- 						<th class="red">299.99</th> -->
+<!-- 						<th><a href="#">删除</a></th> -->
+<!-- 					</tr> -->
 				</tbody>
 			</table>
 
@@ -194,13 +204,13 @@
 			<div class="fl pc-shop-fl">
 				<input type="checkbox" placeholder="">
 				<label for="">全选</label>
-				<a href="#">删除</a>
+				<a href="buyServlet?method=clear">删除</a>
 				<a href="#">清楚失效商品</a>
 			</div>
 			<div class="fr pc-shop-fr">
-				<p>共有 <em class="red pc-shop-shu">2</em> 款商品，总计（不含运费）</p>
-				<span>¥ 699.00</span>
-				<a href="my-add.html">去付款</a>
+				<p>共有 <em class="red pc-shop-shu">${sessionScope.map.size()}</em> 款商品，总计（不含运费）</p>
+				<span>¥ ${sessionScope.cart.price}</span>
+				<a href="buyServlet?method=ifUserLogin">去付款</a>
 			</div>
 		</div>
 	</div>

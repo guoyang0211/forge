@@ -1,5 +1,6 @@
 package com.forge.bean;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,7 +12,7 @@ import java.util.Map.Entry;
  * @author 郭阳
  *
  */
-public class Cart {
+public class Cart implements Serializable {
 	//必须有一个集合保存所有的商品//String 就是 商品的id
 	private  static Map<String,CartItem>map=new LinkedHashMap();
 	//所有商品的总价

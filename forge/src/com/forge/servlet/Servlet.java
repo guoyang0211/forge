@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -17,15 +18,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import net.spy.memcached.MemcachedClient;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.forge.bean.Cart;
+import com.forge.bean.CartItem;
+import com.forge.bean.Forge_Cart;
+import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users;
 import com.forge.dao.Forge_Users_Dao;
+import com.forge.dao_impl.Forge_CartServiceImpl;
 import com.forge.dao_impl.Forge_Users_Dao_Impl;
+import com.forge.service.Forge_CartService;
+import com.forge.service.Forge_Product_Service;
 import com.forge.service.Forge_Users_Service;
+import com.forge.service_impl.Forge_Product_Service_Impl;
 import com.forge.service_impl.Forge_Users_Service_Impl;
+import com.forge.util.MemcachedUtil;
+import com.google.gson.Gson;
 import com.sun.mail.iap.Response;
 
 @WebServlet("/forgeServlet")
@@ -33,6 +46,11 @@ public class Servlet extends HttpServlet {
 	Forge_Users_Dao userDao = new Forge_Users_Dao_Impl();
 	Forge_Users_Service service = new Forge_Users_Service_Impl();
 
+	Forge_Product_Service pservice = new Forge_Product_Service_Impl();
+	Forge_CartService fcService = new Forge_CartServiceImpl();
+
+	
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -191,18 +209,130 @@ public class Servlet extends HttpServlet {
 				JOptionPane.showMessageDialog(null, "请滑动滑块后登录");
 				resp.sendRedirect("login.jsp");
 			} else {
+				//登录成功不记住用户名
 				if (remember == null) {
 					req.getSession().setAttribute("loginName", loginName);
 					req.getSession().setAttribute("forgeUser", user);
-					resp.sendRedirect("index.jsp");
-				} else {
+				} else {//登录成功记住用户名
 					// 登录名保存到session
 					req.getSession().setAttribute("loginName", loginName);
 					req.getSession().setAttribute("forgeUser", user);
-					resp.sendRedirect("index.jsp");
 				}
-
+				//合并购物车
+				Cart cart = mergeCart1(user,req,resp);
+				System.out.println("+++++++++y要存入缓存中的cart:"+cart);
+				//将购物车存在缓存中     getInstance获取MemcachedClient实例
+				MemcachedClient client = MemcachedUtil.getInstance();
+				//存储key  value
+				client.set("cart",1000,cart);
+				
+				try {
+						resp.sendRedirect("index.jsp");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 			}
+			
+			
+			
 		}
 	}
+	
+	
+	private Cart mergeCart1(Forge_Users user,HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("==========进入了mergeCart1==============");
+			//从数据库中取出购物车
+		  Cart userCart = getUserCart(user.getUserId());
+		  //从cookie中取出购物车
+		  Cart cookieCart = getCookieCart(req,resp);
+		  //两个购物车进行合并
+		  Cart mergeCart = mergeCart(userCart,cookieCart);
+		
+		return mergeCart;
+	}
+	//获取用户的购物车
+		private Cart getUserCart(String userId) {
+			System.out.println("==========进入了getUserCart==============");
+			//创建一个购物车
+			Cart cart = new Cart();
+			//商品总价
+			double price = 0;  
+			List<Forge_Cart> item = fcService.findByUserId(userId);
+			for(int i = 0;i<item.size();i++){
+				//获取商品的id
+				String productId = item.get(i).getProductId();
+				//根据商品id获取商品
+				Forge_Product product = pservice.findById(productId);
+				//获取商品数量
+				String num =item.get(i).getProductNum();
+				//获取商品小计
+				double price1 = item.get(i).getPrice();
+				//创建购物项将上商品加入购物项中
+				 CartItem cartItem = new CartItem();
+				 cartItem.setNum(Integer.valueOf(num));
+				 cartItem.setPrice(price1);
+				 cartItem.setProduct(product);
+				cart.getMap().put(productId, cartItem);
+				price+=item.get(i).getPrice();  //循环获取总价
+			}
+			cart.setCount(cart.getCount()+item.size());
+			cart.setPrice(cart.getPrice()+price);
+			System.out.println("==========进入了getUserCart cart:=============="+cart);
+			return cart;
+		}
+
+	
+		//从cookie中取出购物车
+		private Cart getCookieCart(HttpServletRequest req, HttpServletResponse resp) {
+			System.out.println("==========进入了getCookieCart==============");
+			String json = null;
+			Cookie cookie = null;
+			//从cookie中查找购物车
+			Cookie  [] cookies = req.getCookies();
+			for(int i = 0;i<cookies.length;i++){
+				if(cookies[i].getName().equals("cart")){
+					cookie = cookies[i];
+					json = cookie.getValue();
+				}
+			}
+			Gson gson = new Gson();
+			Cart cart = gson.fromJson(json, Cart.class);
+			System.out.println("==========进入了getCookieCart==============:"+cart);
+
+			return cart;
+		}
+
+		private Cart mergeCart(Cart userCart, Cart cookieCart) {
+			System.out.println("==========进入了mergeCart==============");
+
+			Cart cart = null;
+			//判断两个购物车是否为空
+			if(userCart!=null&&cookieCart==null){
+				return cookieCart;
+			}
+			if(userCart==null&&cookieCart!=null){
+				return cookieCart;
+			}
+			if(userCart!=null&&cookieCart!=null){
+				//两者都不为空把cookieCart加入到userCart
+				userCart.setCount(userCart.getCount()+cookieCart.getCount());
+				userCart.setPrice(userCart.getPrice()+cookieCart.getPrice());
+				//获取cookieCart的map
+				Map<String,CartItem> map = cookieCart.getMap();
+				//遍历map并加入userCart
+				Iterator it = map.entrySet().iterator();
+				while(it.hasNext()){
+					Map.Entry entry = (Map.Entry) it.next();
+					String key = entry.getKey().toString();
+					CartItem item = (CartItem) entry.getValue();
+					userCart.getMap().put(key, item);
+					userCart.setCount(userCart.getCount());
+				}
+				return userCart;
+			}
+			
+			return cart;
+		}
+
+	
 }

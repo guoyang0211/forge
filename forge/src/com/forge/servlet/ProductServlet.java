@@ -10,16 +10,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.spy.memcached.MemcachedClient;
+
 import com.forge.bean.Cart;
+import com.forge.bean.CartItem;
+import com.forge.bean.Forge_Cart;
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users;
+import com.forge.dao_impl.Forge_CartServiceImpl;
+import com.forge.service.Forge_CartService;
 import com.forge.service.Forge_Product_Service;
 import com.forge.service_impl.Forge_Product_Service_Impl;
+import com.forge.util.MemcachedUtil;
 import com.google.gson.Gson;
 @WebServlet("/buyServlet")
 public class ProductServlet extends HttpServlet{
 //实例化service层对象
 	Forge_Product_Service service=new Forge_Product_Service_Impl();
+	
+	Forge_CartService fcService = new Forge_CartServiceImpl();
+
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -60,9 +71,7 @@ public class ProductServlet extends HttpServlet{
 		
 	}
 	
-public void	findUserId(){
-	
-};
+
 	
 	
 	
@@ -179,6 +188,30 @@ public void	findUserId(){
 //					e.printStackTrace();
 //				}
 			}
+		}else{
+			//用户不为空，用户已经登录  先从缓存中取购物车，如果缓存中没有，去数据库取
+			System.out.println("++++++++++++findCart:user不为空=================");
+			MemcachedClient client = MemcachedUtil.getInstance();
+			Cart cart = (Cart) client.get("cart");
+			
+			if(cart!=null){//如果缓存中有购物车
+				System.out.println("++++++++++++findCart:Memcachedcart不为空=================");
+				req.getSession().setAttribute("cart", cart);
+			}else{//如果缓存中没有购物车  去数据库取
+				//从数据库中取出购物车
+				System.out.println("++++++++++++findCart:Memcachedcart为空=================");
+				 Cart userCart = getUserCart(user.getUserId());
+				req.getSession().setAttribute("cart", cart);
+
+			}
+			try {
+				resp.sendRedirect("my-car.jsp");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			
+			
 		}
 		
 	}
@@ -230,7 +263,7 @@ public void	findUserId(){
 				//cookie里没有购物车创建购物车cookie
 				cookie = new Cookie("cart",json);
 				//设置cookie的有效期
-				cookie.setMaxAge(2);
+				cookie.setMaxAge(24*60*60);
 				//添加cookie
 				resp.addCookie(cookie);
 			}else{//cookie中有购物车
@@ -253,18 +286,26 @@ public void	findUserId(){
 			
 		}else{//证明用户不等于空,说明session存在user,这时就持久化购物车信息
 			System.out.println("else里user========》"+user);
-			//遍历cookie集合寻找cart
-			Cookie cookie =null;
-			for (int i=0; i < cookies.length; i++) {
-				if(cookies[i].getName().equals("cart")){
-					//找到的赋给cookie
-					cookie=cookies[i];
-				}
-				if(null==cookie){
-					
-				
-				}
-				}
+			System.out.println("++++++++++++findCart:user不为空=================");
+			MemcachedClient client = MemcachedUtil.getInstance();
+			Cart cart2 = (Cart) client.get("cart");
+			
+			if(cart2!=null){//如果缓存中有购物车
+				System.out.println("++++++++++++findCart:Memcachedcart不为空=================");
+				req.getSession().setAttribute("cart", cart2);
+			}else{//如果缓存中没有购物车  去数据库取
+				//从数据库中取出购物车
+				System.out.println("++++++++++++findCart:Memcachedcart为空=================");
+				 Cart userCart = getUserCart(user.getUserId());
+				req.getSession().setAttribute("cart", cart2);
+
+			}
+			try {
+				resp.sendRedirect("my-car.jsp");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 		
 		try {
@@ -274,4 +315,32 @@ public void	findUserId(){
 			e.printStackTrace();
 		}
 	}
+	
+	
+	//获取用户的购物车
+			private Cart getUserCart(String userId) {
+				System.out.println("==========进入了getUserCart==============");
+
+				Cart cart = new Cart();
+				List<Forge_Cart> item = fcService.findByUserId(userId);
+				for(int i = 0;i<item.size();i++){
+					//获取商品的id
+					String productId = item.get(i).getProductId();
+					//根据商品id获取商品
+					Forge_Product product = service.findById(productId);
+					//获取商品数量
+					String num =item.get(i).getProductNum();
+					//获取商品小计
+					double price = item.get(i).getPrice();
+					//创建购物项将上商品加入购物项中
+					 CartItem cartItem = new CartItem();
+					 cartItem.setNum(Integer.valueOf(num));
+					 cartItem.setPrice(price);
+					 cartItem.setProduct(product);
+					
+					cart.getMap().put(productId, cartItem);
+				}
+				return cart;
+			}
+
 }

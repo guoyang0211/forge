@@ -44,6 +44,8 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return list;
 	}
@@ -60,6 +62,8 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return list;
 	}
@@ -78,6 +82,8 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return category;
 	}
@@ -96,6 +102,8 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return list;
 	}
@@ -114,6 +122,8 @@ public class Forge_Product_Category_Dao_Impl extends JdbcUtil implements Forge_P
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return products;
 	}

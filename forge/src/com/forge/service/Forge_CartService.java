@@ -7,5 +7,9 @@ import com.forge.bean.Forge_Cart;
 
 public interface Forge_CartService extends BaseServise<Forge_Cart> {
 	List<Forge_Cart> findByUserId(Serializable id);
+	List<Forge_Cart> findAll(Serializable id);
+	void update(int num,double price,Serializable userId,Serializable productId);
+	void add(Serializable id, Serializable id2, int num, double price);
+	
 
 }

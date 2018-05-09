@@ -49,6 +49,7 @@ public class Forge_Product_Service_Impl implements Forge_Product_Service {
 		//从数据库中获取商品
 		Forge_Product product=dao.findById(id);
 		System.out.println("========================>>>>>>>>"+product.getId());
+		System.out.println("========================>>>>>>>>"+num);
 		//把商品放进购物车
 		cart.addProduct(product,num);
 		

@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class Forge_Cart implements Serializable{
 
-	private String userId;  //鐢ㄦ埛鐨処D
-	private String productId;  //鍟嗗搧鐨処D
-	private String productNum;  //浜у搧鏁伴噺
-	private double price;   //浜у搧灏忚
+	private String userId;  //用户Id
+	private String productId;  //商品Id
+	private int productNum;  //商品数量
+	private double price;   //商品价钱
 	
 	public Forge_Cart() {
 		super();
 	}
 	
-	public Forge_Cart(String userId, String productId, String productNum,double price) {
+	public Forge_Cart(String userId, String productId, int productNum,double price) {
 		super();
 		this.userId = userId;
 		this.productId = productId;
@@ -41,10 +41,10 @@ public class Forge_Cart implements Serializable{
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	public String getProductNum() {
+	public int getProductNum() {
 		return productNum;
 	}
-	public void setProductNum(String productNum) {
+	public void setProductNum(int productNum) {
 		this.productNum = productNum;
 	}
 	

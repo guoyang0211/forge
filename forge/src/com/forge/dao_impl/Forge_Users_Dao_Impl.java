@@ -19,7 +19,7 @@ import com.forge.util.ResultSerUtil;
  */
 public class Forge_Users_Dao_Impl extends JdbcUtil implements Forge_Users_Dao {
 
-	@Override
+	
 	public int add(Forge_Users t) {
 		String sql="insert into forge_users(userId,loginName,password,phone,email,address)values(?,?,?,?,?,?)";
 		Object[]params={t.getUserId(),t.getLoginName(),t.getPassword(),t.getPhone(),t.getEmail(),t.getAddress()};

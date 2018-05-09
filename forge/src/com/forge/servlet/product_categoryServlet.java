@@ -137,8 +137,9 @@ private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
 
 	/**
 	 * 一级菜单
+	 * @throws IOException 
 	 */
-	private void findAll(HttpServletRequest req, HttpServletResponse resp) {
+	private void findAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("进入了findAll");
 		List<Forge_Product_Category> list = service.findAll();
 		
@@ -151,10 +152,12 @@ private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		//直接加载二级菜单
 		findAll2(req,resp);
 		//直接加载三级菜单
 		findAll3(req,resp);
+		resp.sendRedirect("index2.jsp");
 	}
 	
 	

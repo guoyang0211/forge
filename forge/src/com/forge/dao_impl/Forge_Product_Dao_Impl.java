@@ -42,6 +42,8 @@ public class Forge_Product_Dao_Impl extends JdbcUtil implements Forge_Product_Da
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return list;
 	}
@@ -60,6 +62,8 @@ public class Forge_Product_Dao_Impl extends JdbcUtil implements Forge_Product_Da
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return product;
 	}

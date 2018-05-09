@@ -13,22 +13,43 @@ import com.forge.util.ResultSerUtil;
 
 public class Forge_CartDaoImpl extends JdbcUtil implements Forge_CartDao {
 
-	@Override
-	public int add(Forge_Cart t) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public void add(Serializable userId,Serializable productId,int num,double price) {
+		String sql="INSERT INTO forge_cart (userId,productId,productNum,price) VALUES(?,?,?,?) ";
+		Object [] params={userId,productId,num,price};
+		int rowNum=0;
+		try {
+			rowNum=getmyExecuteUpdate(sql, params);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
 	public int delete(Serializable id) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
-	@Override
-	public int update(Forge_Cart t) {
-		// TODO Auto-generated method stub
-		return 0;
+
+	public int update(int num,double price,Serializable userId,Serializable productId) {
+		String sql="UPDATE forge_cart SET productNum=?,price=?  WHERE userId=? AND productId=?";
+		Object[]params={num,price,userId,productId};
+		int rowNum=0;
+		try {
+			rowNum=getmyExecuteUpdate(sql, params);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rowNum;
 	}
 
 	@Override
@@ -47,7 +68,7 @@ public class Forge_CartDaoImpl extends JdbcUtil implements Forge_CartDao {
 	public List<Forge_Cart> findByUserId(Serializable id) {
 		String sql = "select * from forge_cart where userId = ?";
 		Object []param = {id};
-		List<Forge_Cart> cartList = new ArrayList();
+		List<Forge_Cart> cartList = null;;
 		try {
 			rs = getmyExecuteQuery(sql, param);
 			cartList = ResultSerUtil.findAll(rs, Forge_Cart.class);
@@ -56,8 +77,42 @@ public class Forge_CartDaoImpl extends JdbcUtil implements Forge_CartDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			closeConnection();
 		}
 		return cartList;
 	}
+
+	@Override
+	public List<Forge_Cart> findAll(Serializable id) {
+		String sql="SELECT * FROM forge_cart WHERE userId=?";
+		List<Forge_Cart>lists=new ArrayList();
+		
+		try {
+			rs=getmyExecuteQuery(sql, id);
+			lists=ResultSerUtil.findAll(rs, Forge_Cart.class);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lists;
+	}
+
+	@Override
+	public int update(Forge_Cart t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	public int add(Forge_Cart t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 }

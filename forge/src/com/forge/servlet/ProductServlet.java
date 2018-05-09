@@ -1,6 +1,7 @@
 package com.forge.servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,15 +18,15 @@ import com.forge.bean.CartItem;
 import com.forge.bean.Forge_Cart;
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users;
-import com.forge.dao_impl.Forge_CartServiceImpl;
 import com.forge.service.Forge_CartService;
 import com.forge.service.Forge_Product_Service;
+import com.forge.service_impl.Forge_CartServiceImpl;
 import com.forge.service_impl.Forge_Product_Service_Impl;
 import com.forge.util.MemcachedUtil;
 import com.google.gson.Gson;
 @WebServlet("/buyServlet")
 public class ProductServlet extends HttpServlet{
-//ÊµÀı»¯service²ã¶ÔÏó
+//å®ä¾‹åŒ–serviceå±‚å¯¹è±¡
 	Forge_Product_Service service=new Forge_Product_Service_Impl();
 	
 	Forge_CartService fcService = new Forge_CartServiceImpl();
@@ -42,11 +43,11 @@ public class ProductServlet extends HttpServlet{
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String method = req.getParameter("method");
-		System.out.println("jspÒ³Ãæ»òµÃµÄmethod===¡·"+method);
+		System.out.println("jspé¡µé¢æˆ–å¾—çš„method===ã€‹"+method);
 		if(method==null){
 			List<Forge_Product>product=service.findAll();
 			req.setAttribute("product", product);
-			//×ª·¢
+			//è½¬å‘
 			req.getRequestDispatcher("my-car.jsp");
 		}else{
 			switch(method){
@@ -77,24 +78,24 @@ public class ProductServlet extends HttpServlet{
 	
 	
 /**
- * ÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼È¥¸¶¿îµÄ·½·¨
+ * åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ç™»å½•å»ä»˜æ¬¾çš„æ–¹æ³•
  * @param req
  * @param resp
  */
 	private void ifUserLogin(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("·½·¨½øÀ´µÄifUserLogin");
-		//ÏÈÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼£¬Èç¹ûÃ»ÓĞµÇÂ¼½øÈë¹ºÎï³µÏÈµÇÂ¼£¬µÇÂ¼Ôò½øÈë²éÑ¯Ò³Ãæ
+		System.out.println("æ–¹æ³•è¿›æ¥çš„ifUserLogin");
+		//å…ˆåˆ¤æ–­ç”¨æˆ·æ˜¯å¦ç™»å½•ï¼Œå¦‚æœæ²¡æœ‰ç™»å½•è¿›å…¥è´­ç‰©è½¦å…ˆç™»å½•ï¼Œç™»å½•åˆ™è¿›å…¥æŸ¥è¯¢é¡µé¢
 		String user=(String) req.getSession().getAttribute("loginName");
-		if(null==user){//ÓÃ»§Ã»µÇÂ¼
-			System.out.println("ÓÃ»§Ã»ÓĞµÇÂ¼È¥½áÕË");
+		if(null==user){//ç”¨æˆ·æ²¡ç™»å½•
+			System.out.println("ç”¨æˆ·æ²¡æœ‰ç™»å½•å»ç»“è´¦");
 			try {
 				resp.sendRedirect("login.jsp");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else{//ÓÃ»§ÒÑµÇÂ¼
-			System.out.println("ÓÃ»§ÒÑµÇÂ¼È¥½áÕË");
+		}else{//ç”¨æˆ·å·²ç™»å½•
+			System.out.println("ç”¨æˆ·å·²ç™»å½•å»ç»“è´¦");
 		Forge_Users forgeUser=	(Forge_Users) req.getSession().getAttribute("forgeUser");
 		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getLoginName());
 		System.out.println("sssssssssssssssssssssssssssssssssss===>"+forgeUser.getAddress());
@@ -113,9 +114,9 @@ public class ProductServlet extends HttpServlet{
 	}
 
 	private void clearCart(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("·½·¨½øÀ´µÄclearCart");
+		System.out.println("æ–¹æ³•è¿›æ¥çš„clearCart");
 		req.getSession().removeAttribute("cart");
-		// ×ª·¢µ½¹ºÎï³µÒ³Ãæ
+		// è½¬å‘åˆ°è´­ç‰©è½¦é¡µé¢
 		try {
 			resp.sendRedirect("my-car.jsp");
 			
@@ -127,7 +128,7 @@ public class ProductServlet extends HttpServlet{
 	}
 
 	private void delCart(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("·½·¨½øÀ´µÄdelCart");
+		System.out.println("æ–¹æ³•è¿›æ¥çš„delCart");
 		String id = req.getParameter("id");
 		Cart cart = (Cart) req.getSession().getAttribute("cart");
 		service.delCart(id, cart);
@@ -140,33 +141,35 @@ public class ProductServlet extends HttpServlet{
 		
 	}
 /**
- * ²éÑ¯¹ºÎï³µ·½·¨
+ * æŸ¥è¯¢è´­ç‰©è½¦æ–¹æ³•
  * @param req
  * @param resp
  */
 	private void findCart(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("»¶Ó­À´µ½findCart·½·¨");
-		//ÏÈÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼£¬Èç¹ûÃ»ÓĞµÇÂ¼½øÈë¹ºÎï³µÏÈµÇÂ¼£¬µÇÂ¼Ôò½øÈë²éÑ¯Ò³Ãæ
-		Forge_Users user=(Forge_Users) req.getSession().getAttribute("user");
-		if(null==user){//ÓÃ»§µÈÓÚ¿Õ
-			//ÓÃ»§Ã»ÓĞµÇÂ¼²éÑ¯cookieÀï¹ºÎï³µ
+		System.out.println("æ¬¢è¿æ¥åˆ°findCartæ–¹æ³•");
+		//å…ˆåˆ¤æ–­ç”¨æˆ·æ˜¯å¦ç™»å½•ï¼Œå¦‚æœæ²¡æœ‰ç™»å½•è¿›å…¥è´­ç‰©è½¦å…ˆç™»å½•ï¼Œç™»å½•åˆ™è¿›å…¥æŸ¥è¯¢é¡µé¢
+		Forge_Users user=(Forge_Users) req.getSession().getAttribute("forgeUser");
+		if(null==user){//ç”¨æˆ·ç­‰äºç©º
+			//ç”¨æˆ·æ²¡æœ‰ç™»å½•æŸ¥è¯¢cookieé‡Œè´­ç‰©è½¦
+			System.out.println("===========ç”¨æˆ·ç­‰äºç©º==========");
 			Cookie[] cookies = req.getCookies();
 			Cookie cookie=null;
 			for (int i = 0; i < cookies.length; i++) {
 				if(cookies[i].getName().equals("cart")){
-					//ÕÒµ½µÄ¸³¸øcookie
-					cookie=cookies[i];
+					//æ‰¾åˆ°çš„èµ‹ç»™cookie
+					cookie=cookies[i]; 
 				}
 			}
-			if(null==cookie){//cookieµÈÓÚ¿Õ
-				System.out.println("½øÈëÁËcookieµÈÓÚ¿Õ");
+			if(null==cookie){ //cookieç­‰äºç©º
+				System.out.println("è¿›å…¥äº†cookieç­‰äºç©º");
 				try {
 					resp.sendRedirect("my-car.jsp");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}else{//cookie²»µÈÓÚ¿Õ
-				System.out.println("½øÈëÁËfindCart·½·¨cookie²»µÈÓÚ¿Õ");
+				
+			}else{//cookieä¸ç­‰äºç©º
+				System.out.println("è¿›å…¥äº†findCartæ–¹æ³•cookieä¸ç­‰äºç©º");
 				String json=cookie.getValue();
 				Gson gson=new Gson();
 				Cart cart=gson.fromJson(json, Cart.class);
@@ -189,18 +192,19 @@ public class ProductServlet extends HttpServlet{
 //				}
 			}
 		}else{
-			//ÓÃ»§²»Îª¿Õ£¬ÓÃ»§ÒÑ¾­µÇÂ¼  ÏÈ´Ó»º´æÖĞÈ¡¹ºÎï³µ£¬Èç¹û»º´æÖĞÃ»ÓĞ£¬È¥Êı¾İ¿âÈ¡
-			System.out.println("++++++++++++findCart:user²»Îª¿Õ=================");
+			//ç”¨æˆ·ä¸ä¸ºç©ºï¼Œç”¨æˆ·å·²ç»ç™»å½•  å…ˆä»ç¼“å­˜ä¸­å–è´­ç‰©è½¦ï¼Œå¦‚æœç¼“å­˜ä¸­æ²¡æœ‰ï¼Œå»æ•°æ®åº“å–
+			System.out.println("++++++++++++findCart:userä¸ä¸ºç©º=================");
 			MemcachedClient client = MemcachedUtil.getInstance();
 			Cart cart = (Cart) client.get("cart");
 			
-			if(cart!=null){//Èç¹û»º´æÖĞÓĞ¹ºÎï³µ
-				System.out.println("++++++++++++findCart:Memcachedcart²»Îª¿Õ=================");
+			if(cart!=null){//å¦‚æœç¼“å­˜ä¸­æœ‰è´­ç‰©è½¦
+				System.out.println("++++++++++++findCart:Memcachedcartä¸ä¸ºç©º=================");
 				req.getSession().setAttribute("cart", cart);
-			}else{//Èç¹û»º´æÖĞÃ»ÓĞ¹ºÎï³µ  È¥Êı¾İ¿âÈ¡
-				//´ÓÊı¾İ¿âÖĞÈ¡³ö¹ºÎï³µ
-				System.out.println("++++++++++++findCart:MemcachedcartÎª¿Õ=================");
+			}else{//å¦‚æœç¼“å­˜ä¸­æ²¡æœ‰è´­ç‰©è½¦  å»æ•°æ®åº“å–
+				//ä»æ•°æ®åº“ä¸­å–å‡ºè´­ç‰©è½¦
+				System.out.println("++++++++++++findCart:Memcachedcartä¸ºç©º=================");
 				 Cart userCart = getUserCart(user.getUserId());
+				 System.out.println("user.getUserId()"+user.getUserId());
 				req.getSession().setAttribute("cart", cart);
 
 			}
@@ -216,92 +220,96 @@ public class ProductServlet extends HttpServlet{
 		
 	}
 /**
- * °ÑÉÌÆ·¼ÓÈë¹ºÎï³µ
+ * æŠŠå•†å“åŠ å…¥è´­ç‰©è½¦
  * @param req
  * @param resp
  */
 	private void addCart(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("method½øÀ´µÄaddCart");
-		//»ñÈ¡ÉÌÆ·µÄid
+		System.out.println("methodè¿›æ¥çš„addCart");
+		//è·å–å•†å“çš„id
 		String productId = req.getParameter("id");
-		//»ñÈ¡ÉÌÆ·µÄÊıÁ¿
+		//è·å–å•†å“çš„æ•°é‡
 		String num = req.getParameter("number");
 		int num2 =Integer.valueOf(num);
-		System.out.println("ÉÌÆ·µÄÊıÁ¿"+num2);
+		System.out.println("å•†å“çš„æ•°é‡"+num2);
 		System.out.println("productId====>"+productId);
-		//»ñÈ¡sessionÀïµÄuser
+		//è·å–sessioné‡Œçš„user
 		Forge_Users user= (Forge_Users) req.getSession().getAttribute("user");
-		//»ñÈ¡cookie¼¯ºÏ
+		//è·å–cookieé›†åˆ
 		Cookie[]cookies=req.getCookies();
-		//´´½¨cookie½ÓÊÕcart£¨cookies[i]£©
+		//åˆ›å»ºcookieæ¥æ”¶cartï¼ˆcookies[i]ï¼‰
 		
-		//´´½¨cart¶ÔÏó
+		//åˆ›å»ºcartå¯¹è±¡
 		Cart cart = null;
-		//´´½¨json
+		//åˆ›å»ºjson
 		String json;
-		//´´½¨gson
+		//åˆ›å»ºgson
 		Gson gson = new Gson();
-		if(null==user){//Ö¤Ã÷ÓÃ»§µÈÓÚ¿Õ
+		if(null==user){//è¯æ˜ç”¨æˆ·ç­‰äºç©º
 			Cookie cookie =null;
-			System.out.println("ifÀïuser========¡·"+user);
-			//±éÀúcookie¼¯ºÏÑ°ÕÒcart
+			System.out.println("ifé‡Œuser========ã€‹"+user);
+			//éå†cookieé›†åˆå¯»æ‰¾cart
 			for (int i=0; i < cookies.length; i++) {
 				if(cookies[i].getName().equals("cart")){
-					//ÕÒµ½µÄ¸³¸øcookie
+					//æ‰¾åˆ°çš„èµ‹ç»™cookie
 					cookie=cookies[i];
 				}
 				
 			}
-			if(null==cookie){//cookieÖĞÃ»ÓĞ¹ºÎï³µ
-				System.out.println("½øÈëÁËaddCart·½·¨cookieµÈÓÚ¿Õ");
+			if(null==cookie){//cookieä¸­æ²¡æœ‰è´­ç‰©è½¦
+				System.out.println("è¿›å…¥äº†addCartæ–¹æ³•cookieç­‰äºç©º");
 				cart = new Cart();
-				//Ìí¼Óµ½¹ºÎï³µ     num2ÊıÁ¿
+				//æ·»åŠ åˆ°è´­ç‰©è½¦     num2æ•°é‡
 				service.addCart(productId, cart, num2);
-				System.out.println("=================Ç®"+cart.getPrice());
-				//°ÑStringÀàĞÍµÄcart×ª»»³Éjson
+				System.out.println("=================é’±"+cart.getPrice());
+				//æŠŠStringç±»å‹çš„cartè½¬æ¢æˆjson
 				json = gson.toJson(cart);
-				//cookieÀïÃ»ÓĞ¹ºÎï³µ´´½¨¹ºÎï³µcookie
+				//cookieé‡Œæ²¡æœ‰è´­ç‰©è½¦åˆ›å»ºè´­ç‰©è½¦cookie
 				cookie = new Cookie("cart",json);
-				//ÉèÖÃcookieµÄÓĞĞ§ÆÚ
+				//è®¾ç½®cookieçš„æœ‰æ•ˆæœŸ
 				cookie.setMaxAge(24*60*60);
-				//Ìí¼Ócookie
+				//æ·»åŠ cookie
 				resp.addCookie(cookie);
-			}else{//cookieÖĞÓĞ¹ºÎï³µ
-				System.out.println("½øÈëÁËaddCart·½·¨cookie²»µÈÓÚ¿Õ");
+				
+			}else{//cookieä¸­æœ‰è´­ç‰©è½¦
+				System.out.println("è¿›å…¥äº†addCartæ–¹æ³•cookieä¸ç­‰äºç©º");
 				json = cookie.getValue();
 				cart = gson.fromJson(json, Cart.class);
-				System.out.println("=================¼ÓÈëÇ°Ç®"+cart.getPrice());
-				//¸ù¾İidÌí¼Ó¹ºÎï³µ
-				System.out.println("½øÈëÁËcookie²»µÈÓÚ¿Õ"+productId);
+				System.out.println("=================åŠ å…¥å‰é’±"+cart.getPrice());
+				//æ ¹æ®idæ·»åŠ è´­ç‰©è½¦
+				System.out.println("è¿›å…¥äº†cookieä¸ç­‰äºç©º"+productId);
 				service.addCart(productId, cart, num2);
-			    System.out.println(">>>>>>>>>>>>>>mapµÄ³¤¶È"+cart.getMap().size());
+			    System.out.println(">>>>>>>>>>>>>>mapçš„é•¿åº¦"+cart.getMap().size());
 				json = gson.toJson(cart);
-				//°Ñjson´æ½øcookie£¨cart£©
+				//æŠŠjsonå­˜è¿›cookieï¼ˆcartï¼‰
 				cookie.setValue(json);
 				String sj = cookie.getValue();
 				Cart ca = gson.fromJson(json, Cart.class);
 				System.out.println(ca.getMap().size());
-				System.out.println("=================¼ÓÈëºóÇ®"+cart.getPrice());
+				System.out.println("=================åŠ å…¥åé’±"+cart.getPrice());
 			}
 			
-		}else{//Ö¤Ã÷ÓÃ»§²»µÈÓÚ¿Õ,ËµÃ÷session´æÔÚuser,ÕâÊ±¾Í³Ö¾Ã»¯¹ºÎï³µĞÅÏ¢
-			System.out.println("elseÀïuser========¡·"+user);
-			System.out.println("++++++++++++findCart:user²»Îª¿Õ=================");
+			
+			
+		}else{//è¯æ˜ç”¨æˆ·ä¸ç­‰äºç©º,è¯´æ˜sessionå­˜åœ¨user,è¿™æ—¶å°±æŒä¹…åŒ–è´­ç‰©è½¦ä¿¡æ¯
+			System.out.println("elseé‡Œuser========ã€‹"+user);
+			System.out.println("++++++++++++findCart:userä¸ä¸ºç©º=================");
 			MemcachedClient client = MemcachedUtil.getInstance();
 			Cart cart2 = (Cart) client.get("cart");
 			
-			if(cart2!=null){//Èç¹û»º´æÖĞÓĞ¹ºÎï³µ
-				System.out.println("++++++++++++findCart:Memcachedcart²»Îª¿Õ=================");
+			if(cart2!=null){//å¦‚æœç¼“å­˜ä¸­æœ‰è´­ç‰©è½¦
+				System.out.println("++++++++++++findCart:Memcachedcartä¸ä¸ºç©º=================");
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+cart2.getPrice());
 				req.getSession().setAttribute("cart", cart2);
-			}else{//Èç¹û»º´æÖĞÃ»ÓĞ¹ºÎï³µ  È¥Êı¾İ¿âÈ¡
-				//´ÓÊı¾İ¿âÖĞÈ¡³ö¹ºÎï³µ
-				System.out.println("++++++++++++findCart:MemcachedcartÎª¿Õ=================");
+			}else{//å¦‚æœç¼“å­˜ä¸­æ²¡æœ‰è´­ç‰©è½¦  å»æ•°æ®åº“å–
+				//ä»æ•°æ®åº“ä¸­å–å‡ºè´­ç‰©è½¦
+				System.out.println("++++++++++++findCart:Memcachedcartä¸ºç©º=================");
 				 Cart userCart = getUserCart(user.getUserId());
-				req.getSession().setAttribute("cart", cart2);
-
+				req.getSession().setAttribute("cart", userCart);
 			}
 			try {
 				resp.sendRedirect("my-car.jsp");
+			
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -313,26 +321,26 @@ public class ProductServlet extends HttpServlet{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 	}
 	
 	
-	//»ñÈ¡ÓÃ»§µÄ¹ºÎï³µ
+	//è·å–ç”¨æˆ·çš„è´­ç‰©è½¦
 			private Cart getUserCart(String userId) {
-				System.out.println("==========½øÈëÁËgetUserCart==============");
+				System.out.println("==========è¿›å…¥äº†getUserCart==============");
 
 				Cart cart = new Cart();
 				List<Forge_Cart> item = fcService.findByUserId(userId);
 				for(int i = 0;i<item.size();i++){
-					//»ñÈ¡ÉÌÆ·µÄid
+					//è·å–å•†å“çš„id
 					String productId = item.get(i).getProductId();
-					//¸ù¾İÉÌÆ·id»ñÈ¡ÉÌÆ·
+					//æ ¹æ®å•†å“idè·å–å•†å“
 					Forge_Product product = service.findById(productId);
-					//»ñÈ¡ÉÌÆ·ÊıÁ¿
-					String num =item.get(i).getProductNum();
-					//»ñÈ¡ÉÌÆ·Ğ¡¼Æ
+					//è·å–å•†å“æ•°é‡
+					int num =item.get(i).getProductNum();
+					//è·å–å•†å“å°è®¡
 					double price = item.get(i).getPrice();
-					//´´½¨¹ºÎïÏî½«ÉÏÉÌÆ·¼ÓÈë¹ºÎïÏîÖĞ
+					//åˆ›å»ºè´­ç‰©é¡¹å°†ä¸Šå•†å“åŠ å…¥è´­ç‰©é¡¹ä¸­
 					 CartItem cartItem = new CartItem();
 					 cartItem.setNum(Integer.valueOf(num));
 					 cartItem.setPrice(price);

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -30,11 +31,11 @@ import com.forge.bean.Forge_Cart;
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users;
 import com.forge.dao.Forge_Users_Dao;
-import com.forge.dao_impl.Forge_CartServiceImpl;
 import com.forge.dao_impl.Forge_Users_Dao_Impl;
 import com.forge.service.Forge_CartService;
 import com.forge.service.Forge_Product_Service;
 import com.forge.service.Forge_Users_Service;
+import com.forge.service_impl.Forge_CartServiceImpl;
 import com.forge.service_impl.Forge_Product_Service_Impl;
 import com.forge.service_impl.Forge_Users_Service_Impl;
 import com.forge.util.MemcachedUtil;
@@ -71,6 +72,9 @@ public class Servlet extends HttpServlet {
 		case "validate":
 			validateLoginName(req, resp);
 			break;
+		case "exit":
+			userExit(req, resp);
+			break;
 		case "add":
 			try {
 				add(req, resp);
@@ -82,6 +86,96 @@ public class Servlet extends HttpServlet {
 		}
 
 	}
+/**
+ * 用户正常退出方法
+ * @param req
+ * @param resp
+ */
+	private void userExit(HttpServletRequest req, HttpServletResponse resp) {
+	System.out.println("进入了到了用户正常退出");
+	//获取用户的id
+	String id = req.getParameter("id");
+	System.out.println("用户的id=====》"+id);
+	//从数据库中获取这位用户的所有商品
+	List<Forge_Cart> findAll = fcService.findAll(id);
+	//获取缓存中购物车
+	MemcachedClient client= MemcachedUtil.getInstance();
+	Cart cart= (Cart) client.get("cart");
+	//迭代器遍历
+	Iterator mit=cart.getMap().entrySet().iterator();
+	while(mit.hasNext()){
+		//获取到了集合中的key,value
+		Map.Entry entry= (Entry) mit.next();
+		//key就是商品的id
+		String key= (String) entry.getKey().toString();
+		//对应的购物项
+		CartItem item=(CartItem) entry.getValue();
+		if(findAll.size()==0){
+			fcService.add(id,item.getProduct().getId(),item.getNum(),item.getPrice());
+		}else{
+			for(int i = 0; i < findAll.size(); i++) {
+				if(item.getProduct().getId().equals(findAll.get(i).getProductId())){
+					System.out.println("进入了if");
+//					String num = item.getNum()+findAll.get(i).getProductNum();
+//					double price = item.getPrice()+findAll.get(i).getPrice();
+					fcService.update((item.getNum()),(item.getPrice()),id,item.getProduct().getId());
+					System.out.println("总数量"+(item.getNum()+findAll.get(i).getProductNum()));
+					System.out.println("总价钱"+(item.getPrice()+findAll.get(i).getPrice()));
+				}else{
+					System.out.println("进入了else");
+					System.out.println("findAll.get(i).getProductId()"+findAll.get(i).getProductId());
+					System.out.println("item.getProduct().getId()"+item.getProduct().getId());
+					fcService.add(id,item.getProduct().getId(),item.getNum(),item.getPrice());
+					
+					
+					
+				}
+				
+				
+			}
+		}
+		
+		
+	}
+	/**
+	 * 清空所有数据
+	 * 
+	 */
+	clearAll(req, resp, client);
+	  
+		try {//正常退出后进入主页面
+			resp.sendRedirect("index.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 清空所有数据
+	 * @param req
+	 * @param resp
+	 * @param client
+	 */
+public void clearAll(HttpServletRequest req, HttpServletResponse resp,
+		MemcachedClient client) {
+	//清空cookie
+	Cookie[] cookies = req.getCookies();
+	for (Cookie c : cookies) {
+		c=new Cookie(c.getName(),null);
+		c.setPath("/");
+		c.setMaxAge(-0);
+		resp.addCookie(c);
+	}
+	//使session失效
+	req.getSession().invalidate();
+	//清空缓存
+	    if(client.delete("cart").equals(client.get("cart"))){
+	    	System.out.println("删除失败");
+	    }else{
+	    	System.out.println("删除成功");
+	    }
+}
 
 	/**
 	 * 注册 （新增）
@@ -224,10 +318,9 @@ public class Servlet extends HttpServlet {
 				//将购物车存在缓存中     getInstance获取MemcachedClient实例
 				MemcachedClient client = MemcachedUtil.getInstance();
 				//存储key  value
-				client.set("cart",1000,cart);
-				
+				client.add("cart",1000,cart);
 				try {
-						resp.sendRedirect("index.jsp");
+						resp.sendRedirect("index2.jsp");
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -238,7 +331,13 @@ public class Servlet extends HttpServlet {
 		}
 	}
 	
-	
+	/**
+	 * 合并购物车方法
+	 * @param user
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
 	private Cart mergeCart1(Forge_Users user,HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("==========进入了mergeCart1==============");
 			//从数据库中取出购物车
@@ -264,10 +363,10 @@ public class Servlet extends HttpServlet {
 				//根据商品id获取商品
 				Forge_Product product = pservice.findById(productId);
 				//获取商品数量
-				String num =item.get(i).getProductNum();
+				int num =item.get(i).getProductNum();
 				//获取商品小计
 				double price1 = item.get(i).getPrice();
-				//创建购物项将上商品加入购物项中
+				//创建购物项将将商品加入购物项中
 				 CartItem cartItem = new CartItem();
 				 cartItem.setNum(Integer.valueOf(num));
 				 cartItem.setPrice(price1);
@@ -276,7 +375,7 @@ public class Servlet extends HttpServlet {
 				price+=item.get(i).getPrice();  //循环获取总价
 			}
 			cart.setCount(cart.getCount()+item.size());
-			cart.setPrice(cart.getPrice()+price);
+			cart.setPrice(cart.getPrice());
 			System.out.println("==========进入了getUserCart cart:=============="+cart);
 			return cart;
 		}
@@ -287,6 +386,7 @@ public class Servlet extends HttpServlet {
 			System.out.println("==========进入了getCookieCart==============");
 			String json = null;
 			Cookie cookie = null;
+			Cart cart = null;
 			//从cookie中查找购物车
 			Cookie  [] cookies = req.getCookies();
 			for(int i = 0;i<cookies.length;i++){
@@ -295,20 +395,23 @@ public class Servlet extends HttpServlet {
 					json = cookie.getValue();
 				}
 			}
-			Gson gson = new Gson();
-			Cart cart = gson.fromJson(json, Cart.class);
+			if(json!=null){
+				Gson gson = new Gson();
+			   cart = gson.fromJson(json, Cart.class);
+			}
+		
 			System.out.println("==========进入了getCookieCart==============:"+cart);
 
 			return cart;
 		}
-
+		//合并购物车
 		private Cart mergeCart(Cart userCart, Cart cookieCart) {
 			System.out.println("==========进入了mergeCart==============");
 
 			Cart cart = null;
 			//判断两个购物车是否为空
 			if(userCart!=null&&cookieCart==null){
-				return cookieCart;
+				return userCart;
 			}
 			if(userCart==null&&cookieCart!=null){
 				return cookieCart;
@@ -319,14 +422,36 @@ public class Servlet extends HttpServlet {
 				userCart.setPrice(userCart.getPrice()+cookieCart.getPrice());
 				//获取cookieCart的map
 				Map<String,CartItem> map = cookieCart.getMap();
+				//获取userCart的map
+				Map<String,CartItem> userMap = userCart.getMap();
 				//遍历map并加入userCart
 				Iterator it = map.entrySet().iterator();
+				Iterator uit = userMap.entrySet().iterator();
 				while(it.hasNext()){
 					Map.Entry entry = (Map.Entry) it.next();
+					//取出cookieCart的map的key,value
 					String key = entry.getKey().toString();
 					CartItem item = (CartItem) entry.getValue();
-					userCart.getMap().put(key, item);
-					userCart.setCount(userCart.getCount());
+					//遍历userMap
+					while(uit.hasNext()){
+						Map.Entry uentry = (Map.Entry) uit.next();
+						String ukey = uentry.getKey().toString();
+						if(key.equals(ukey)){//如果用户相同，商品相同，商品的数量，价钱相加
+							//取出用户的购物项
+							CartItem uitem = (CartItem) uentry.getValue();
+							//设置合并后的数量
+							uitem.setNum(uitem.getNum());
+							System.out.println("合并后的数量"+uitem.getNum());
+							//设置合并后的价钱
+							uitem.setPrice(uitem.getPrice());
+							System.out.println("合并后的价钱"+uitem.getPrice());
+							System.out.println("进入了合并if");
+						}else{
+							System.out.println("进入了合并else");
+							userCart.getMap().put(key, item);
+						}
+					}
+				userCart.setCount(userCart.getCount());
 				}
 				return userCart;
 			}

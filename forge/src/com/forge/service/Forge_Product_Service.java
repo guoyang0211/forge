@@ -17,4 +17,5 @@ public interface Forge_Product_Service extends BaseServise<Forge_Product> {
 	
 	//É¾³ý¹ºÎï³µ
 	void delCart(String id,Cart cart);
+	List<String> findBooksAjax(String name);
 }

@@ -49,4 +49,23 @@ public class Forge_CartServiceImpl implements Forge_CartService {
 		return cartList;
 	}
 
+	@Override
+	public List<Forge_Cart> findAll(Serializable id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(int num, double price, Serializable userId,
+			Serializable productId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void add(Serializable id, Serializable id2, int num, double price) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

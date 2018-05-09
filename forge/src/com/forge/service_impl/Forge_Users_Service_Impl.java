@@ -8,6 +8,7 @@ import net.spy.memcached.MemcachedClient;
 import org.apache.log4j.Logger;
 
 import com.forge.bean.Forge_Users;
+import com.forge.bean.region;
 import com.forge.dao.Forge_Users_Dao;
 import com.forge.dao_impl.Forge_Users_Dao_Impl;
 import com.forge.service.Forge_Users_Service;
@@ -104,6 +105,13 @@ public class Forge_Users_Service_Impl implements Forge_Users_Service {
 		Forge_Users user = null;
 		user = dao.findByName(loginName);
 		return user;
+	}
+
+
+	@Override
+	public List<region> findAddress(String parentId) {
+		// TODO Auto-generated method stub
+		 return dao.findAddress(parentId);
 	}
 
 

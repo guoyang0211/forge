@@ -3,9 +3,12 @@ package com.forge.dao_impl;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.forge.bean.Forge_Users;
+import com.forge.bean.region;
 import com.forge.dao.Forge_Users_Dao;
 import com.forge.util.JdbcUtil;
 import com.forge.util.ResultSerUtil;
@@ -185,5 +188,33 @@ public class Forge_Users_Dao_Impl extends JdbcUtil implements Forge_Users_Dao {
 		}
 		return user ;	}
 
+	@Override
+	public List<region> findAddress(String parentId) {
+		
+			List list=new ArrayList();
+			String sql="select region_id,region_name from region where parent_id = ?";
+			Object [] params={parentId};
+			Map map=null;
+			 try {
+				rs=getmyExecuteQuery(sql, params);
+				while (rs.next()) {
+					map=new HashMap();
+					map.put("id", rs.getInt(1));
+					map.put("name", rs.getString(2));
+		            list.add(map);
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				closeConnection();
+			}
+			return list ;	
+		}
 
-	 }
+
+		 }
+
+
+	 

@@ -8,6 +8,7 @@ import com.forge.bean.Forge_Product;
 import com.forge.dao.Forge_Product_Dao;
 import com.forge.util.JdbcUtil;
 import com.forge.util.ResultSerUtil;
+import com.mysql.jdbc.util.ResultSetUtil;
 
 public class Forge_Product_Dao_Impl extends JdbcUtil implements Forge_Product_Dao {
 
@@ -66,6 +67,23 @@ public class Forge_Product_Dao_Impl extends JdbcUtil implements Forge_Product_Da
 			closeConnection();
 		}
 		return product;
+	}
+
+	@Override
+	public List<Forge_Product> findBooksAjax() {
+		String sql="SELECT * FROM forge_product ";//WHERE  `name` LIKE '%' ? '%' 
+		List<Forge_Product> list=null;
+		try {
+			rs=getmyExecuteQuery(sql);
+			list=ResultSerUtil.findAll(rs, Forge_Product.class);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+
+		
 	}
 
 }

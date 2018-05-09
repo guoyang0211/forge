@@ -14,8 +14,13 @@
 	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<link rel="stylesheet" href="css/shopping-mall-index.css" type="text/css"></link>
+	<link rel="stylesheet" href="css/style.css" type="text/css"></link>
+	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/zhongling2.js"></script>
+	<script type="text/javascript" src="js/zhonglin.js"></script>
 	<script type="text/javascript">
 
         var intDiff = parseInt(90000);//倒计时总秒数量
@@ -72,13 +77,23 @@
         });
 
 	</script>
+<script type="text/javascript" src="js/json-minified.js"></script>
 </head>
 <body>
 
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.jsp" target="_blank">请登录</a> <a href="login.jsp" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >
+			您好:
+			<c:if test="${sessionScope.loginName!=null }">
+					${sessionScope.loginName }
+			</c:if>欢迎来云购物 
+			<c:if test="${sessionScope.loginName==null }">
+			<a href="login.jsp" target="_blank">请登录</a>
+			</c:if>
+			 <a href="login.jsp" target="_blank"> 免费注册</a>
+			 </div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -115,14 +130,61 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="index.jsp"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">
-			<form class="clearfix">
-				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
+			<form class="clearfix" action="forgeServlet?method=search" method="post">
+				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text" name="input" >
 				<button class="button" onclick="search('key');return false;">搜索</button>
 			</form>
+			<!-- 搜索下拉框 -->
+			<div id="context1"  style="background-color:rgba(220,220,220,0.9);border:1.5px red solid;width:461px;position: absolute;top:67px;z-index:5;display:none"></div>
+			
+			<script type="text/javascript">
+		        $("#key").keyup(function() {  
+		            var key = $(this).val();
+		            if ("" == key) {  
+		                    $("#context1").css("display","none");
+		                    return;
+		            }  
+		             //由于浏览器的缓存机制 所以我们每次传入一个时间
+        			var time=new Date().getTime();
+			        $.ajax({
+			            type:"POST",
+			            //新建一个名为findBooksAjaxServlet的servlet
+			            url:"categoryServlet?method=books",
+			            data:{name:key,time:time},
+			            success:function(data){
+			                //拼接html
+			                var res=data.split(",");
+			                var html="";
+			                for(var i=0;i<res.length;i++){
+			                    //每一个div还有鼠标移出、移入点击事件
+			                    html+="<div onclick='setSearch_onclick(this)' onmouseout='changeBackColor_out(this)' onmouseover='changeBackColor_over(this)'>"+res[i]+"</div>";
+			                }
+			                $("#context1").html(html);
+			                //显示为块级元素
+			                $("#context1").css("display","block");
+			            }
+			        });
+				});
+				//鼠标移动到内容上
+			    function changeBackColor_over(div){
+			        $(div).css("background-color","#CCCCCC");
+			    }
+			    //鼠标离开内容
+			    function changeBackColor_out(div){
+			        $(div).css("background-color","");
+			    }
+			    //将点击的内容放到搜索框
+			    function setSearch_onclick(div){
+			        $("#key").val(div.innerText);
+			        $("#context1").css("display","none");
+			    }
+			</script>
+			
+			
 			<div class="words-text clearfix">
 				<a href="#" class="red">1元秒爆</a>
 				<a href="#">低至五折</a>

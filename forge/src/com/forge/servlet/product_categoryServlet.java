@@ -15,7 +15,9 @@ import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
 import com.forge.dao.Forge_Product_Category_Dao;
 import com.forge.service.Forge_Product_Category_Service;
+import com.forge.service.Forge_Product_Service;
 import com.forge.service_impl.Forge_Product_Category_Service_Impl;
+import com.forge.service_impl.Forge_Product_Service_Impl;
 @WebServlet("/categoryServlet")
 public class product_categoryServlet extends HttpServlet {
 	Forge_Product_Category_Service service=new Forge_Product_Category_Service_Impl();
@@ -30,6 +32,7 @@ public class product_categoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
 		String method = req.getParameter("method");
 		System.out.println("jsp页面进来的method====》"+method);
 		switch (method) {
@@ -48,11 +51,50 @@ public class product_categoryServlet extends HttpServlet {
 		case "pageInfo":
 			pageInfo(req,resp);
 			break;
+		case "books":
+			findBooks(req,resp);
+			break;
 
 		default:
 			break;
 		}
 	}
+	
+	/**
+	 * 模糊查询
+	 */
+	private void findBooks(HttpServletRequest req, HttpServletResponse resp) {
+		//获取搜索框输入的内容
+        String name=req.getParameter("name");
+        /*try {
+			name=new String(name.getBytes("iso-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}*/
+        //向server层调用相应的业务
+        Forge_Product_Service booksServer=new Forge_Product_Service_Impl();
+        List<String> res=booksServer.findBooksAjax(name);
+        String str="";
+        for (int i = 0; i < res.size(); i++) {
+        	if(i>0){
+                str+=","+res.get(i);
+            }else{
+                str+=res.get(i);
+            }
+		}
+        System.out.println("333"+str);
+        //返回结果
+        try {
+			resp.getWriter().write(str);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
+	
+
+	
+	
+	
 private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
 	String id = req.getParameter("id");
 

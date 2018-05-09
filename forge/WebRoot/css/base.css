@@ -100,15 +100,15 @@ td, th {
 .pc-top-20{
     padding-top:20px;
 }
-/*椤堕儴    start*/
+/*顶部    start*/
 .yHeader{width: 100%; background:#ee4644}
-/*瀵艰埅   start*/
+/*导航   start*/
 .yNavIndex{width: 1200px;margin:0 auto;height:42px;/*border-bottom: 2px solid #2d2d2d;*/position: relative;}
 .yNavIndex .yMenuIndex{margin-left: 190px;}
 .yNavIndex .yMenuIndex li a{position: relative;display: inline-block;font-size: 14px;color: #fff;line-height: 42px;height: 42px;padding: 0 21px;}
 
 .yNavIndex .yMenuIndex li{float: left;height: 42px;padding: 0 12px;}
-/*涓嬫媺*/
+/*下拉*/
 .pullDown{z-index: 1;position: absolute;}
 .pullDownTitle{height: 42px;width: 190px; background-color: rgba(000, 000, 000, 0.3); color: #ffffff;font-size: 16px;font-weight: normal;text-align: center;line-height: 42px; position:relative}
 .pullDownList{width: 190px;height: 480px; background-color: rgba(000, 000, 000, 0.3); position: relative;z-index: 2;}
@@ -122,7 +122,7 @@ td, th {
 .pullDownList li.menulihover{background: #ee4644; }
 .pullDownList li span{display: inline-block; width: 0;height: 0;position: absolute;top: 12px;right: 8px;}
 .pullDownList li.menulihover span{top: 12px;right: 8px;border-left: 4px solid #fff;border-top: 4px solid transparent;border-bottom: 4px solid transparent;border-right: 0;}
-/*涓嬫媺璇︾粏鍒楄〃鍏蜂綋鍒嗙被*/
+/*下拉详细列表具体分类*/
 .yMenuListCon{width: 400px;height:480px;position: absolute;z-index:2;top: 42px;left: 190px;overflow: hidden;}
 .yMenuListCon p{width:auto;color: #7f7e7e;font-size: 12px;margin: 10px 0 0 -1px;overflow: hidden;}
 .yMenuListCon p a{color: #7f7e7e;font-size: 12px;padding: 0 8px;display: inline-block;float: left;margin-top: 5px;background: url(../images/indexicon1.png) 0 -1695px;}
@@ -130,14 +130,14 @@ td, th {
 .yMenuListCon p a:hover{color: #a90000;text-decoration: underline;}
 .yMenuListConin{display: none; background: #fff;opacity: 0.9; -moz-opacity:0.9;filter: alpha(opacity=90);padding:0 20px;width: 360px;height:480px;position: absolute;left: 0;top: 0;}
 .yMenuLCinList{overflow: hidden;}
-/*璇︾粏鍒嗙被鏍囬*/
+/*详细分类标题*/
 .yMenuLCinList h3{position: relative;height: 20px;width: auto;margin: 25px auto 0;border-bottom: 1px solid #000;}
 .yMenuLCinList h3 a{font-size: 12px;color: #2d2d2d;position: absolute;bottom: 0px;display: block;}
 .yMenuLCinList h3 .yListMore{color: #666666;font-weight: normal;right: 0;with: 40px;height: 20px;}
 .yMenuLCinList h3 .yListName{-webkit-transition: left .2s linear;-moz-transition: left .2s linear;-o-transition: left .2s linear;display: block;width: 90px;height: 20px;line-height: 20px;padding-top: 17px;padding-left: 30px;left: 0;background:url(../images/yListNameicon.png) no-repeat 0 5px;}
 .yMenuLCinList h3 .yListName:hover{left:6px;}
-/*瀵艰埅   end*/
-/*椤堕儴    end*/
+/*导航   end*/
+/*顶部    end*/
 
 /*banner  start*/
 .yBanner{height: 480px;width: 100%;overflow: hidden;position: relative;}
@@ -157,6 +157,8 @@ td, th {
     position:relative;
 }
 
+
+//一级菜单的图标位置
 .list-icon-1{
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAD+0lEQVR4Xu2d4XETMRCFdyuADkgqACoAKgAqIFQAHRAqACoAKgAqwKkAqIDQAalgmUfOwfH4bO+dniSHp5nM5Md6Jb1Puyv5h9dNoysFvKvVaDEmIJ0dAgERkM4U6Gw5ihAB+adARDwws4dmdtvM7jXW5tzM8Ldw97NWa6keIREB8V+Y2csBRKu9b5v3t5m9NbN37o7/q42qQCICUfC1YxDrwgPGU3df1CJSDUhEnJjZ+1obKzzPc3f/UNjnRndVgAyR8a3GhohzIFI+E/3/dU0HMtQMwDiauJlfZlbqdD4xs7sT14H0dcyuKTWAnJrZq4ki4GPF0kVE4EaHGjZ1vHZ37Ic2agD5OSM6sPHvZlYqVSBC5lyvz939mEaDnbJuSO1Y1/++u+OQUAY1QgqkCMqmZzqlFnc2EDz+3swUoLePU+sIG8jcgt4bDKxHQDqjIiACUkiBiFDKSmrZsoZ8LPgCT257pzm+d3s2YnVjUxZ1Yzsl32KwI7Kp624ZIdSNCcgGBVqeNAERkDln4OqzSlmdHSQBEZArBVTUNxwGRYgiRBGyrforQhQhihBFSPKF0PJBq5SllKWUpZSllHWpQMtcnGRwzbzlulVDVENUQ1RDkvlLKSspGNtcQNgKJ/0LSFIwtrmAsBVO+heQpGBscwFhK5z0LyBJwdjmAsJWOOlfQJKCsc0FhK1w0r+AJAVjmwsIW+GkfwFJCsY2FxC2wkn/ApIUjG0uIGyFk/4FJCkY21xA2Aon/QtIUjC2uYCwFU76F5CkYGxzAWErnPQvIEnB2OYCwlY46V9AkoKxzQWErXDSv4AkBWObCwhb4aR/AUkKxjYXELbCSf8CkhSMbS4gbIWT/gUkKRjbXEDYCif9C0hSMLa5gLAVTvoXkKRgbHMBYSuc9P+/AknK1I059acJW/6SQzcKJxciIDsE+4F2qSvtW6d2YduXi4CMKHVhZifrvQUjAl190JXh1r4KJ+0EZESwR2MtUSMC3dg+JYXe1/yggcztGzgm0pm7w/foiAh0UmOkr2J9FTctnl3U0TOQ0XJ15ymNCHR7Rlfq0mM0MktMRAWCBUYEepTfKbHYFR/7AGF097lwd7Qfp40aQBjCfHF31IltKQvdQR8XVg791XFpoI0aQHCiECWlbz2jHTdJHUZxqzs6+ObEQ9pi3HoAGV03r7VBHWDghjW1O/XY6acW8+Wk9AhZTkRscI/W3ksouESgoVfpUQUGFl0NyEqkQMDS6as0gKW/jY9P1mTVgQxQUFNQGPHXMxi09Tt1d6TGaqNqhKzvanhRI81sfeRVU+PyOzGkvwW7eI/tqSmQikIfzFQC0hkqARGQzhTobDmKEAHpTIHOlvMHKKQZkvOBJeYAAAAASUVORK5CYII=');
     background-size:20px 20px;
@@ -320,6 +322,7 @@ td, th {
 }
 
 .pc-login-bj{
+	/* overflow: hidden ; */
     background-image: url("../img/banner/login-banner.jpg");
     background-size:100%;
     background-repeat:no-repeat;
@@ -439,7 +442,7 @@ td, th {
     top: 0;
     left: 0;
     color: #fff;
-    font: 12px/20px '寰蒋闆呴粦';
+    font: 12px/20px '微软雅黑';
     display: none;
     z-index: 2;
 }
@@ -497,7 +500,7 @@ td, th {
     width: 100%;
     height: 20px;
     overflow: hidden;
-    font: 13px/20px '寰蒋闆呴粦';
+    font: 13px/20px '微软雅黑';
     color: #fff;
     text-align: center;
     position: absolute;
@@ -555,7 +558,7 @@ td, th {
 }
 .price {
     color: #ec1611;
-    font: 13px/33px '寰蒋闆呴粦';
+    font: 13px/33px '微软雅黑';
     float: left;
 }
 .price em{
@@ -595,10 +598,10 @@ td, th {
 .you:hover{
     background-position: -244px -430px;
 }
-/*闄愰噺鎶㈣喘-缁撴潫*/
+/*限量抢购-结束*/
 
 
-/*鎰忚鍙嶉-寮�-寮瑰嚭灞�/
+/*意见反馈-开始-弹出层*/
 .fb-shade{
     display: none;
     width:100%;
@@ -744,7 +747,7 @@ li.suc{
 .gfail1{
     background-position: 0 -26px;
 }
-/*鎰忚鍙嶉-缁撴潫-寮瑰嚭灞�/
+/*意见反馈-结束-弹出层*/
 
 
 
@@ -775,7 +778,7 @@ li.suc{
 
 
 
-/*妫�祴灞忓箷瀹藉害閫傞厤瀹藉害*/
+/*检测屏幕宽度适配宽度*/
 @media screen and (min-width: 1280px) {
     .top-header #top-header, #header .area,.head_nav .area,.brand_sale {
         width: 1200px;
@@ -796,7 +799,7 @@ li.suc{
         height: 36px;
         font: 16px "microsoft yahei";
     }
-    /*鎼滅储-涓嬫潵閮ㄥ垎*/
+    /*搜索-下来部分*/
     .drop-down{
         width: 496px;
         top:38px;
@@ -876,13 +879,13 @@ li.suc{
     .ls-shangpin span.hisinfo{
         max-width: 188px;
     }
-    /*鎼滅储-涓嬫潵閮ㄥ垎缁撴潫*/
-    /*瀵艰埅鏍�寮�*/
+    /*搜索-下来部分结束*/
+    /*导航栏-开始*/
     .head-1 a{
         padding:0 20px;
     }
-    /*瀵艰埅鏍�缁撴潫*/
-    /*璇︾粏鍟嗗搧瀵艰埅/杞挱-寮�*/
+    /*导航栏-结束*/
+    /*详细商品导航/轮播-开始*/
     .head_wrapper,.brand_hot{
         width:1200px;
     }
@@ -892,8 +895,8 @@ li.suc{
     .right-ll div.r-banner,.rigt_wrapper .r-rb{
         display: block;
     }
-    /*璇︾粏鍟嗗搧瀵艰埅/杞挱-缁撴潫*/
-    /*鍝佺墝鐑崠-寮�*/
+    /*详细商品导航/轮播-结束*/
+    /*品牌热卖-开始*/
     .brand_hot ul li .fir_bor{
         margin-right:12px;
         display: inline-block;
@@ -914,9 +917,9 @@ li.suc{
     .brands_small_banners .banner_li_br i.right{
         display: block;
     }
-    /*鍝佺墝鐑崠-缁撴潫*/
+    /*品牌热卖-结束*/
 
-    /*闄愰噺鎶㈣喘-寮�*/
+    /*限量抢购-开始*/
     .flashSale_wrap,.flashSale,.flashSaleDeals{
         width:1200px;
     }
@@ -939,7 +942,7 @@ li.suc{
     .dealInfo {
         height: 29px;
     }
-    /*闄愰噺鎶㈣喘-缁撴潫*/
+    /*限量抢购-结束*/
     .seek .s-k-nr{
         width:407px;
         height:24px;
@@ -1027,7 +1030,7 @@ li.suc{
 .Shead07>a>p:hover{
     color: #cd2426;
 }
-/*************鎼滅储************************************/
+/*************搜索************************************/
 .Snavigation{
     width: 1200px;
     height: 116px;
@@ -1116,7 +1119,7 @@ li.suc{
 .Snavigation07>a>p:hover{
     color: #cd2426;
 }
-/***********************瀵艰埅******************************/
+/***********************导航******************************/
 .Search{
     width: 100%;
     height: 40px;
@@ -1258,7 +1261,7 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 20px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 .Search013>a>p{
     position: absolute;
@@ -1266,7 +1269,7 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 70px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 .Search014>a>p{
     position: absolute;
@@ -1274,7 +1277,7 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 126px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 .Search015>a>p{
     position: absolute;
@@ -1282,7 +1285,7 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 182px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 .Search016>a>p{
     position: absolute;
@@ -1290,7 +1293,7 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 238px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 .Search017>a>p{
     position: absolute;
@@ -1298,7 +1301,7 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 294px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
 .Search018>a>p{
     position: absolute;
@@ -1306,9 +1309,9 @@ li.suc{
     color: #fcf0f1;
     margin-left: 24px;
     margin-top: 350px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
 }
-/************************鍐呭**********************************/
+/************************内容**********************************/
 .Sccontent{
     width: 100%;
     height: 483px;
@@ -1319,7 +1322,7 @@ li.suc{
 
 }
 .Sccontent01>p{
-    font-family: "榛戜綋";
+    font-family: "黑体";
     font-size: 24px;
     position: absolute;
     color: #333333;
@@ -1329,7 +1332,7 @@ li.suc{
 .Sccontent02>p{
     position: absolute;
     font-size: 14px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #414141;
     margin-left: 176px;
     margin-top: 68px;
@@ -1357,7 +1360,7 @@ li.suc{
 }
 .Sccontent07>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333333;
     margin-left: 1200px;
@@ -1374,7 +1377,7 @@ li.suc{
     position: relative;
 }
 .Scontent01>p{
-    font-family: "榛戜綋";
+    font-family: "黑体";
     font-size: 24px;
     color: #333;
     position: absolute;
@@ -1384,7 +1387,7 @@ li.suc{
 .Scontent02>p{
     position: absolute;
     font-size: 14px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #414141;
     margin-left: 176px;
     margin-top: 68px;
@@ -1395,7 +1398,7 @@ li.suc{
 .Scontent03>a>p{
     position: absolute;
     font-size: 16px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #333;
     margin-top: 122px;
     margin-left: 300px;
@@ -1406,7 +1409,7 @@ li.suc{
 .Scontent04>a>p{
     position: absolute;
     font-size: 16px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #333;
     margin-top: 122px;
     margin-left: 434px;
@@ -1414,7 +1417,7 @@ li.suc{
 .Scontent05>a>p{
     position: absolute;
     font-size: 16px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #cd2426;
     margin-top: 122px;
     margin-left: 566px;
@@ -1422,7 +1425,7 @@ li.suc{
 .Scontent06>a>p{
     position: absolute;
     font-size: 16px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #333;
     margin-top: 122px;
     margin-left: 848px;
@@ -1433,7 +1436,7 @@ li.suc{
 .Scontent07>a>p{
     position: absolute;
     font-size: 16px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     color: #333;
     margin-top: 122px;
     margin-left:1004px;
@@ -1462,7 +1465,7 @@ li.suc{
     margin-left: 986px;
 }
 .Scontent12>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #3b3b3b;
     position: absolute;
@@ -1470,7 +1473,7 @@ li.suc{
     margin-left: 174px;
 }
 .Scontent13>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #3b3b3b;
     position: absolute;
@@ -1478,7 +1481,7 @@ li.suc{
     margin-left: 450px;
 }
 .Scontent14>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #3b3b3b;
     position: absolute;
@@ -1486,7 +1489,7 @@ li.suc{
     margin-left: 756px;
 }
 .Scontent15>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #3b3b3b;
     position: absolute;
@@ -1501,7 +1504,7 @@ li.suc{
     position: relative;
 }
 .SContent002>p{
-    font-family: "榛戜綋";
+    font-family: "黑体";
     font-size: 24px;
     color: #333;
     position: absolute;
@@ -1510,7 +1513,7 @@ li.suc{
     z-index: 30;
 }
 .SContent003>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
     position: absolute;
@@ -1518,7 +1521,7 @@ li.suc{
     margin-left: 190px;
 }
 .SContent004>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333333;
     position: absolute;
@@ -1530,7 +1533,7 @@ li.suc{
     color: #cd2426;
 }
 .SContent005>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333333;
     position: absolute;
@@ -1548,7 +1551,7 @@ li.suc{
 }
 .SContent007>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 186px;
@@ -1561,7 +1564,7 @@ li.suc{
 }
 .SContent009>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 440px;
@@ -1574,7 +1577,7 @@ li.suc{
 }
 .SContent0011>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 654px;
@@ -1587,7 +1590,7 @@ li.suc{
 }
 .SContent0013>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 898px;
@@ -1600,7 +1603,7 @@ li.suc{
 }
 .SContent0015>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 455px;
@@ -1613,7 +1616,7 @@ li.suc{
 }
 .SContent0017>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 686px;
@@ -1626,14 +1629,14 @@ li.suc{
 }
 .SContent0019>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #2d2c2c;
     margin-left: 926px;
     margin-top: 460px;
 }
 .SContent0020>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #fff;
     position: absolute;
@@ -1641,7 +1644,7 @@ li.suc{
     margin-top: 120px;
 }
 .SContent0021>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #fff;
     position: absolute;
@@ -1649,7 +1652,7 @@ li.suc{
     margin-top: 120px;
 }
 .SContent0022>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #fff;
     position: absolute;
@@ -1657,7 +1660,7 @@ li.suc{
     margin-top: 160px;
 }
 .SContent0023>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #fff;
     position: absolute;
@@ -1666,7 +1669,7 @@ li.suc{
 }
 
 .SContent0025>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #fff;
     position: absolute;
@@ -1674,7 +1677,7 @@ li.suc{
     margin-top: 200px;
 }
 .SContent0026>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #fff;
     position: absolute;
@@ -1690,7 +1693,7 @@ li.suc{
 }
 .Shome02>p{
     position: absolute;
-    font-family: "榛戜綋";
+    font-family: "黑体";
     font-size: 24px;
     color:#333;
     margin-left: 72px;
@@ -1698,7 +1701,7 @@ li.suc{
     min-width: 1200px;
 }
 .Shome03>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1707,7 +1710,7 @@ li.suc{
 }
 .Shome04>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     margin-top: 66px;
@@ -1751,7 +1754,7 @@ li.suc{
 }
 .Shome12>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:310px;
@@ -1759,7 +1762,7 @@ li.suc{
 }
 .Shome13>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:310px;
@@ -1767,7 +1770,7 @@ li.suc{
 }
 .Shome14>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:310px;
@@ -1775,7 +1778,7 @@ li.suc{
 }
 .Shome15>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:310px;
@@ -1790,14 +1793,14 @@ li.suc{
 }
 .Sclothing02>p{
     position: absolute;
-    font-family: "榛戜綋";
+    font-family: "黑体";
     font-size: 24px;
     color:#333;
     margin-left: 72px;
     margin-top: 86px;
 }
 .Sclothing03>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1805,7 +1808,7 @@ li.suc{
     margin-left: 196px;
 }
 .Sclothing04>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1816,7 +1819,7 @@ li.suc{
     color: #cd2426;
 }
 .Sclothing05>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1827,7 +1830,7 @@ li.suc{
     color: #cd2426;
 }
 .Sclothing06>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1838,7 +1841,7 @@ li.suc{
     color: #cd2426;
 }
 .Sclothing07>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1849,7 +1852,7 @@ li.suc{
     color: #cd2426;
 }
 .Sclothing08>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1860,7 +1863,7 @@ li.suc{
     color: #cd2426;
 }
 .Sclothing09>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     position: absolute;
@@ -1892,7 +1895,7 @@ li.suc{
 }
 .Sclothing14>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:840px;
@@ -1900,7 +1903,7 @@ li.suc{
 }
 .Sclothing15>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:840px;
@@ -1908,7 +1911,7 @@ li.suc{
 }
 .Sclothing16>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:840px;
@@ -1916,7 +1919,7 @@ li.suc{
 }
 .Sclothing17>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #2d2c2c;
     margin-top:840px;
@@ -1940,14 +1943,14 @@ li.suc{
 }
 
 .Svalidate02>p{
-    font-family: "榛戜綋"," 瀹嬩綋"," 寰蒋闆呴粦";
+    font-family: "黑体"," 宋体"," 微软雅黑";
     font-size: 24px;
     color: #333;
     margin-top: 94px;
     float: left;
 }
 .Svalidate03>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #333;
     margin-top: 100px;
@@ -1984,7 +1987,7 @@ li.suc{
     margin-top:338px;
 
 }
-/****************************搴曢儴***********************************************/
+/****************************底部***********************************************/
 .Sbottom{
     width: 100%;
     height: 399px;
@@ -1993,7 +1996,7 @@ li.suc{
     position: relative;
 }
 .Sbottom02>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #ffffff;
     position: absolute;
@@ -2001,7 +2004,7 @@ li.suc{
     margin-left: 210px;
 }
 .Sbottom03>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 24px;
     color: #ffffff;
     position: absolute;
@@ -2009,7 +2012,7 @@ li.suc{
     margin-left: 166px;
 }
 .Sbottom04>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #ffffff;
     position: absolute;
@@ -2017,7 +2020,7 @@ li.suc{
     margin-left: 210px;
 }
 .Sbottom05>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #ffffff;
     position: absolute;
@@ -2025,7 +2028,7 @@ li.suc{
     margin-left: 164px;
 }
 .Sbottom06>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #ffffff;
     position: absolute;
@@ -2033,7 +2036,7 @@ li.suc{
     margin-left: 276px;
 }
 .Sbottom07>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #ffffff;
     position: absolute;
@@ -2041,7 +2044,7 @@ li.suc{
     margin-left: 630px;
 }
 .Sbottom08>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #ffffff;
     position: absolute;
@@ -2050,7 +2053,7 @@ li.suc{
     line-height: 30px;
 }
 .Sbottom09>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #ffffff;
     position: absolute;
@@ -2058,7 +2061,7 @@ li.suc{
     margin-left: 1030px;
 }
 .Sbottom10>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #ffffff;
     position: absolute;
@@ -2067,14 +2070,14 @@ li.suc{
 }
 .Sbottom11>a>p{
     position: absolute;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #d9d9d9;
     margin-left: 470px;
     margin-top: 290px;
     line-height: 24px;
 }
-/******************鍟嗗搧璇︽儏椤�***********************************/
+/******************商品详情页************************************/
 .Xnavigation{
     width: 100%;
     height: 40px;
@@ -2082,7 +2085,7 @@ li.suc{
     min-width: 1200px;
 }
 .Xnavigation02>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #c22629;
     line-height: 40px;
@@ -2090,7 +2093,7 @@ li.suc{
     float: left;
 }
 .Xnavigation03>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1c1b19;
     line-height: 40px;
@@ -2101,7 +2104,7 @@ li.suc{
     color: #C22629;
 }
 .Xnavigation04>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1c1b19;
     line-height: 40px;
@@ -2112,7 +2115,7 @@ li.suc{
     color: #C22629;
 }
 .Xnavigation05>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1c1b19;
     line-height: 40px;
@@ -2123,7 +2126,7 @@ li.suc{
     color: #C22629;
 }
 .Xnavigation06>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1c1b19;
     line-height: 40px;
@@ -2134,7 +2137,7 @@ li.suc{
     color: #C22629;
 }
 .Xnavigation07>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1c1b19;
     line-height: 40px;
@@ -2145,7 +2148,7 @@ li.suc{
     color: #C22629;
 }
 .Xnavigation08>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1c1b19;
     line-height: 40px;
@@ -2169,7 +2172,7 @@ li.suc{
     overflow: hidden;
 }
 .Xcontent02>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #595959;
     margin-top: 30px;
@@ -2179,7 +2182,7 @@ li.suc{
     color: #cd2426;
 }
 .Xcontent03>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #595959;
     margin-top: 32px;
@@ -2188,7 +2191,7 @@ li.suc{
     cursor: pointer;
 }
 .Xcontent04>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #595959;
     margin-top: 33px;
@@ -2278,7 +2281,7 @@ li.suc{
     float: right;
 }
 .Xcontent14>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 22px;
     line-height:24px;
     color: #333;margin-top: 26px;
@@ -2290,7 +2293,7 @@ li.suc{
     margin-left: 10px;
 }
 .Xcontent16>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #9f9f9f;
     margin-top: 65px;
@@ -2303,7 +2306,7 @@ li.suc{
     overflow: hidden;
 }
 .Xcontent18{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #666a6e;
     margin-top: 20px;
@@ -2311,7 +2314,7 @@ li.suc{
     float: left;
 }
 .Xcontent19{
-    font-family:"寰蒋闆呴粦";
+    font-family:"微软雅黑";
     font-size: 18px;
     float: left;
     color: #d7282d;
@@ -2319,7 +2322,7 @@ li.suc{
     margin-top: 4px;
 }
 .Xcontent19>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 28px;
     color: #cd2426;
 
@@ -2330,7 +2333,7 @@ li.suc{
     margin-top: 50px;
 }
 .Xcontent21{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #666a6e;
     margin-left: 16px;
@@ -2343,7 +2346,7 @@ li.suc{
     margin-left: 28px;
 }
 .Xcontent22{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     line-height: 20px;
     color: #cd2426;
@@ -2356,7 +2359,7 @@ li.suc{
     margin-top: 11px;
 }
 .Xcontent24{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #666a6e;
     margin-left: 16px;
@@ -2364,7 +2367,7 @@ li.suc{
     float: left;
 }
 .Xcontent25{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #6e7372;
     margin-left: 28px;
@@ -2373,7 +2376,7 @@ li.suc{
 }
 
 .Xcontent27{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #605f5f;
     margin-top: 34px;
@@ -2413,7 +2416,7 @@ li.suc{
     overflow: hidden;
 }
 .Xcontent31{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #605f5f;
     line-height: 100px;
@@ -2452,7 +2455,7 @@ li.suc{
     background: #f5f5f5;
 }
 .Xagain01>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     line-height: 42px;
@@ -2516,7 +2519,7 @@ li.suc{
 }
 
 .Xagain09>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     float: left;
@@ -2524,13 +2527,13 @@ li.suc{
     margin-left: 100px;
 }
 .Xagain09>a>p>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
     line-height: 40px;
 }
 .Xagain10>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     float: left;
@@ -2538,7 +2541,7 @@ li.suc{
     margin-left: 140px;
 }
 .Xagain10>a>p>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
     line-height: 40px;
@@ -2595,7 +2598,7 @@ li.suc{
 
 }
 .Xdetails02>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #333333;
     line-height: 38px;
@@ -2603,7 +2606,7 @@ li.suc{
 
 }
 .Xdetails04>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #333333;
     line-height: 38px;
@@ -2611,7 +2614,7 @@ li.suc{
 }
 .Xdetails04>p>span{
     color: #cd2426;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
 }
 .Xdetails002{
@@ -2631,7 +2634,7 @@ li.suc{
     border: 1px solid #e1e1e1;
 }
 .Xdetails009>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #333;
     line-height: 38px;
@@ -2672,7 +2675,7 @@ li.suc{
     margin-top: 60px;
 }
 .Xdetails016>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #333;
     line-height: 38px;
@@ -2701,7 +2704,7 @@ li.suc{
     margin-left: 36px;
     margin-top: 40px;
 }
-/***************璐墿杞�******************************/
+/***************购物车*******************************/
 .Gcontent01{
     height: 70px;
     width: 1200px;
@@ -2709,7 +2712,7 @@ li.suc{
     overflow: hidden;
 }
 .Gcontent01>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #626262;
     line-height: 70px;
@@ -2733,7 +2736,7 @@ li.suc{
 
 }
 .Gcontent04>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #515757;
     float: left;
@@ -2743,7 +2746,7 @@ li.suc{
 }
 .Gcontent05>p{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #515757;
     margin-left: 150px;
@@ -2778,7 +2781,7 @@ li.suc{
 }
 .Gcontent010{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     margin-top: 42px;
@@ -2786,13 +2789,13 @@ li.suc{
     line-height: 24px;
 }
 .Gcontent010>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #9f9f9f;
 
 }
 .Gcontent011{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     margin-left: 80px;
@@ -2824,7 +2827,7 @@ li.suc{
     height: 23px;
     border: 1px solid #dddddd;
     margin-top: 56px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     text-align: center;
@@ -2836,7 +2839,7 @@ li.suc{
     height: 23px;
     border: 1px solid #dddddd;
     margin-top: 56px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     text-align: center;
@@ -2848,7 +2851,7 @@ li.suc{
     height: 23px;
     border: 1px solid #dddddd;
     margin-top: 56px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     text-align: center;
@@ -2860,7 +2863,7 @@ li.suc{
     height: 23px;
     border: 1px solid #dddddd;
     margin-top: 56px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     text-align: center;
@@ -2886,14 +2889,14 @@ li.suc{
 }
 .Gcontent014>p{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
     margin-left: 87px;
     margin-top: 58px;
 }
 .Gcontent015>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     margin-left: 144px;
@@ -2902,7 +2905,7 @@ li.suc{
 }
 .Gcontent016>a{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #b6b6b6;
     margin-top: 56px;
@@ -2910,7 +2913,7 @@ li.suc{
 }
 .Gcontent0016>a{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #b6b6b6;
     margin-top: 56px;
@@ -2918,7 +2921,7 @@ li.suc{
 }
 .Gcontent00016>a{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #b6b6b6;
     margin-top: 56px;
@@ -2926,7 +2929,7 @@ li.suc{
 }
 .Gcontent000016>a{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #b6b6b6;
     margin-top: 56px;
@@ -2975,7 +2978,7 @@ li.suc{
 }
 .Gcontent019{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     margin-top: 22px;
@@ -2988,7 +2991,7 @@ li.suc{
     background: #cd2426;
 }
 .Gcontent020>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 24px;
     color: #fff;
     line-height: 60px;
@@ -2997,18 +3000,18 @@ li.suc{
 .Gcontent021>p{
     float: right;
     margin-top: 12px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #515757;
     margin-right: 20px;
 }
 .Gcontent022{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #cd2426;
 }
 .Gcontent023{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #9f9f9f;
 }
@@ -3025,7 +3028,7 @@ li.suc{
     background: #f5f5f5;
 }
 .Gcontent025>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     line-height: 43px;
@@ -3054,7 +3057,7 @@ li.suc{
     margin-right: 20px;
 }
 .Gcontent031>p>a{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     float: left;
@@ -3062,12 +3065,12 @@ li.suc{
     margin-left: 130px;
 }
 .Gcontent032{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
 }
 .Gcontent033>p>a{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     float: left;
@@ -3075,12 +3078,12 @@ li.suc{
     margin-left: 350px;
 }
 .Gcontent034{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
 }
 .Gcontent035>p>a{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     float: left;
@@ -3088,12 +3091,12 @@ li.suc{
     margin-left: 640px;
 }
 .Gcontent036{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
 }
 .Gcontent037>p>a{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #686868;
     float: left;
@@ -3101,7 +3104,7 @@ li.suc{
     margin-left: 915px;
 }
 .Gcontent038{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
 }
@@ -3110,7 +3113,7 @@ li.suc{
     margin: auto;
     height: 430px;
 }
-/*********************鐧诲綍椤�********************************/
+/*********************登录页*********************************/
 .Dconter{
     width: 100%;
     height: 524px;
@@ -3134,7 +3137,7 @@ li.suc{
     overflow: hidden;
 }
 .Dconter03{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #041423;
     margin-top: 24px;
@@ -3148,7 +3151,7 @@ li.suc{
     margin-left: 42px;
     margin-top: 20px;
     padding-left: 50px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #cccccc;
 
@@ -3161,7 +3164,7 @@ li.suc{
     margin-left: 42px;
     margin-top: 18px;
     padding-left: 50px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #cccccc;
 
@@ -3174,7 +3177,7 @@ li.suc{
     margin-top: 40px;
 }
 .Dconter07>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #fff;
     text-align: center;
@@ -3182,7 +3185,7 @@ li.suc{
 }
 .Dconter09>p{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #9f9f9f;
     margin-left: 42px;
@@ -3192,11 +3195,11 @@ li.suc{
     float: right;
     margin-right: 40px;
     margin-top: 20px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #9f9f9f;
 }
-/**************璁㈠崟椤�*****************************************/
+/**************订单页******************************************/
 .DIconter{
     width: 1198px;
     height: 360px;
@@ -3211,7 +3214,7 @@ li.suc{
     border-bottom: 1px solid #e1e1e1;
 }
 .DIconter01>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     line-height: 40px;
@@ -3223,7 +3226,7 @@ li.suc{
     margin-top: 50px;
 }
 .DIconter03{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: 393939;
     line-height: 50px;
@@ -3239,7 +3242,7 @@ li.suc{
     border: 1px solid #dddddd;
 }
 .DIconter05{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: 393939;
     line-height: 50px;
@@ -3252,7 +3255,7 @@ li.suc{
     margin-top: 10px;
 }
 .DIconter07{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: 393939;
     line-height: 50px;
@@ -3261,7 +3264,7 @@ li.suc{
 
 }
 .DIconter08{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #393939;
     float: left;
@@ -3282,7 +3285,7 @@ li.suc{
     margin-left: 28px;
     background: url(../images/zhifuye/F15.png) 132px no-repeat;
     cursor:pointer;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #393939;
     border: 1px solid #dddddd;
@@ -3293,7 +3296,7 @@ li.suc{
     margin-top: 20px;
 }
 .DIconter11{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: 393939;
     line-height: 50px;
@@ -3315,7 +3318,7 @@ li.suc{
 }
 .DIconter14{
     float: left;
-    font-family:"寰蒋闆呴粦";
+    font-family:"微软雅黑";
     font-size: 12px;
     color: #393939;
     margin-left: 10px;
@@ -3329,7 +3332,7 @@ li.suc{
     margin-left: -76px;
 }
 .DIconter15>a>p{
-    font-family: "寰蒋闆呴粦 Light";
+    font-family: "微软雅黑 Light";
     font-size: 18px;
     color: #fff;
     line-height: 42px;
@@ -3350,7 +3353,7 @@ li.suc{
 }
 .DIconter19>p{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     line-height: 42px;
@@ -3358,7 +3361,7 @@ li.suc{
 }
 .DIconter20>p{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     line-height: 42px;
@@ -3366,7 +3369,7 @@ li.suc{
 }
 .DIconter21>p{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     line-height: 42px;
@@ -3389,19 +3392,19 @@ li.suc{
 }
 .DIconter24{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-top: 42px;
 }
 .DIconter24>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #bdbdbd;
     line-height: 24px;
 }
 .DIconter25{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-left: 130px;
@@ -3409,7 +3412,7 @@ li.suc{
     margin-top: 42px;
 }
 .DIconter26{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-left: 142px;
@@ -3417,7 +3420,7 @@ li.suc{
     margin-top: 42px;
 }
 .DIconter27{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-left: 152px;
@@ -3425,7 +3428,7 @@ li.suc{
     margin-top: 42px;
 }
 .DIconter28{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-left: 130px;
@@ -3433,7 +3436,7 @@ li.suc{
     margin-top: 42px;
 }
 .DIconter29{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 20px;
     color: #b6b6b6;
     margin-left: 100px;
@@ -3443,7 +3446,7 @@ li.suc{
 
 }
 .DIconter31{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 20px;
     color: #b6b6b6;
     margin-left: 100px;
@@ -3457,7 +3460,7 @@ li.suc{
     border-bottom: 1px solid #e1e1e1;
 }
 .DIconter33>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     margin-left: 32px;
@@ -3471,7 +3474,7 @@ li.suc{
     margin-top: 15px;
 }
 .DIconter35>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-top: 14px;
@@ -3484,14 +3487,14 @@ li.suc{
     float: left;
 }
 .DIconter37>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     margin-top: 34px;
     margin-left: 34px;
 }
 .DIconter38>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #cd2426;
     margin-top: 12px;
@@ -3514,7 +3517,7 @@ li.suc{
     float: left;
     border-left: none;
     margin-top: 14px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #4e4c4c;
     line-height: 35px;
@@ -3528,20 +3531,20 @@ li.suc{
     margin-right: 130px;
 }
 .DIconter42>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-top: 34px;
 }
 .DIconter43>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-top: 20px;
     margin-left: 14px;
 }
 .DIconter44>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
     margin-top: 20px;
@@ -3566,7 +3569,7 @@ li.suc{
     float: left;
 }
 .DIconter48{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #9e9e9e;
     margin-top: 12px;
@@ -3579,7 +3582,7 @@ li.suc{
 }
 .DIconter50{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #545454;
     margin-top: 14px;
@@ -3592,12 +3595,12 @@ li.suc{
     margin-right: 130px;
 }
 .DIconter52>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #393939;
 }
 .DIconter52>p>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 24px;
     color: #cd2426;
     margin-left: 22px;
@@ -3610,7 +3613,7 @@ li.suc{
     margin-left: 52px;
 }
 .DIconter53>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 18px;
     color: #fff;
     line-height: 42px;
@@ -3631,13 +3634,13 @@ li.suc{
 }
 .DIconter56{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #1853fe;
     margin-top: 13px;
     margin-left: 20px;
 }
-/************涓汉璧勬枡*******************************/
+/************个人资料*******************************/
 .Lconter{
     width: 1200px;
     height: 650px;
@@ -3645,7 +3648,7 @@ li.suc{
     overflow: hidden;
 }
 .Lconter01>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 20px;
@@ -3654,7 +3657,7 @@ li.suc{
     color: #cd2426;
 }
 .Lconter01>a>p>span{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #8f8f8f;
 }
@@ -3671,7 +3674,7 @@ li.suc{
     margin-top: 30px;
 }
 .Lconter04>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 20px;
@@ -3681,7 +3684,7 @@ li.suc{
     color: #cd2426;
 }
 .Lconter05>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #cd2426;
     margin-top: 12px;
@@ -3696,7 +3699,7 @@ li.suc{
     margin-top: 12px;
 }
 .Lconter07>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     line-height: 28px;
@@ -3706,14 +3709,14 @@ li.suc{
     color: #cd2426;
 }
 .Lconter08>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #cd2426;
     margin-top: 25px;
     margin-left: 60px;
 }
 .Lconter008>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 25px;
@@ -3724,14 +3727,14 @@ li.suc{
 }
 
 .Lconter09>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 20px;
     margin-left: 60px;
 }
 .Lconter009>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #cd2426;
     margin-top: 20px;
@@ -3741,7 +3744,7 @@ li.suc{
     color: #cd2426;
 }
 .Lconter10>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 20px;
@@ -3759,14 +3762,14 @@ li.suc{
     margin-left: 18px;
 }
 .Lconter12>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     margin-top: 48px;
     margin-left: 70px;
 }
 .Lconter13>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     margin-top: 36px;
@@ -3778,7 +3781,7 @@ li.suc{
     margin-top: 30px;
 }
 .Lconter15{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     line-height: 32px;
@@ -3790,7 +3793,7 @@ li.suc{
     height: 30px;
     border: 1px solid #e8e8e8;
     margin-left: 64px;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     line-height: 30px;
@@ -3802,7 +3805,7 @@ li.suc{
 
 }
 .Lconter18{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     margin-left: 70px;
@@ -3816,7 +3819,7 @@ li.suc{
 }
 .Lconter20{
     float: left;
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     margin-left: 8px;
@@ -3834,14 +3837,14 @@ li.suc{
     margin-top: 30px;
 }
 .Lconter23{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px ;
     color: #3b3b3b;
     margin-left: 70px;
     float: left;
 }
 .Lconter24{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px ;
     color: #6aa2db;
     margin-left: 38px;
@@ -3853,7 +3856,7 @@ li.suc{
     margin-top: 30px;
 }
 .Lconter26{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     margin-left: 70px;
@@ -3878,7 +3881,7 @@ li.suc{
     background: #cd2426;
 }
 .Lconter29{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 16px;
     color: #575757;
     text-align: center;
@@ -3911,7 +3914,7 @@ li.suc{
 
 }
 .Jconter02{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     line-height: 43px;
@@ -3919,7 +3922,7 @@ li.suc{
     float: left;
 }
 .Jconter03{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     line-height: 43px;
@@ -3930,7 +3933,7 @@ li.suc{
     float: left;
 }
 .Jconter05{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     margin-top: 60px;
@@ -3940,7 +3943,7 @@ li.suc{
     color: #cd2426;
 }
 .Jconter06{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #3b3b3b;
     float: left;
@@ -3954,14 +3957,14 @@ li.suc{
     margin-left: 100px;
 }
 .Jconter08{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 20px;
 }
 
 .Jconter09{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #3b3b3b;
     margin-top: 10px;
@@ -3971,7 +3974,7 @@ li.suc{
     color: #cd2426;
 }
 .Jconter10>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 14px;
     color: #cd2426;
     float: left;
@@ -3985,14 +3988,14 @@ li.suc{
     margin-left: 46px;
 }
 .Jconter12{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #838383;
     margin-top: 30px;
     text-align: center;
 }
 .Jconter112{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #838383;
     margin-top: 30px;
@@ -4006,7 +4009,7 @@ li.suc{
     margin-left: 6px;
 }
 .Jconter13>a>p{
-    font-family: "寰蒋闆呴粦";
+    font-family: "微软雅黑";
     font-size: 12px;
     color: #fff;
     text-align: center;

@@ -2,6 +2,7 @@ package com.forge.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
@@ -30,6 +31,7 @@ import com.forge.bean.CartItem;
 import com.forge.bean.Forge_Cart;
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Users;
+import com.forge.bean.region;
 import com.forge.dao.Forge_Users_Dao;
 import com.forge.dao_impl.Forge_Users_Dao_Impl;
 import com.forge.service.Forge_CartService;
@@ -82,10 +84,57 @@ public class Servlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		case "search":
+			search(req,resp);
+			break;
+		case "address":
+			myAdd(req,resp);
 			break;
 		}
 
 	}
+	
+	/**
+	 * 点击搜索跳转到相应的页面
+	 * @param req
+	 * @param resp
+	 */
+	private void search(HttpServletRequest req, HttpServletResponse resp) {
+		try {
+			req.setCharacterEncoding("utf-8");
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		resp.setCharacterEncoding("utf-8");
+		System.out.println("进入了搜索方法");
+		//获取用户要搜所的字段
+		String userInput = req.getParameter("input");
+		System.out.println("用户要搜所的是"+userInput);
+	}
+
+	/**
+	 * 订单三级联动
+	 */
+		private void myAdd(HttpServletRequest req, HttpServletResponse resp) {
+			String parentId = req.getParameter("parentId");
+			if (parentId==null || parentId=="") {
+				parentId="0";//如果传的父结点为空，则默认赋值为中国的父结点，也就是每一级查询所有省份
+			}
+			List<region> list = service.findAddress(parentId);
+			String json="";
+			Gson gson=new Gson();
+			json=gson.toJson(list);
+			resp.setCharacterEncoding("utf-8");
+			try {
+				resp.getWriter().print(json);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
 /**
  * 用户正常退出方法
  * @param req
@@ -320,7 +369,7 @@ public void clearAll(HttpServletRequest req, HttpServletResponse resp,
 				//存储key  value
 				client.add("cart",1000,cart);
 				try {
-						resp.sendRedirect("index2.jsp");
+						resp.sendRedirect("index.jsp");
 						} catch (IOException e) {
 							e.printStackTrace();
 						}

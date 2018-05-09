@@ -10,4 +10,5 @@ public interface Forge_Product_Dao extends BaseDao<Forge_Product> {
 	List<Forge_Product>findAll();
 	//÷∏∂®≤È—Ø 
 	Forge_Product findById(Serializable id);
+	List<Forge_Product> findBooksAjax();
 }

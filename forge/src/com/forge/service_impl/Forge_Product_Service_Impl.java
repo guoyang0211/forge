@@ -1,6 +1,7 @@
 package com.forge.service_impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import com.forge.bean.Forge_Product;
 import com.forge.dao.Forge_Product_Dao;
 import com.forge.dao_impl.Forge_Product_Dao_Impl;
 import com.forge.service.Forge_Product_Service;
+import com.forge.util.MemcachedUtil;
 
 public class Forge_Product_Service_Impl implements Forge_Product_Service {
 	//创建Dao层实例
@@ -54,6 +56,26 @@ public class Forge_Product_Service_Impl implements Forge_Product_Service {
 		cart.addProduct(product,num);
 		
 	}
+	
+	@Override
+	public List<String> findBooksAjax(String name) {
+		List<String> str=new ArrayList();
+		List<Forge_Product> list=null;
+		// 如果缓存中没有对象时，就进入数据库查询
+		if (MemcachedUtil.getInstance().get("books") == null) {
+			 list= dao.findBooksAjax();
+			MemcachedUtil.getInstance().set("books", 1000, list);
+		}
+		list= (List<Forge_Product>) MemcachedUtil.getInstance().get("books");
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getName().indexOf(name)!=-1) {
+				str.add(list.get(i).getName());
+			}
+		}
+		System.out.println("222"+str);
+		return str;
+	}
+
 
 	@Override
 	public void delCart(String id, Cart cart) {

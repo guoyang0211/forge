@@ -4,4 +4,6 @@ import com.forge.bean.Forge_Order_Detail;
 
 public interface Forge_Order_Detail_Dao extends BaseDao<Forge_Order_Detail> {
 
+	void add(int orderId, int productId, int num, double price);
+
 }

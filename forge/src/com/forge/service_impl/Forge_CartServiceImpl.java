@@ -71,8 +71,15 @@ public class Forge_CartServiceImpl implements Forge_CartService {
 		dao.update(num, price, userId, productId);
 	}
 
-	public void add(Serializable userId,Serializable productId,int num,double price) {
+	public void add(int userId,int productId,int num,double price) {
 		dao.add(userId,productId,num,price);
+		
+	}
+
+	@Override
+	public void delete(String userId, String id) {
+		System.out.println("进入到了delete方法购物车");
+		dao.delete(userId,id);
 		
 	}
 

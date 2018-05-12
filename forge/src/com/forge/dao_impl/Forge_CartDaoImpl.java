@@ -113,6 +113,22 @@ public class Forge_CartDaoImpl extends JdbcUtil implements Forge_CartDao {
 		return 0;
 	}
 
+	@Override
+	public void delete(String userId, String id) {
+		String sql="delete from forge_cart where userId=? and productId=?";
+		Object[]params={userId,id};
+		try {
+			getmyExecuteUpdate(sql, params);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 
 }

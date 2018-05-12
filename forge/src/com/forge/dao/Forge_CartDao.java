@@ -13,5 +13,6 @@ public interface Forge_CartDao extends BaseDao<Forge_Cart> {
 	
 	public void add(Serializable userId,Serializable productId,int num,double price);
 	int update(int num,double price,Serializable userId,Serializable productId);
+	void delete(String userId, String id);
 	
 }

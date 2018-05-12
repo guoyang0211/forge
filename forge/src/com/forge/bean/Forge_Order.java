@@ -1,7 +1,8 @@
 package com.forge.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
 *Created by ¹ùÑôon2018-04-23
@@ -11,7 +12,7 @@ import java.sql.Date;
 
 public class Forge_Order  implements Serializable{
 	private int id;
-	private String userId;
+	private int userId;
 	private String loginName;
 	private String userAddress;
 	private Date createTime;
@@ -20,7 +21,7 @@ public class Forge_Order  implements Serializable{
 	private int type;
 	private String serialNumber;
 	public Forge_Order(){}
-	public Forge_Order(int id,String userId,String loginName,String userAddress,Date createTime,double cost,int status,int type,String serialNumber){
+	public Forge_Order(int id,int userId,String loginName,String userAddress,Date createTime,double cost,int status,int type,String serialNumber){
 	super();
 	this. id=id;
 	this. userId=userId;
@@ -38,10 +39,10 @@ public class Forge_Order  implements Serializable{
 	public int getId(){
 		return id;
 	}
-	public void setUserId(String userId){
+	public void setUserId(int userId){
 	this.userId=userId;
 	}
-	public String getUserId(){
+	public int getUserId(){
 		return userId;
 	}
 	public void setLoginName(String loginName){

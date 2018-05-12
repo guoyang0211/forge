@@ -386,10 +386,12 @@
 													</br> <input type="text" />
 											</div>
 											<!-- checkout-count-extend -->
+										
+											
 											<div class="checkout-price">
 												<ul>
 
-													<li>订单总额：<span>244元</span>
+													<li>订单总额：<span>${sessionScope.cart.price}</span>
 													</li>
 													<li>活动优惠：<span>-0元</span> <script
 															type="text/javascript">
@@ -403,9 +405,10 @@
 													</li>
 												</ul>
 												<p class="checkout-total">
-													应付总额：<span><strong id="totalPrice">244</strong>元</span>
+													应付总额：<span><strong id="totalPrice">${sessionScope.cart.price}</strong>元</span>
 												</p>
 											</div>
+											
 											<!--  -->
 										</div>
 									</div>
@@ -449,7 +452,7 @@
 							<div class="checkout-confirm">
 
 								<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-								<a href="my-apy.jsp" class="btn btn-primary">立即下单</a>
+								<a href="OrderServlet?method=add&cost=${sessionScope.cart.price}&productNum=${sessionScope.cart.map.product.num}&productId=${sessionScope.cart.map.product.id}" class="btn btn-primary">立即下单</a>
 
 							</div>
 						</div>

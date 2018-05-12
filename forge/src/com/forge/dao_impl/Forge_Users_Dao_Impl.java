@@ -24,8 +24,8 @@ public class Forge_Users_Dao_Impl extends JdbcUtil implements Forge_Users_Dao {
 
 	
 	public int add(Forge_Users t) {
-		String sql="insert into forge_users(userId,loginName,password,phone,email,address)values(?,?,?,?,?,?)";
-		Object[]params={t.getUserId(),t.getLoginName(),t.getPassword(),t.getPhone(),t.getEmail(),t.getAddress()};
+		String sql="insert into forge_users(loginName,password,phone,email,address)values(?,?,?,?,?)";
+		Object[]params={t.getLoginName(),t.getPassword(),t.getPhone(),t.getEmail(),t.getAddress()};
 		int rowNum=0;
 		try {
 			rowNum=getmyExecuteUpdate(sql, params);

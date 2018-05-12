@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<meta charset="UTF-8">
 	<meta name="Generator" content="EditPlus®">
 	<meta name="Author" content="">
@@ -10,11 +10,10 @@
 	<meta name="Description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
 	<meta name="renderer" content="webkit">
-	<title>云购物商城-会员中心</title>
+	<title>云购物商城-所有分类</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<link rel="stylesheet" type="text/css" href="css/member.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/modernizr-custom-v2.7.1.min.js"></script>
@@ -114,14 +113,19 @@
 
         })
 	</script>
-
 </head>
 <body>
 
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >
+			您好！<a href="my-user.jsp">${sessionScope.user.loginName}</a>，欢迎来云购物 
+			<c:if test="${sessionScope.user==null}">
+				<a href="login.jsp" target="_blank">请登录</a>
+			</c:if>			
+			<a href="register.html" target="_blank"> 免费注册</a>
+			</div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -151,6 +155,9 @@
 					<li><a href="#">会员中心</a></li>
 					<li><a href="#">客户服务</a></li>
 					<li><a href="#">帮助中心</a></li>
+					<c:if test="${sessionScope.user!=null}">
+						<li><a href="UsersServlet?method=exit&userId=${sessionScope.user.userId}">退出登录</a></li>				
+					</c:if>		
 				</ul>
 			</div>
 		</div>
@@ -158,7 +165,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="index.jsp"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">
@@ -203,104 +210,162 @@
 
 </header>
 
-<div class="containers center"><div class="pc-nav-item"><a href="#">首页</a> &gt; <a href="#">会员中心 </a> &gt; <a href="#">商城快讯</a></div></div>
-<section id="member">
-	<div class="member-center clearfix">
-		<div class="member-left fl">
-			<div class="member-apart clearfix">
-				<div class="fl"><a href="#"><img src="img/mem.png"></a></div>
-				<div class="fl">
-					<p>用户名：</p>
-					<p><a href="#">亚里士多德</a></p>
-					<p>搜悦号：</p>
-					<p>389323080</p>
-				</div>
+
+<div class="center" style="background:#fff;">
+	<div style="padding:20px">
+		<div class="containers clearfix"><div class="pc-nav-item fl"><a href="#" class="pc-title">首页</a> &gt;<a href="#"> 所有货架</a></div> <div class="fr" style="padding-top:20px;"><a href="#" class="reds">所有品牌&gt;</a></div></div>
+		<div class="containers">
+			<div class="pc-nav-rack clearfix">
+				<ul>
+					<li><a href="#">家用电器</a></li>
+					<li><a href="#">手机数码</a></li>
+					<li><a href="#">电脑办公</a></li>
+					<li><a href="#">家居家装</a></li>
+					<li><a href="#">男装女装</a></li>
+					<li><a href="#">个护化妆</a></li>
+					<li><a href="#">运动户外</a></li>
+					<li><a href="#">箱包钟表</a></li>
+					<li><a href="#">汽车用品</a></li>
+					<li><a href="#">玩具乐器</a></li>
+					<li><a href="#">食品酒类</a></li>
+					<li><a href="#">玩具乐器</a></li>
+					<li><a href="#">营养保健</a></li>
+					<li><a href="#">图书音像</a></li>
+					<li><a href="#">充值票务</a></li>
+				</ul>
 			</div>
-			<div class="member-lists">
-				<dl>
-					<dt>我的商城</dt>
-					<dd><a href="#">我的订单</a></dd>
-					<dd><a href="#">我的收藏</a></dd>
-					<dd><a href="#">账户安全</a></dd>
-					<dd><a href="#">我的评价</a></dd>
-					<dd><a href="#">地址管理</a></dd>
-					<dd><a href="categoryServlet?method=queryTrack">我的足迹</a></dd>
-				</dl>
-				<dl>
-					<dt>客户服务</dt>
-					<dd><a href="#">退货申请</a></dd>
-					<dd><a href="#">退货/退款记录</a></dd>
-				</dl>
-				<dl>
-					<dt>我的消息</dt>
-					<dd class="cur"><a href="#">商城快讯</a></dd>
-					<dd><a href="#">帮助中心</a></dd>
-				</dl>
-			</div>
-		</div>
-		<div class="member-right fr">
-			<div class="member-head">
-				<div class="member-heels fl"><h2>账户安全</h2></div>
-			</div>
-			<div class="member-border">
-				<div class="member-secure clearfix">
-					<div class="member-extent fl">
-						<h2 class="fl">安全级别</h2>
-						<ul class="fl">
-							<li class="on"></li>
-							<li class="on"></li>
-							<li class="on"></li>
-							<li class="on"></li>
-							<li class="on"></li>
-							<li class="on"></li>
-							<li class="on"></li>
-							<li class="on1"><a href="#"></a></li>
-							<li class="on2"><a href="#"></a></li>
-							<li class="on3"><a href="#"></a></li>
-						</ul>
-						<span class="fl">较高</span>
-					</div>
-					<div class="fr reds"><p> * 建议您开启全部安全设置，以保障您的账户及资金安全</p></div>
-				</div>
-				<div class="member-caution clearfix">
+			<div>
+	<%-- 	<c:forEach items="${sessionScope.type3}" var="a"> --%>
+				<%-- <c:if test="${a.id==id}"> --%>
+					<div class="pc-nav-title"><h3>我的足迹</h3></div>
+				<div class="pc-nav-digit clearfix">
 					<ul>
-						<li class="clearfix">
-							<div class="warn1"></div>
-							<div class="warn2">登录密码</div>
-							<div class="warn3">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</div>
-							<div class="warn4"><a href="#">修改</a> </div>
+						<c:forEach items="${sessionScope.userTrack}" var="b">
+							<li>
+								<div class="digit1"><a href="CategoryServlet?method=page&id=${b.product.id}"><img src="images/${b.product.fileName}" width="100%"></a></div>
+								<div class="digit2"><a href="CategoryServlet?method=page&id=${b.product.id}">${b.product.name}</a></div>
+								<div id="time" name="time">${b.viewTime}</div>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+				
+				<!-- 显示浏览时间 -->
+				<!-- <script type="text/javascript">
+					$(function(){
+					 alert("进入了ajax的time");
+					 var id=$("#time").val();
+					 alert(id);
+					 $.ajax({
+		              	url:"TackServlet",
+		             	type:"POST",
+		              	data:{"method":"findTime","time":id},
+		              	succession:function(data){
+		              		$("#time").append("<h6>"+data+"</h6>");
+		              	}		       
+		      		 });	 -->
+					
+					
+<!-- 					});				 -->
+				</script>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<%-- </c:if> --%>
+	<%-- 	</c:forEach>  --%>
+			</div>
+		<!-- 最外层forEach -->	
+			<!-- <div>
+				<div class="pc-nav-title"><h3>摄影</h3></div>
+				<div class="pc-nav-digit clearfix">
+					<ul>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
 						</li>
-						<li class="clearfix">
-							<div class="warn1"></div>
-							<div class="warn2">密保问题</div>
-							<div class="warn3">建议您设置密保问题。  </div>
-							<div class="warn4"><a href="#">设置密保</a> </div>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
 						</li>
-						<li class="clearfix">
-							<div class="warn1"></div>
-							<div class="warn2">手机验证</div>
-							<div class="warn3">您验证的手机： <i class="reds">134*****693</i>   若已丢失或停用，请立即更换，<i class="reds">避免账户被盗</i></div>
-							<div class="warn5"><p>解绑请咨询搜小悦官方客服 <i>souyue@zhongsou.com  </i></p></div>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
 						</li>
-						<li class="clearfix">
-							<div class="warn6"></div>
-							<div class="warn2">支付密码</div>
-							<div class="warn3">安全程度：  建议您设置更高强度的密码。</div>
-							<div class="warn5"><a href="#">支付密码管理</a></div>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
+						</li>
+						<li>
+							<div class="digit1"><a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%"></a></div>
+							<div class="digit2"><a href="#">家用电器</a></div>
 						</li>
 					</ul>
-					<div class="member-prompt">
-						<p>安全提示：</p>
-						<p>您当前IP地址是：<i class="reds">110.106.0.01</i>  北京市          上次登录的TP： 2015-09-16  <i class="reds">110.106.0.02 </i> 天津市</p>
-						<p>1. 注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗。</p>
-						<p>2. 建议您安装杀毒软件，并定期更新操作系统等软件补丁，确保账户及交易安全。      </p>
+				</div>
+			</div>
+			<div style="padding-top:30px;">
+				<div class="member-pages clearfix">
+					<div class="fr pc-search-g">
+						<a href="#" class="fl pc-search-f">上一页</a>
+						<a class="current" href="#">1</a>
+						<a href="javascript:;">2</a>
+						<a href="javascript:;">3</a>
+						<a href="javascript:;">4</a>
+						<a href="javascript:;">5</a>
+						<a href="javascript:;">6</a>
+						<a href="javascript:;">7</a>
+						<span class="pc-search-di">…</span>
+						<a onclick="SEARCH.page(3, true)" href="javascript:;" class="pc-search-n" title="使用方向键右键也可翻到下一页哦！">下一页</a>
+						<span class="pc-search-y">
+                        <em>  共20页    到第</em>
+                        <input type="text" placeholder="1" class="pc-search-j">
+                        <em>页</em>
+                        <a class="confirm" href="#">确定</a>
+                    </span>
+
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
 
+	</div>
+</div>
+ -->
 
 <div style="height:100px"></div>
 

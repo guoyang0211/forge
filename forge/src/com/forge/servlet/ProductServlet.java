@@ -1,6 +1,7 @@
 package com.forge.servlet;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.util.List;
 
@@ -326,7 +327,7 @@ public class ProductServlet extends HttpServlet{
 	
 	
 	//获取用户的购物车
-			private Cart getUserCart(String userId) {
+			private Cart getUserCart(Serializable userId) {
 				System.out.println("==========进入了getUserCart==============");
 
 				Cart cart = new Cart();

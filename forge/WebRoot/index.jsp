@@ -87,12 +87,13 @@
 			<div class="fl pc-header-link" >
 			您好:
 			<c:if test="${sessionScope.loginName!=null }">
-					${sessionScope.loginName }
+				<a href="my-user.jsp">	${sessionScope.loginName }</a>
 			</c:if>欢迎来云购物 
 			<c:if test="${sessionScope.loginName==null }">
 			<a href="login.jsp" target="_blank">请登录</a>
 			</c:if>
 			 <a href="login.jsp" target="_blank"> 免费注册</a>
+			
 			 </div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
@@ -123,6 +124,7 @@
 					<li><a href="#">会员中心</a></li>
 					<li><a href="#">客户服务</a></li>
 					<li><a href="#">帮助中心</a></li>
+					<li><a href="forgeServlet?method=exit&id=${sessionScope.forgeUser.userId}" style="color:red">退出登录</a></li>
 				</ul>
 			</div>
 		</div>
@@ -1296,13 +1298,8 @@
 <!-- fiandAll（一级菜单） -->
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
-	window.onload=function(){
+
 	
-	 $.ajax({
-              url:"categoryServlet",
-              type:"POST",
-              data:{"method":"findAll"}
-       });
 	
 	/*  $.ajax({
               url:"categoryServlet",
@@ -1315,6 +1312,14 @@
               type:"POST",
               data:{"method":"findAll3"}
        }); */
+window.onload=function(){
+	$.ajax({
+              url:"categoryServlet",
+              type:"POST",
+              data:{"method":"findAll"},
+              async:false
+       });
+	 
 	}
 </script>
 

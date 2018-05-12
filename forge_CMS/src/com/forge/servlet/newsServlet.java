@@ -145,7 +145,8 @@ public class newsServlet extends HttpServlet {
 	//修改
 	private void update(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("进入了update");
-		String id = req.getParameter("id");
+		String idd = req.getParameter("id");
+		int id = Integer.valueOf(idd);
 		String title =req.getParameter("title");
 		String time=req.getParameter("time");
 		String content=req.getParameter("content");

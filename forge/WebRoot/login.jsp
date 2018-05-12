@@ -128,96 +128,96 @@
 					</div>
 				</div>
 			</div>
-			<div class="header-bottom">
-				<div class="container">
-					<div class="row header-middle-content">
-						<div class="col-md-5 col-sm-4 hidden-xs">
-							<div class="service-inner mt-10">
-								<span class="service-img b-img"> <img alt=""
-									src="images/service.png"> </span> <span
-									class="service-content ml-15"><strong>+88 (012)
-										564 979 56</strong><br>We are open 9 am - 10 pm</span>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-4 col-xs-12">
-							<div class="header-logo text-center">
-								<a href="index.html"><img alt="" src="images/logo.png">
-								</a>
-							</div>
-						</div>
-						<div
-							class="col-md-offset-0 col-md-5 col-sm-offset-0 col-sm-4 col-xs-offset-3 col-xs-6">
-							<div class="shopping-cart">
-								<a href="#"> <span class="shopping-cart-control"> <img
-										alt="" src="images/shop.png"> </span> <span
-									class="cart-size-value"><strong>购物车(3)</strong><br>$250</span>
-								</a>
-								<ul class="shopping-cart-down box-shadow white-bg">
+<!-- 			<div class="header-bottom"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="row header-middle-content"> -->
+<!-- 						<div class="col-md-5 col-sm-4 hidden-xs"> -->
+<!-- 							<div class="service-inner mt-10"> -->
+<!-- 								<span class="service-img b-img"> <img alt="" -->
+<!-- 									src="images/service.png"> </span> <span -->
+<!-- 									class="service-content ml-15"><strong>+88 (012) -->
+<!-- 										564 979 56</strong><br>We are open 9 am - 10 pm</span> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-2 col-sm-4 col-xs-12"> -->
+<!-- 							<div class="header-logo text-center"> -->
+<!-- 								<a href="index.html"><img alt="" src="images/logo.png"> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div -->
+<!-- 							class="col-md-offset-0 col-md-5 col-sm-offset-0 col-sm-4 col-xs-offset-3 col-xs-6"> -->
+<!-- 							<div class="shopping-cart"> -->
+<!-- 								<a href="#"> <span class="shopping-cart-control"> <img -->
+<!-- 										alt="" src="images/shop.png"> </span> <span -->
+<!-- 									class="cart-size-value"><strong>购物车(3)</strong><br>$250</span> -->
+<!-- 								</a> -->
+<!-- 								<ul class="shopping-cart-down box-shadow white-bg"> -->
 									
 									
 									
-									<li class="media"><a href="#"><img alt=""
-											src="images/cart/1.jpg"> </a>
-										<div class="cart-item-wrapper">
-											<a href="#">Zelletria ostma</a> <span class="quantity">
-												<span class="amount">$195</span> x 2 </span> <a
-												title="Remove this item" class="remove" href="#"> <i
-												class="fa fa-trash-o"></i> </a>
-										</div>
-									</li>
-									
-									
-									
-									
-									<li class="media"><a href="#"><img alt=""
-											src="images/cart/2.jpg"> </a>
-										<div class="cart-item-wrapper">
-											<a href="#">Letria postma</a> <span class="quantity">
-												<span class="amount">$145</span> x 1 </span> <a
-												title="Remove this item" class="remove" href="#"> <i
-												class="fa fa-trash-o"></i> </a>
-										</div>
-									</li>
+<!-- 									<li class="media"><a href="#"><img alt="" -->
+<!-- 											src="images/cart/1.jpg"> </a> -->
+<!-- 										<div class="cart-item-wrapper"> -->
+<!-- 											<a href="#">Zelletria ostma</a> <span class="quantity"> -->
+<!-- 												<span class="amount">$195</span> x 2 </span> <a -->
+<!-- 												title="Remove this item" class="remove" href="#"> <i -->
+<!-- 												class="fa fa-trash-o"></i> </a> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
 									
 									
 									
 									
-									<li class="media"><a href="#"><img alt=""
-											src="images/cart/3.jpg"> </a>
-										<div class="cart-item-wrapper">
-											<a href="#">Montria jastma</a> <span class="quantity">
-												<span class="amount">$155</span> x 2 </span> <a
-												title="Remove this item" class="remove" href="#"> <i
-												class="fa fa-trash-o"></i> </a>
-										</div>
-									</li>
+<!-- 									<li class="media"><a href="#"><img alt="" -->
+<!-- 											src="images/cart/2.jpg"> </a> -->
+<!-- 										<div class="cart-item-wrapper"> -->
+<!-- 											<a href="#">Letria postma</a> <span class="quantity"> -->
+<!-- 												<span class="amount">$145</span> x 1 </span> <a -->
+<!-- 												title="Remove this item" class="remove" href="#"> <i -->
+<!-- 												class="fa fa-trash-o"></i> </a> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
 									
 									
 									
 									
-									<li class="media"><span class="total-title pull-left">Sub
-											Total</span> <span class="total pull-right">$845</span>
-									</li>
-									<li class="media"><a class="cart-btn" href="#">VIEW
-											CART</a> <a class="cart-btn" href="#">CHECKOUT</a>
-									</li>
+<!-- 									<li class="media"><a href="#"><img alt="" -->
+<!-- 											src="images/cart/3.jpg"> </a> -->
+<!-- 										<div class="cart-item-wrapper"> -->
+<!-- 											<a href="#">Montria jastma</a> <span class="quantity"> -->
+<!-- 												<span class="amount">$155</span> x 2 </span> <a -->
+<!-- 												title="Remove this item" class="remove" href="#"> <i -->
+<!-- 												class="fa fa-trash-o"></i> </a> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
 									
 									
 									
-								</ul>
-							</div>
-						</div>
-						<nav class="primary-menu">
-							<ul class="header-top-style text-uppercase">
-								<li><a href="index.html">home</a></li>
-								<li><a href="about.html">about</a></li>
-								<li><a href="shop.html">shop</a></li>
-								<li><a href="contact.html">contact</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
+									
+<!-- 									<li class="media"><span class="total-title pull-left">Sub -->
+<!-- 											Total</span> <span class="total pull-right">$845</span> -->
+<!-- 									</li> -->
+<!-- 									<li class="media"><a class="cart-btn" href="#">VIEW -->
+<!-- 											CART</a> <a class="cart-btn" href="#">CHECKOUT</a> -->
+<!-- 									</li> -->
+									
+									
+									
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<nav class="primary-menu"> -->
+<!-- 							<ul class="header-top-style text-uppercase"> -->
+<!-- 								<li><a href="index.html">home</a></li> -->
+<!-- 								<li><a href="about.html">about</a></li> -->
+<!-- 								<li><a href="shop.html">shop</a></li> -->
+<!-- 								<li><a href="contact.html">contact</a></li> -->
+<!-- 							</ul> -->
+<!-- 						</nav> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- Mobile Menu Start -->
 			<div class="mobile-menu-area">
 				<div class="container">
@@ -320,16 +320,15 @@
 
 									</div>
 									<button type="submit" class="cart-button text-uppercase"
-										id="aa">login</button>
+										id="aa">登录</button>
 								</form>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="registered-customers new-customers">
 								<div class="section-title text-uppercase mb-40">
-									<h4>新客户</h4>
+									<h4><strong>新客户</strong></h4>
 								</div>
-
 								<form action="forgeServlet?method=add" id="register"
 									method="post">
 									<div class="login-account p-30 box-shadow">
@@ -341,23 +340,16 @@
 												<div id="result"></div>
 											</div>
 
-											
-
-
-
-
-
-
 											<div class="col-sm-6">
 												<input type="text" placeholder="请输入地址" name="address">
 											</div>
 										</div>
 
-										<input type="text" placeholder="请输入手机号" name="phone">
-										<input type="text" placeholder="请输入喜欢的编号" name="id"> <input
-											type="text" placeholder="请输入email" name="email"> <input
-											type="password" placeholder="请输入密码" name="password">
-										<input type="password" placeholder="请确认密码" name="repassword">
+										<input type="text" placeholder="请输入手机号" name="phone"></input>
+<!-- 										<input type="text" placeholder="请输入喜欢的编号" name="id"> </input> -->
+										<input type="text" placeholder="请输入email" name="email"> </input>
+										<input	type="password" placeholder="请输入密码" name="password"></input>
+										<input type="password" placeholder="请确认密码" name="repassword"></input>
 										<div class="checkbox">
 											<label class="mr-10"> <small> <input
 													type="checkbox" name="signup">注册我们的通讯! </small> </label> <label>
@@ -469,148 +461,148 @@
 					</div>
 				</div>
 			</div>
-			<div class="footer-middle-area footer-bg">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-sm-6">
-							<div class="single-footer-inner">
-								<h5 class="footer-title text-white">CONTACT</h5>
-								<ul class="footer-contact">
-									<li class="contact-icon"><img alt=""
-										src="images/footer/icon/1.png">
-									</li>
-									<li class="footer-text text-ash">
-										<p>8901 Marmora Raod,</p>
-										<p>Glasgow, D04 89GR</p>
-									</li>
-								</ul>
-								<ul class="footer-contact">
-									<li class="contact-icon"><img alt=""
-										src="images/footer/icon/2.png">
-									</li>
-									<li class="footer-text text-ash">
-										<p>Telephone : (801) 4256 9856</p>
-										<p>Telephone : (801) 4256 9658</p>
-									</li>
-								</ul>
-								<ul class="footer-contact">
-									<li class="contact-icon"><img alt=""
-										src="images/footer/icon/3.png">
-									</li>
-									<li class="footer-text text-ash">
-										<p>Email : info@forge.com</p>
-										<p>Web : www.forge.com</p>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-6">
-							<div class="single-footer-inner">
-								<h5 class="footer-title text-white">CONTACT</h5>
-								<ul class="footer-menu">
-									<li><a href="index.html">Home</a></li>
-									<li><a href="about.html">About us</a></li>
-									<li><a href="contact.html">Contact us</a></li>
-									<li><a href="#">Our blog</a></li>
-									<li><a href="#">Support centre</a></li>
-									<li><a href="#">Privacy policy</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-3">
-							<div class="single-footer-inner">
-								<h5 class="footer-title text-white">SUPPORT</h5>
-								<ul class="footer-menu">
-									<li><a href="#">Delivery information</a></li>
-									<li><a href="3">Order tracking</a></li>
-									<li><a href="#">Return product</a></li>
-									<li><a href="#">Gift card</a></li>
-									<li><a href="#">Home delivery</a></li>
-									<li><a href="#">Online support</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-9">
-							<h2 class="footer-title">LATEST TWEETS</h2>
-							<div class="tweet-list">
-								<ul class="left-tweet">
-									<li class="tweet-inner clearfix">
-										<div class="tweet-img">
-											<a href="#"> <img alt="" src="images/footer/tweet/1.jpg">
-											</a>
-										</div>
-										<div class="tweet-text">
-											<a href="#">Forge is the best ecommerce elt</a>
-											<p>Jan 25, 2017</p>
-										</div>
-									</li>
-									<li class="tweet-inner clearfix">
-										<div class="tweet-img">
-											<a href="#"> <img alt="" src="images/footer/tweet/2.jpg">
-											</a>
-										</div>
-										<div class="tweet-text">
-											<a href="#">Forge is the best ecommerce elt</a>
-											<p>Jan 25, 2017</p>
-										</div>
-									</li>
-								</ul>
-								<ul class="left-tweet">
-									<li class="tweet-inner clearfix">
-										<div class="tweet-img">
-											<a href="#"> <img alt="" src="images/footer/tweet/1.jpg">
-											</a>
-										</div>
-										<div class="tweet-text">
-											<a href="#">Forge is the best ecommerce elt</a>
-											<p>Jan 25, 2017</p>
-										</div>
-									</li>
-									<li class="tweet-inner clearfix">
-										<div class="tweet-img">
-											<a href="#"> <img alt="" src="images/footer/tweet/2.jpg">
-											</a>
-										</div>
-										<div class="tweet-text">
-											<a href="#">Forge is the best ecommerce elt</a>
-											<p>Jan 25, 2017</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="copyright">
-								<p>Copyright &copy; 2017.Company name All rights reserved.</p>
-							</div>
-						</div>
-						<div class="col-md-5 hidden-sm hidden-xs">
-							<nav>
-								<ul class="footer-bottom-menu">
-									<li><a href="#">Site Map</a></li>
-									<li><a href="contact.html">Contact Us</a></li>
-									<li><a href="">Wish List</a></li>
-									<li><a href="#">Newsletter</a></li>
-								</ul>
-							</nav>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="payment-method b-img">
-								<img alt="" src="images/footer/footer-bottom.png">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+<!-- 			<div class="footer-middle-area footer-bg"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-md-3 col-sm-6"> -->
+<!-- 							<div class="single-footer-inner"> -->
+<!-- 								<h5 class="footer-title text-white">CONTACT</h5> -->
+<!-- 								<ul class="footer-contact"> -->
+<!-- 									<li class="contact-icon"><img alt="" -->
+<!-- 										src="images/footer/icon/1.png"> -->
+<!-- 									</li> -->
+<!-- 									<li class="footer-text text-ash"> -->
+<!-- 										<p>8901 Marmora Raod,</p> -->
+<!-- 										<p>Glasgow, D04 89GR</p> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 								<ul class="footer-contact"> -->
+<!-- 									<li class="contact-icon"><img alt="" -->
+<!-- 										src="images/footer/icon/2.png"> -->
+<!-- 									</li> -->
+<!-- 									<li class="footer-text text-ash"> -->
+<!-- 										<p>Telephone : (801) 4256 9856</p> -->
+<!-- 										<p>Telephone : (801) 4256 9658</p> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 								<ul class="footer-contact"> -->
+<!-- 									<li class="contact-icon"><img alt="" -->
+<!-- 										src="images/footer/icon/3.png"> -->
+<!-- 									</li> -->
+<!-- 									<li class="footer-text text-ash"> -->
+<!-- 										<p>Email : info@forge.com</p> -->
+<!-- 										<p>Web : www.forge.com</p> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-2 col-sm-6"> -->
+<!-- 							<div class="single-footer-inner"> -->
+<!-- 								<h5 class="footer-title text-white">CONTACT</h5> -->
+<!-- 								<ul class="footer-menu"> -->
+<!-- 									<li><a href="index.html">Home</a></li> -->
+<!-- 									<li><a href="about.html">About us</a></li> -->
+<!-- 									<li><a href="contact.html">Contact us</a></li> -->
+<!-- 									<li><a href="#">Our blog</a></li> -->
+<!-- 									<li><a href="#">Support centre</a></li> -->
+<!-- 									<li><a href="#">Privacy policy</a></li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-2 col-sm-3"> -->
+<!-- 							<div class="single-footer-inner"> -->
+<!-- 								<h5 class="footer-title text-white">SUPPORT</h5> -->
+<!-- 								<ul class="footer-menu"> -->
+<!-- 									<li><a href="#">Delivery information</a></li> -->
+<!-- 									<li><a href="3">Order tracking</a></li> -->
+<!-- 									<li><a href="#">Return product</a></li> -->
+<!-- 									<li><a href="#">Gift card</a></li> -->
+<!-- 									<li><a href="#">Home delivery</a></li> -->
+<!-- 									<li><a href="#">Online support</a></li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-5 col-sm-9"> -->
+<!-- 							<h2 class="footer-title">LATEST TWEETS</h2> -->
+<!-- 							<div class="tweet-list"> -->
+<!-- 								<ul class="left-tweet"> -->
+<!-- 									<li class="tweet-inner clearfix"> -->
+<!-- 										<div class="tweet-img"> -->
+<!-- 											<a href="#"> <img alt="" src="images/footer/tweet/1.jpg"> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 										<div class="tweet-text"> -->
+<!-- 											<a href="#">Forge is the best ecommerce elt</a> -->
+<!-- 											<p>Jan 25, 2017</p> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
+<!-- 									<li class="tweet-inner clearfix"> -->
+<!-- 										<div class="tweet-img"> -->
+<!-- 											<a href="#"> <img alt="" src="images/footer/tweet/2.jpg"> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 										<div class="tweet-text"> -->
+<!-- 											<a href="#">Forge is the best ecommerce elt</a> -->
+<!-- 											<p>Jan 25, 2017</p> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 								<ul class="left-tweet"> -->
+<!-- 									<li class="tweet-inner clearfix"> -->
+<!-- 										<div class="tweet-img"> -->
+<!-- 											<a href="#"> <img alt="" src="images/footer/tweet/1.jpg"> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 										<div class="tweet-text"> -->
+<!-- 											<a href="#">Forge is the best ecommerce elt</a> -->
+<!-- 											<p>Jan 25, 2017</p> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
+<!-- 									<li class="tweet-inner clearfix"> -->
+<!-- 										<div class="tweet-img"> -->
+<!-- 											<a href="#"> <img alt="" src="images/footer/tweet/2.jpg"> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 										<div class="tweet-text"> -->
+<!-- 											<a href="#">Forge is the best ecommerce elt</a> -->
+<!-- 											<p>Jan 25, 2017</p> -->
+<!-- 										</div> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="footer-bottom-area"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-md-4 col-sm-6 col-xs-12"> -->
+<!-- 							<div class="copyright"> -->
+<!-- 								<p>Copyright &copy; 2017.Company name All rights reserved.</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-5 hidden-sm hidden-xs"> -->
+<!-- 							<nav> -->
+<!-- 								<ul class="footer-bottom-menu"> -->
+<!-- 									<li><a href="#">Site Map</a></li> -->
+<!-- 									<li><a href="contact.html">Contact Us</a></li> -->
+<!-- 									<li><a href="">Wish List</a></li> -->
+<!-- 									<li><a href="#">Newsletter</a></li> -->
+<!-- 								</ul> -->
+<!-- 							</nav> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-3 col-sm-6 col-xs-12"> -->
+<!-- 							<div class="payment-method b-img"> -->
+<!-- 								<img alt="" src="images/footer/footer-bottom.png"> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</footer> -->
 		<!-- End footer area -->
-	</div>
+<!-- 	</div> -->
 	<!-- Body main wrapper end -->
 
 	<!-- Placed js at the end of the document so the pages load faster -->

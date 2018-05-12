@@ -93,7 +93,8 @@
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="tables.jsp">Tables</a></li>
-                      <li><a href="tables_dynamic.jsp">Table Dynamic</a></li>
+<!--                       <li><a href="tables_dynamic.jsp">Table Dynamic</a></li> -->
+                      <li><a href="/forge_CMS/UserServlet?method=findAll">Table Dynamic</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>

@@ -13,11 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.forge.bean.Forge_Product;
 import com.forge.bean.Forge_Product_Category;
+import com.forge.bean.Forge_UserTrack;
+import com.forge.bean.Forge_Users;
+import com.forge.bean.UserTrack;
 import com.forge.dao.Forge_Product_Category_Dao;
 import com.forge.service.Forge_Product_Category_Service;
 import com.forge.service.Forge_Product_Service;
+import com.forge.service.Forge_UserTrack_Service;
 import com.forge.service_impl.Forge_Product_Category_Service_Impl;
 import com.forge.service_impl.Forge_Product_Service_Impl;
+import com.forge.service_impl.Forge_UserTrack_Service_Impl;
 @WebServlet("/categoryServlet")
 public class product_categoryServlet extends HttpServlet {
 	Forge_Product_Category_Service service=new Forge_Product_Category_Service_Impl();
@@ -54,12 +59,26 @@ public class product_categoryServlet extends HttpServlet {
 		case "books":
 			findBooks(req,resp);
 			break;
-
+		case "queryTrack":
+			queryTrack(req,resp);
+			break;
 		default:
 			break;
 		}
 	}
 	
+	private void queryTrack(HttpServletRequest req, HttpServletResponse resp) {
+		Forge_UserTrack_Service  ts = new Forge_UserTrack_Service_Impl(); 
+		Forge_Users user = (Forge_Users) req.getSession().getAttribute("forgeUser");
+		List <UserTrack> tracks = ts.queryTrack(user.getUserId());
+		req.getSession().setAttribute("userTrack", tracks);
+		try {
+			resp.sendRedirect("my-track.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 模糊查询
 	 */
@@ -97,7 +116,10 @@ public class product_categoryServlet extends HttpServlet {
 	
 private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
 	String id = req.getParameter("id");
-
+	Forge_Users user = (Forge_Users) req.getSession().getAttribute("forgeUser");
+	 
+	//添加用户浏览记录
+	addTrack(user.getUserId(),id,req,resp);
 	req.getSession().setAttribute("pageid", id);
 				try {
 					resp.sendRedirect("page.jsp");
@@ -105,9 +127,48 @@ private void pageInfo(HttpServletRequest req, HttpServletResponse resp) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+	}
 
+private void addTrack(int userId, String id,HttpServletRequest req, HttpServletResponse resp) {
+	System.out.println("进入了addTrack");
+	Forge_UserTrack_Service track =new Forge_UserTrack_Service_Impl();
+	Forge_Users user = (Forge_Users) req.getSession().getAttribute("forgeUser");
+	
+	if(null!=user){
+		//查询数据库中用户的所有记录
+		List <Forge_UserTrack> tracks = track.findByUserId(userId);   
+		//标是否有相同的产品
+		int count = 0; 
+		//是否有用户浏览记录
+		if(!tracks.isEmpty()){
+			//循环遍历用户浏览记录，判断是否有相同的商品
+			for(int i = 0;i<tracks.size();i++){
+				if(Integer.valueOf(id)==tracks.get(i).getProductId()){
+					count=count+1;
+				}
+			}
+			//如果count大于0，说明有重复的商品 
+			if(count>0){
+				//先清空用户，看重复的商品，只时间更新，在添加
+				System.out.println("进入了count》0");
+				track.del(userId,Integer.valueOf(id));
+				track.addTrack(userId,id);
+			}else{
+				System.out.println("进入了count《0"+count);
+				track.addTrack(userId,id);
+			}
+		}else{
+			System.out.println("没有浏览记录");
+			track.addTrack(userId,id);
+
+		}
+		
 		
 	}
+	
+	
+}
+
 
 /**
  * 根据三级菜单的id获取下级商品

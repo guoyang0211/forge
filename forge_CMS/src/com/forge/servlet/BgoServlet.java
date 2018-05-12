@@ -2,6 +2,7 @@ package com.forge.servlet;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,22 +40,26 @@ public class BgoServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		req.setCharacterEncoding("utf-8");
 		
 		String method = req.getParameter("method");
 		System.out.println(method);
 		switch(method){
 		case "login":
-			newslogin(req,resp);//调用登录方法
+			bgoLogin(req,resp);//调用登录方法
 		}
 		
 	}
 	
-	private void newslogin(HttpServletRequest req, HttpServletResponse resp) {
+	private void bgoLogin(HttpServletRequest req, HttpServletResponse resp) {
+			resp.setCharacterEncoding("utf-8");
 		//获取用户输入的用户名
 		String userName = req.getParameter("userName");
+		System.out.println(userName);
 		//获取用户输入的密码
 		String password = req.getParameter("password");
+		System.out.println(password);
+		
 		
 			//创建实体类bgo对象
 			Forge_BGO bgo=new Forge_BGO();

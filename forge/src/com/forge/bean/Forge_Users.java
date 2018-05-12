@@ -10,14 +10,14 @@ import java.sql.Date;
 
 
 public class Forge_Users  implements Serializable{
-	private String userId;
+	private int userId;
 	private String loginName;
 	private String password;
 	private String phone;
 	private String email;
 	private String address;
 	public Forge_Users(){}
-	public Forge_Users(String userId,String loginName,String password,String phone,String email,String address){
+	public Forge_Users(int userId,String loginName,String password,String phone,String email,String address){
 	super();
 	this. userId=userId;
 	this. loginName=loginName;
@@ -31,10 +31,10 @@ public class Forge_Users  implements Serializable{
 		this.loginName = loginName;
 		this.password = password;
 	}
-	public void setUserId(String userId){
+	public void setUserId(int userId){
 	this.userId=userId;
 	}
-	public String getUserId(){
+	public int getUserId(){
 		return userId;
 	}
 	public void setLoginName(String loginName){

@@ -11,7 +11,7 @@ import java.sql.Date;
 
 @SuppressWarnings("serial")
 public class Forge_Users  implements Serializable{
-	private String userId;
+	private int userId;
 	private String loginName;
 	private String password;
 	private String phone;
@@ -20,7 +20,7 @@ public class Forge_Users  implements Serializable{
 	public Forge_Users(){
 		
 	}
-	public Forge_Users(String userId,String loginName,String phone,String email,String address){
+	public Forge_Users(int userId,String loginName,String phone,String email,String address){
 	super();
 	this. userId=userId;
 	this. loginName=loginName;
@@ -29,7 +29,7 @@ public class Forge_Users  implements Serializable{
 	this. address=address;
 }
 
-	public Forge_Users(String userId,String loginName,String password,String phone,String email,String address){
+	public Forge_Users(int userId,String loginName,String password,String phone,String email,String address){
 	super();
 	this. userId=userId;
 	this. loginName=loginName;
@@ -52,10 +52,10 @@ public class Forge_Users  implements Serializable{
 				+ ", password=" + password + ", phone=" + phone + ", email="
 				+ email + ", address=" + address + "]";
 	}
-	public void setUserId(String userId){
+	public void setUserId(int userId){
 	this.userId=userId;
 	}
-	public String getUserId(){
+	public int getUserId(){
 		return userId;
 	}
 	public void setLoginName(String loginName){

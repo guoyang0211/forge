@@ -2,6 +2,7 @@ package com.forge.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,7 +65,7 @@ public class Servlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
+		req.setCharacterEncoding("utf-8");
 		String method = req.getParameter("method");
 		System.out.println("方法进来的" + method);
 		switch (method) {
@@ -78,12 +79,7 @@ public class Servlet extends HttpServlet {
 			userExit(req, resp);
 			break;
 		case "add":
-			try {
-				add(req, resp);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			add(req, resp);
 		case "search":
 			search(req,resp);
 			break;
@@ -238,14 +234,15 @@ public void clearAll(HttpServletRequest req, HttpServletResponse resp,
 
 		
 		System.out.println("进入了add方法");
-		String id = req.getParameter("id");
+//		String idd = req.getParameter("id");
+//		int id = Integer.valueOf(idd);
 		req.setCharacterEncoding("UTF-8");
 		String password = req.getParameter("password");
 		String repassword = req.getParameter("repassword");
 
 		Forge_Users user = new Forge_Users();
 
-		user.setUserId(id);
+		//user.setUserId(id);
 		user.setAddress(req.getParameter("address"));
 		user.setEmail(req.getParameter("email"));
 		user.setPhone(req.getParameter("phone"));
@@ -390,7 +387,7 @@ public void clearAll(HttpServletRequest req, HttpServletResponse resp,
 	private Cart mergeCart1(Forge_Users user,HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("==========进入了mergeCart1==============");
 			//从数据库中取出购物车
-		  Cart userCart = getUserCart(user.getUserId());
+		  Cart userCart = getUserCart(Integer.valueOf(user.getUserId()));
 		  //从cookie中取出购物车
 		  Cart cookieCart = getCookieCart(req,resp);
 		  //两个购物车进行合并
@@ -399,7 +396,7 @@ public void clearAll(HttpServletRequest req, HttpServletResponse resp,
 		return mergeCart;
 	}
 	//获取用户的购物车
-		private Cart getUserCart(String userId) {
+		private Cart getUserCart(Serializable userId) {
 			System.out.println("==========进入了getUserCart==============");
 			//创建一个购物车
 			Cart cart = new Cart();
